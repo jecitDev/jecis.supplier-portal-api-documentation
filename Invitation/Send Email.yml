@@ -1,0 +1,40 @@
+info:
+  name: Send Email
+  type: http
+  seq: 7
+
+http:
+  method: POST
+  url: "{{BASE_URL}}/invitations/:id/send-email"
+  headers:
+    - name: x-token
+      value: "{{admission_xtoken}}"
+    - name: X-User-ID
+      value: 53aad077-9fb1-4f08-85f3-af9fd9a36517
+  params:
+    - name: id
+      value: e65b788d-5eb3-41bd-88ac-07f268fadf8e
+      type: path
+  body:
+    type: json
+    data: "{\r
+
+      \    \"recipient_email\": \"justki7o.26@gmail.com\",\r
+
+      \    // \"template_id\": \"invitation-email-template\",\r
+
+      \    \"custom_message\": \"We would like to invite you to join our supplier network.\",\r
+
+      \    \"cc_emails\": [\"ayuaristafionna@gmail.com\", \"surya.aw26@gmail.com\"],\r
+
+      \    \"language\": \"en\"\r
+
+      }"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

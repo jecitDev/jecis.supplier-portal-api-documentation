@@ -1,0 +1,25 @@
+info:
+  name: Upload Bulking excel
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{BASE_URL}}/products/bulk-insert"
+  body:
+    type: multipart-form
+    data:
+      - name: file
+        type: file
+        value:
+          - /C:/Users/USER/Downloads/bulk_insert_template.xlsx
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

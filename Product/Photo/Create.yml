@@ -1,0 +1,32 @@
+info:
+  name: Create
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://localhost:8081/products/:product_id/photos
+  params:
+    - name: product_id
+      value: e2c928cf-69ee-46b2-85b1-ccdea9e90fad
+      type: path
+  body:
+    type: multipart-form
+    data:
+      - name: file
+        type: file
+        value:
+          - /C:/Users/MSI_/Downloads/output.png
+      - name: is_primary
+        type: text
+        value: "true"
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJNeUFwcGxpY2F0aW9uIiwiZXhwIjoxNzcwNzg1OTU1LCJuYmYiOjE3NzAxODExNTUsImlhdCI6MTc3MDE4MTE1NSwianRpIjoiMDc3NTQwY2UtNThkMi00MWI4LWEwYjQtMWI0OTYxM2JlNjJmIiwiaWQiOiIwNzc1NDBjZS01OGQyLTQxYjgtYTBiNC0xYjQ5NjEzYmU2MmYiLCJ1dWlkIjoiY2NkMjM1MzctMGY4Yy00MDQyLWI1MTUtNmYzYTZhM2I5OGJhIiwiZW1haWwiOiJzdXJ5YS5hdzI2QGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlzX2FjdGl2ZSI6dHJ1ZSwidG9rZW5faWQiOiJkODAzMmRjYy04MzQzLTRkMmUtODM5MS1kODE3M2QwZDg5NDIifQ.EPvac_IA32svAI_qNTxUFkSqM22u4tgow9NY2pzweWo
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

@@ -1,0 +1,26 @@
+info:
+  name: Get Refresh Token
+  type: http
+  seq: 6
+
+http:
+  method: POST
+  url: "{{BASE_URL}}/auth/refresh"
+  headers:
+    - name: X-User-ID
+      value: 53aad077-9fb1-4f08-85f3-af9fd9a36517
+  body:
+    type: json
+    data: "{\r
+
+      \    \"refresh_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJNeUFwcGxpY2F0aW9uIiwiZXhwIjoxNzcwMzU1NDYwLCJuYmYiOjE3Njk3NTA2NjAsImlhdCI6MTc2OTc1MDY2MCwianRpIjoiMDJlYzIxOWYtM2I2Yi00NzkxLTkzZWYtNGYzMWU3NmYwYzMzIiwiaWQiOiIwMmVjMjE5Zi0zYjZiLTQ3OTEtOTNlZi00ZjMxZTc2ZjBjMzMiLCJ1dWlkIjoiMDBlYmJhNmMtNTMwNC00ODMyLTgyYWYtMGYzZGFlN2VlNjM4IiwiZW1haWwiOiJqdXN0a2k3by4yNkBnbWFpbC5jb20iLCJyb2xlIjoiIiwiaXNfYWN0aXZlIjp0cnVlLCJ0b2tlbl9pZCI6ImRlNjI2Mzg1LTAwNTQtNDk4NS1hYzVkLTdhYjVhMzQyMTcyMSJ9.7nxU9EXcpN56K5T3trkoLQynovDWnZ0YEc09Qa4kjeQ\"\r
+
+      }"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

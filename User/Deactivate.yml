@@ -1,0 +1,28 @@
+info:
+  name: Deactivate
+  type: http
+  seq: 7
+
+http:
+  method: PATCH
+  url: http://localhost:8081/users/:id/deactivate
+  headers:
+    - name: X-User-ID
+      value: 53aad077-9fb1-4f08-85f3-af9fd9a36517
+  params:
+    - name: id
+      value: 5fcef9f9-0208-4de7-82ee-d2a77d9dd878
+      type: path
+  body:
+    type: json
+    data: ""
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJNeUFwcGxpY2F0aW9uIiwiZXhwIjoxNzcxMjkxMzIwLCJuYmYiOjE3NzA2ODY1MjAsImlhdCI6MTc3MDY4NjUyMCwianRpIjoiMDc3NTQwY2UtNThkMi00MWI4LWEwYjQtMWI0OTYxM2JlNjJmIiwiaWQiOiIwNzc1NDBjZS01OGQyLTQxYjgtYTBiNC0xYjQ5NjEzYmU2MmYiLCJ1dWlkIjoiMWU0Yjc1ZjItMzJiMS00MDdiLTlmNjAtZmUyZjM0YzJmZThkIiwiZW1haWwiOiJzdXJ5YS5hdzI2QGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlzX2FjdGl2ZSI6dHJ1ZSwidG9rZW5faWQiOiI4Njg3MDBiOS00NTZiLTQ3YTMtYmM4Yi0zMWEyMjJmMWUxNGIifQ.yBmMsS2VsGKaCyeizhrjDiOfjJkQ_OUusZp3JSwIrmI
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

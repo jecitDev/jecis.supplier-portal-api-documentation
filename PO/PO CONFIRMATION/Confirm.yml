@@ -1,0 +1,61 @@
+info:
+  name: Confirm
+  type: http
+  seq: 6
+
+http:
+  method: POST
+  url: "{{BASE_URL}}/purchase-order-confirmations/:confirmation_id/confirm"
+  params:
+    - name: confirmation_id
+      value: a1b7627a-83b3-4faf-94c0-4cced7ab8b4d
+      type: path
+  body:
+    type: json
+    data: ""
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: "{{BASE_URL}}/purchase-order-confirmations/:confirmation_id/confirm"
+      method: POST
+      params:
+        - name: confirmation_id
+          value: a1b7627a-83b3-4faf-94c0-4cced7ab8b4d
+          type: path
+      body:
+        type: json
+        data: ""
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Date
+          value: Thu, 26 Feb 2026 02:19:51 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "253"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Purchase order confirmed successfully",
+              "data": {
+                  "confirmation_id": "a1b7627a-83b3-4faf-94c0-4cced7ab8b4d",
+                  "status": "confirmed",
+                  "user_update": "077540ce-58d2-41b8-a0b4-1b49613be62f",
+                  "confirmed_at": "2026-02-26T09:19:52+07:00"
+              }
+          }

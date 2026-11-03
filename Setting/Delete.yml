@@ -1,0 +1,59 @@
+info:
+  name: Delete
+  type: http
+  seq: 5
+
+http:
+  method: DELETE
+  url: "{{BASE_URL}}/settings/:id"
+  params:
+    - name: id
+      value: legal_team_email
+      type: path
+  body:
+    type: json
+    data: ""
+  auth:
+    type: bearer
+    token: "{{x-refresh-token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: "{{BASE_URL}}/settings/:id"
+      method: DELETE
+      params:
+        - name: id
+          value: legal_team_email
+          type: path
+      body:
+        type: json
+        data: ""
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Date
+          value: Mon, 23 Feb 2026 06:30:42 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "135"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Setting deleted successfully",
+              "data": {
+                  "id": "legal_team_email",
+                  "deleted_at": "2026-02-23T13:30:42+07:00"
+              }
+          }

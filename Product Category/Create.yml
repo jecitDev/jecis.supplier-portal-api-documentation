@@ -1,0 +1,169 @@
+info:
+  name: Create
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{BASE_URL}}/product-categories"
+  body:
+    type: json
+    data: "{\r
+
+      \    \"name\": \"Pharmaceuticals\",\r
+
+      \    \"code\": \"PHARMA\",\r
+
+      \    \"is_active\": true\r
+
+      }"
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJNeUFwcGxpY2F0aW9uIiwiZXhwIjoxNzcxOTQ0NTEwLCJuYmYiOjE3NzE5NDA5MTAsImlhdCI6MTc3MTk0MDkxMCwianRpIjoiMDc3NTQwY2UtNThkMi00MWI4LWEwYjQtMWI0OTYxM2JlNjJmIiwiaWQiOiIwNzc1NDBjZS01OGQyLTQxYjgtYTBiNC0xYjQ5NjEzYmU2MmYiLCJ1dWlkIjoiNDc0NWQ5NTEtMGJiMS00ZTA2LTgyMzEtYWQ5YzdmNTI5NzY2IiwiZW1haWwiOiJzdXJ5YS5hdzI2QGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlzX2FjdGl2ZSI6dHJ1ZSwidG9rZW5faWQiOiI0NzQ1ZDk1MS0wYmIxLTRlMDYtODIzMS1hZDljN2Y1Mjk3NjYifQ.TNjF2eNiKHmTmRAyGUMaGiLUPPw-OYOzXHgNPRjD03Y
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: "{{BASE_URL}}/product-categories"
+      method: POST
+      body:
+        type: json
+        data: "{\r
+
+          \    \"name\": \"Medical Equipment\",\r
+
+          \    \"code\": \"MED-EQ\",\r
+
+          \    \"is_active\": true\r
+
+          }"
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Date
+          value: Tue, 24 Feb 2026 13:53:39 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "314"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Product category created successfully",
+              "data": {
+                  "id": "b2327fbd-f857-41e2-9aea-0d33445b6728",
+                  "name": "Medical Equipment",
+                  "code": "MED-EQ",
+                  "is_active": true,
+                  "user_create": "077540ce-58d2-41b8-a0b4-1b49613be62f",
+                  "created_at": "2026-02-24T20:53:39+07:00",
+                  "user_update": null,
+                  "updated_at": null
+              }
+          }
+  - name: Err missing field
+    request:
+      url: "{{BASE_URL}}/product-categories"
+      method: POST
+      body:
+        type: json
+        data: "{\r
+
+          \    // \"name\": \"Medical Equipment\",\r
+
+          \    \"code\": \"MED-EQ\",\r
+
+          \    \"is_active\": true\r
+
+          }"
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Date
+          value: Tue, 24 Feb 2026 13:54:22 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "47"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "error",
+              "message": "name is required"
+          }
+  - name: Err duplicate name
+    request:
+      url: "{{BASE_URL}}/product-categories"
+      method: POST
+      body:
+        type: json
+        data: "{\r
+
+          \    \"name\": \"Medical Equipment\",\r
+
+          \    \"code\": \"MED-EQ\",\r
+
+          \    \"is_active\": true\r
+
+          }"
+    response:
+      status: 409
+      statusText: Conflict
+      headers:
+        - name: Date
+          value: Tue, 24 Feb 2026 13:54:57 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "92"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "error",
+              "message": "product category with name 'Medical Equipment' already exists"
+          }
+  - name: Err duplicate code
+    request:
+      url: "{{BASE_URL}}/product-categories"
+      method: POST
+      body:
+        type: json
+        data: "{\r
+
+          \    \"name\": \"Medical Equipment New\",\r
+
+          \    \"code\": \"MED-EQ\",\r
+
+          \    \"is_active\": true\r
+
+          }"
+    response:
+      status: 409
+      statusText: Conflict
+      headers:
+        - name: Date
+          value: Tue, 24 Feb 2026 13:55:23 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "81"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "error",
+              "message": "product category with code 'MED-EQ' already exists"
+          }

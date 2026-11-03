@@ -1,0 +1,25 @@
+info:
+  name: Delete Supplier Bank Account
+  type: http
+  seq: 4
+
+http:
+  method: DELETE
+  url: "{{BASE_URL}}/suppliers/:supplier_id/bank-accounts/:bank_account_id"
+  params:
+    - name: supplier_id
+      value: 6fbdf5d9-0670-498c-986e-063075ecb1fc
+      type: path
+    - name: bank_account_id
+      value: 23b715d6-bbda-4014-8d74-4a0f87711731
+      type: path
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

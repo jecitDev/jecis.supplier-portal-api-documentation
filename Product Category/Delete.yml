@@ -1,0 +1,87 @@
+info:
+  name: Delete
+  type: http
+  seq: 5
+
+http:
+  method: DELETE
+  url: "{{BASE_URL}}/product-categories/:id"
+  params:
+    - name: id
+      value: b2327fbd-f857-41e2-9aea-0d33445b6728
+      type: path
+  body:
+    type: json
+    data: ""
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJNeUFwcGxpY2F0aW9uIiwiZXhwIjoxNzcxOTQ0NTEwLCJuYmYiOjE3NzE5NDA5MTAsImlhdCI6MTc3MTk0MDkxMCwianRpIjoiMDc3NTQwY2UtNThkMi00MWI4LWEwYjQtMWI0OTYxM2JlNjJmIiwiaWQiOiIwNzc1NDBjZS01OGQyLTQxYjgtYTBiNC0xYjQ5NjEzYmU2MmYiLCJ1dWlkIjoiNDc0NWQ5NTEtMGJiMS00ZTA2LTgyMzEtYWQ5YzdmNTI5NzY2IiwiZW1haWwiOiJzdXJ5YS5hdzI2QGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlzX2FjdGl2ZSI6dHJ1ZSwidG9rZW5faWQiOiI0NzQ1ZDk1MS0wYmIxLTRlMDYtODIzMS1hZDljN2Y1Mjk3NjYifQ.TNjF2eNiKHmTmRAyGUMaGiLUPPw-OYOzXHgNPRjD03Y
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: "{{BASE_URL}}/product-categories/:id"
+      method: DELETE
+      params:
+        - name: id
+          value: b2327fbd-f857-41e2-9aea-0d33445b6728
+          type: path
+      body:
+        type: json
+        data: ""
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Date
+          value: Tue, 24 Feb 2026 14:16:59 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "164"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Product category deleted successfully",
+              "data": {
+                  "id": "b2327fbd-f857-41e2-9aea-0d33445b6728",
+                  "deleted_at": "2026-02-24T21:16:59+07:00"
+              }
+          }
+  - name: Err not found
+    request:
+      url: "{{BASE_URL}}/product-categories/:id"
+      method: DELETE
+      params:
+        - name: id
+          value: b2327fbd-f857-41e2-9aea-0d33445b6799
+          type: path
+      body:
+        type: json
+        data: ""
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Date
+          value: Tue, 24 Feb 2026 14:17:13 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "57"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "error",
+              "message": "product category not found"
+          }

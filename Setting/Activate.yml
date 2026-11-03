@@ -1,0 +1,81 @@
+info:
+  name: Activate
+  type: http
+  seq: 6
+
+http:
+  method: PATCH
+  url: "{{BASE_URL}}/settings/:id/activate"
+  params:
+    - name: id
+      value: legal_team_email
+      type: path
+  body:
+    type: json
+    data: "{\r
+
+      \    \"id\": \"legal_team_email\",\r
+
+      \    \"name\": \"Legal Team Email\",\r
+
+      \    \"value\": \"legal@company.com\",\r
+
+      \    \"is_active\": true\r
+
+      }"
+  auth:
+    type: bearer
+    token: "{{x-refresh-token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: "{{BASE_URL}}/settings/:id/activate"
+      method: PATCH
+      params:
+        - name: id
+          value: legal_team_email
+          type: path
+      body:
+        type: json
+        data: "{\r
+
+          \    \"id\": \"legal_team_email\",\r
+
+          \    \"name\": \"Legal Team Email\",\r
+
+          \    \"value\": \"legal@company.com\",\r
+
+          \    \"is_active\": true\r
+
+          }"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Date
+          value: Mon, 23 Feb 2026 06:33:28 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "187"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Setting activated successfully",
+              "data": {
+                  "id": "legal_team_email",
+                  "name": "Legal Team Email Update",
+                  "is_active": true,
+                  "updated_at": "2026-02-23T13:33:28+07:00"
+              }
+          }

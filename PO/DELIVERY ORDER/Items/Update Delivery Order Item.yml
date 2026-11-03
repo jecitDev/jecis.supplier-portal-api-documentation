@@ -1,0 +1,89 @@
+info:
+  name: Update Delivery Order Item
+  type: http
+  seq: 3
+
+http:
+  method: PUT
+  url: "{{BASE_URL}}/delivery-orders/:id/items/:item_id"
+  params:
+    - name: id
+      value: 8ea9ec4c-ab71-4f97-8d2d-bf383b21db0e
+      type: path
+    - name: item_id
+      value: "1200001252"
+      type: path
+  body:
+    type: json
+    data: "{\r
+
+      \    \"item_name\": \"PARACETAMOL 10 MG\",\r
+
+      \    // \"quantity\": 30,\r
+
+      \    \"uom\": \"TABLET\"\r
+
+      }"
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: "{{BASE_URL}}/delivery-orders/:id/items/:item_id"
+      method: PUT
+      params:
+        - name: id
+          value: 8ea9ec4c-ab71-4f97-8d2d-bf383b21db0e
+          type: path
+        - name: item_id
+          value: "1200001252"
+          type: path
+      body:
+        type: json
+        data: "{\r
+
+          \    \"item_name\": \"PARACETAMOL 10 MG\",\r
+
+          \    // \"quantity\": 30,\r
+
+          \    \"uom\": \"TABLET\"\r
+
+          }"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Date
+          value: Thu, 05 Mar 2026 02:17:56 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "457"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Delivery order item updated successfully",
+              "data": {
+                  "id": "0200c1f9-0fc6-4521-ae22-136796b580c3",
+                  "delivery_order_id": "8ea9ec4c-ab71-4f97-8d2d-bf383b21db0e",
+                  "item_id": "1200001252",
+                  "item_name": "PARACETAMOL 10 MG",
+                  "quantity": 50,
+                  "uom": "TABLET",
+                  "user_create": "077540ce-58d2-41b8-a0b4-1b49613be62f",
+                  "created_at": "2026-03-05T09:03:33+07:00",
+                  "user_update": "077540ce-58d2-41b8-a0b4-1b49613be62f",
+                  "updated_at": "2026-03-05T09:17:56+07:00"
+              }
+          }

@@ -1,0 +1,39 @@
+info:
+  name: Login
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{BASE_URL}}/auth/login"
+  headers:
+    - name: X-User-ID
+      value: 53aad077-9fb1-4f08-85f3-af9fd9a36517
+  body:
+    type: json
+    data: "{\r
+
+      \    \"email\": \"it.development@jec.co.id\",\r
+
+      \    \"password\": \"Coba@12345\"\r
+
+      }"
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: "var data = res.getBody();\r
+
+        bru.setEnvVar(\"token\", data.data.access_token);\r
+
+        bru.setEnvVar(\"xtoken\", data.data.access_token);\r
+
+        bru.setEnvVar(\"refresh-token\", data.data.refresh_token);"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

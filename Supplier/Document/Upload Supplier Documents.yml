@@ -1,0 +1,96 @@
+info:
+  name: Upload Supplier Documents
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{BASE_URL}}/suppliers/:supplier_id/documents"
+  params:
+    - name: supplier_id
+      value: 97a05f32-01d0-4afb-8729-9841903e3bd0
+      type: path
+  body:
+    type: multipart-form
+    data:
+      - name: document_type
+        type: text
+        value: npwp
+      - name: category_document
+        type: text
+        value: legal
+      - name: file
+        type: file
+        value:
+          - /C:/Users/MSI_/Downloads/0. Tools Installation - AI for IT Developer.pdf
+      - name: expired_date
+        type: text
+        value: 2027-02-02 14:12:27+07
+        disabled: true
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJNeUFwcGxpY2F0aW9uIiwiZXhwIjoxNzcyNDE2OTQxLCJuYmYiOjE3NzE4MTIxNDEsImlhdCI6MTc3MTgxMjE0MSwianRpIjoiMjE3NjBlODMtNTA3OS00MTUzLWJmYWUtZDIxYWRiM2NkMTBjIiwiaWQiOiIyMTc2MGU4My01MDc5LTQxNTMtYmZhZS1kMjFhZGIzY2QxMGMiLCJ1dWlkIjoiZmMwNWFhYWItOWM1ZC00MjRlLWI4NTUtZjIyZjFiM2Y3MjVkIiwiZW1haWwiOiJqdXN0a2k3by4yNkBnbWFpbC5jb20iLCJyb2xlIjoic3VwcGxpZXIiLCJpc19hY3RpdmUiOnRydWUsInRva2VuX2lkIjoiZjU1ZDZjYTctZjgxZS00YzZmLWFjMmYtMzQ4MGI0NmNkOWQwIn0.xOeHYu3hvrCIIBXYx7KHzlVseAwp3aMbrRvltpdhogk
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: http://localhost:8081/suppliers/:supplier_id/documents
+      method: POST
+      params:
+        - name: supplier_id
+          value: 6fbdf5d9-0670-498c-986e-063075ecb1fc
+          type: path
+      body:
+        type: multipart-form
+        data:
+          - name: document_type
+            type: text
+            value: iso_certification
+          - name: category_document
+            type: text
+            value: regulatory
+          - name: file
+            type: file
+            value:
+              - /C:/Users/MSI_/OneDrive/Documents/KTM_SuryaAdhiWaskito.pdf
+          - name: expired_date
+            type: text
+            value: 2027-02-02 14:12:27+07
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Date
+          value: Wed, 04 Feb 2026 00:50:48 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "528"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Document uploaded successfully",
+              "data": {
+                  "id": "8a1891d1-e82b-4582-b786-e514e17fb00d",
+                  "supplier_id": "6fbdf5d9-0670-498c-986e-063075ecb1fc",
+                  "document_type": "",
+                  "category_document": "",
+                  "file_name": "9bf19a21-e6f7-4480-b9ed-c2b0e28ef81d.pdf",
+                  "file_path": "supplier-portal/dev/document/6fbdf5d9-0670-498c-986e-063075ecb1fc/iso_certification/9bf19a21-e6f7-4480-b9ed-c2b0e28ef81d.pdf",
+                  "file_size": 53559,
+                  "mime_type": "application/pdf",
+                  "is_required": false,
+                  "is_verified": false,
+                  "user_create": "",
+                  "created_at": null
+              }
+          }

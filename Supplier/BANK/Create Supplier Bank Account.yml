@@ -1,0 +1,82 @@
+info:
+  name: Create Supplier Bank Account
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{BASE_URL}}/suppliers/:supplier_id/bank-accounts"
+  params:
+    - name: supplier_id
+      value: 6fbdf5d9-0670-498c-986e-063075ecb1fc
+      type: path
+  body:
+    type: text
+    data: "{\r\n    \"bank_name\": \"\",\r\n}"
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: "{{BASE_URL}}/suppliers/:supplier_id/bank-accounts"
+      method: POST
+      params:
+        - name: supplier_id
+          value: 6fbdf5d9-0670-498c-986e-063075ecb1fc
+          type: path
+      body:
+        type: json
+        data: "{\r
+
+          \    \"bank_id\": 2,\r
+
+          \    \"branch_name\": \"BCA\",\r
+
+          \    \"account_number\": \"12345678\",\r
+
+          \    \"account_holder\": \"Surya Adhi Waskito\",\r
+
+          \    \"swift_code\": \"CENAIDJA \",\r
+
+          \    \"currency_id\": \"f447478c-e978-4906-9a2f-f13424b0fff6\"\r
+
+          }"
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Date
+          value: Thu, 16 Apr 2026 07:50:46 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "469"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Supplier bank account created successfully",
+              "data": {
+                  "id": "55ae907c-fb19-40b7-81ca-770889d35e91",
+                  "supplier_id": "6fbdf5d9-0670-498c-986e-063075ecb1fc",
+                  "branch_name": "BCA",
+                  "bank_id": 2,
+                  "account_number": "12345678",
+                  "account_holder": "Surya Adhi Waskito",
+                  "swift_code": "CENAIDJA ",
+                  "currency_id": "f447478c-e978-4906-9a2f-f13424b0fff6",
+                  "is_active": false,
+                  "user_create": "077540ce-58d2-41b8-a0b4-1b49613be62f",
+                  "created_at": "2026-04-16T14:50:46+07:00"
+              }
+          }

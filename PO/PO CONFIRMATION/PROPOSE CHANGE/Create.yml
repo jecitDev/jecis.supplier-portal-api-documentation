@@ -1,0 +1,246 @@
+info:
+  name: Create
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{BASE_URL}}/propose-changes"
+  body:
+    type: json
+    data: "{\r
+
+      \  \"confirmation_id\": \"3f54add3-6081-42cd-853d-eab07b215bb5\",\r
+
+      \  \"items\": [\r
+
+      \    {\r
+
+      \      \"item_id\": \"ITEM-001\",\r
+
+      \      \"item_name\": \"Digital Blood Pressure Monitor\",\r
+
+      \      \"quantity\": 120,\r
+
+      \      \"uom\": \"PCS\",\r
+
+      \      \"price_before_discount\": 950000.00,\r
+
+      \      \"discount1_percentage\": 5.00,\r
+
+      \      \"discount2_percentage\": 5.00,\r
+
+      \      \"is_deleted\": true,\r
+
+      \      \"deleted_note\": \"Stok Habis\"\r
+
+      \    },\r
+
+      \    {\r
+
+      \      \"item_id\": \"ITEM-002\",\r
+
+      \      \"item_name\": \"Medical Thermometer\",\r
+
+      \      \"quantity\": 200,\r
+
+      \      \"uom\": \"PCS\",\r
+
+      \      \"price_before_discount\": 350000.00,\r
+
+      \      \"discount1_percentage\": 10.00,\r
+
+      \      \"discount2_percentage\": 0.00\r
+
+      \    }\r
+
+      \  ]\r
+
+      }"
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: "{{BASE_URL}}/propose-changes"
+      method: POST
+      body:
+        type: json
+        data: "{\r
+
+          \  \"confirmation_id\": \"3f54add3-6081-42cd-853d-eab07b215ba4\",\r
+
+          \  \"items\": [\r
+
+          \    {\r
+
+          \      \"item_id\": \"ITEM-001\",\r
+
+          \      \"item_name\": \"Digital Blood Pressure Monitor\",\r
+
+          \      \"quantity\": 120,\r
+
+          \      \"uom\": \"PCS\",\r
+
+          \      \"price_before_discount\": 950000.00,\r
+
+          \      \"discount1_percentage\": 5.00,\r
+
+          \      \"discount2_percentage\": 5.00,\r
+
+          \      \"is_deleted\": true,\r
+
+          \      \"deleted_note\": \"Stok Habis\"\r
+
+          \    },\r
+
+          \    {\r
+
+          \      \"item_id\": \"ITEM-002\",\r
+
+          \      \"item_name\": \"Medical Thermometer\",\r
+
+          \      \"quantity\": 200,\r
+
+          \      \"uom\": \"PCS\",\r
+
+          \      \"price_before_discount\": 350000.00,\r
+
+          \      \"discount1_percentage\": 10.00,\r
+
+          \      \"discount2_percentage\": 0.00\r
+
+          \    }\r
+
+          \  ]\r
+
+          }"
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Date
+          value: Mon, 02 Mar 2026 01:49:39 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "724"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Propose change created successfully",
+              "data": {
+                  "id": "6c8f38f4-e634-4db2-af67-0b27aae2ddb7",
+                  "confirmation_id": "3f54add3-6081-42cd-853d-eab07b215ba4",
+                  "status": "draft",
+                  "user_create": "077540ce-58d2-41b8-a0b4-1b49613be62f",
+                  "created_at": "2026-03-02T08:49:39+07:00",
+                  "items": [
+                      {
+                          "item_id": "ITEM-001",
+                          "item_name": "Digital Blood Pressure Monitor",
+                          "quantity": 120,
+                          "uom": "PCS",
+                          "price_before_discount": 950000,
+                          "discount1_percentage": 5,
+                          "discount2_percentage": 5,
+                          "is_deleted": true,
+                          "deleted_note": "Stok Habis"
+                      },
+                      {
+                          "item_id": "ITEM-002",
+                          "item_name": "Medical Thermometer",
+                          "quantity": 200,
+                          "uom": "PCS",
+                          "price_before_discount": 350000,
+                          "discount1_percentage": 10,
+                          "discount2_percentage": 0,
+                          "is_deleted": false,
+                          "deleted_note": ""
+                      }
+                  ]
+              }
+          }
+  - name: Err PO Confirmation Not Found
+    request:
+      url: "{{BASE_URL}}/propose-changes"
+      method: POST
+      body:
+        type: json
+        data: "{\r
+
+          \  \"confirmation_id\": \"3f54add3-6081-42cd-853d-eab07b215bb5\",\r
+
+          \  \"items\": [\r
+
+          \    {\r
+
+          \      \"item_id\": \"ITEM-001\",\r
+
+          \      \"item_name\": \"Digital Blood Pressure Monitor\",\r
+
+          \      \"quantity\": 120,\r
+
+          \      \"uom\": \"PCS\",\r
+
+          \      \"price_before_discount\": 950000.00,\r
+
+          \      \"discount1_percentage\": 5.00,\r
+
+          \      \"discount2_percentage\": 5.00,\r
+
+          \      \"is_deleted\": true,\r
+
+          \      \"deleted_note\": \"Stok Habis\"\r
+
+          \    },\r
+
+          \    {\r
+
+          \      \"item_id\": \"ITEM-002\",\r
+
+          \      \"item_name\": \"Medical Thermometer\",\r
+
+          \      \"quantity\": 200,\r
+
+          \      \"uom\": \"PCS\",\r
+
+          \      \"price_before_discount\": 350000.00,\r
+
+          \      \"discount1_percentage\": 10.00,\r
+
+          \      \"discount2_percentage\": 0.00\r
+
+          \    }\r
+
+          \  ]\r
+
+          }"
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Date
+          value: Mon, 02 Mar 2026 01:52:21 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "68"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "error",
+              "message": "purchase order confirmation not found"
+          }

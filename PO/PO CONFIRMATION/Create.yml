@@ -1,0 +1,397 @@
+info:
+  name: Create
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{BASE_URL}}/purchase-order-confirmations"
+  body:
+    type: json
+    data: "{\r
+
+      \    \"company_id\": \"2da6a1bd-ba62-43ec-91f8-4085d5d6d498\",\r
+
+      \    \"business_unit_id\": \"53aad077-9fb1-4f08-85f3-af9fd9a36517\",\r
+
+      \    \"transaction_no\": \"PO/KDY/2026/03/04322\",\r
+
+      \    \"transaction_date\": \"2026-03-27T11:46:17+07:00\",\r
+
+      \    \"supplier_id\": \"022b3454-9f9f-47d2-bc5f-859c50d0ec29\",\r
+
+      \    \"supplier_name\": \"PT Jaya Jaya Jaya\",\r
+
+      \    \"is_taxable\": true,\r
+
+      \    \"currency_id\": \"f447478c-e978-4906-9a2f-f13424b0fff6\",\r
+
+      \    \"currency_rate\": 1,\r
+
+      \    \"remarks\": \"Confirmed by supplier\",\r
+
+      \    \"buyer_company_name\": \"RS Mata JEC@KEDOYA\",\r
+
+      \    \"buyer_address\": \"Jakarta\",\r
+
+      \    \"details\": [\r
+
+      \        {\r
+
+      \            \"item_id\": \"1200001092\",\r
+
+      \            \"item_name\": \"LAMESON 8 MG\",\r
+
+      \            \"quantity\": 100,\r
+
+      \            \"uom\": \"TABLET\",\r
+
+      \            \"lead_time\":\"2026-04-01T11:46:17+07:00\",\r
+
+      \            \"is_pda\":false,\r
+
+      \            \"price_before_discount\": 7500,\r
+
+      \            \"discount1_percentage\": 15,\r
+
+      \            \"discount2_percentage\": 0\r
+
+      \        },\r
+
+      \        {\r
+
+      \            \"item_id\": \"1200001252\",\r
+
+      \            \"item_name\": \"PARACETAMOL 8 MG\",\r
+
+      \            \"quantity\": 20,\r
+
+      \            \"lead_time\":\"2026-04-01T11:46:17+07:00\",\r
+
+      \            \"is_pda\":true,\r
+
+      \            \"uom\": \"TABLET\",\r
+
+      \            \"price_before_discount\": 2500,\r
+
+      \            \"discount1_percentage\": 2,\r
+
+      \            \"discount2_percentage\": 1\r
+
+      \        }\r
+
+      \    ]\r
+
+      }"
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: "{{BASE_URL}}/purchase-order-confirmations"
+      method: POST
+      body:
+        type: json
+        data: "{\r
+
+          \    \"company_id\": \"2da6a1bd-ba62-43ec-91f8-4085d5d6d498\",\r
+
+          \    \"business_unit_id\": \"53aad077-9fb1-4f08-85f3-af9fd9a36517\",\r
+
+          \    \"transaction_no\": \"PO/KDY/2025/12/0141\",\r
+
+          \    \"transaction_date\": \"2026-02-25T11:46:17+07:00\",\r
+
+          \    \"supplier_id\": \"6fbdf5d9-0670-498c-986e-063075ecb1fc\",\r
+
+          \    \"supplier_name\": \"PT Mitra Medika Utama (Updated)\",\r
+
+          \    \"is_taxable\": true,\r
+
+          \    \"leadtime_in_days\": 5,\r
+
+          \    \"currency_id\": \"f447478c-e978-4906-9a2f-f13424b0fff6\",\r
+
+          \    \"currency_rate\": 1,\r
+
+          \    \"remarks\": \"Confirmed by supplier\",\r
+
+          \    \"user_create\": \"admin\",\r
+
+          \    \"details\": [\r
+
+          \        {\r
+
+          \            \"item_id\": \"1200001092\",\r
+
+          \            \"item_name\": \"LAMESON 8 MG\",\r
+
+          \            \"quantity\": 100,\r
+
+          \            \"uom\": \"TABLET\",\r
+
+          \            \"price_before_discount\": 7500,\r
+
+          \            \"discount1_percentage\": 15,\r
+
+          \            \"discount2_percentage\": 0\r
+
+          \        },\r
+
+          \        {\r
+
+          \            \"item_id\": \"1200001252\",\r
+
+          \            \"item_name\": \"PARACETAMOL 8 MG\",\r
+
+          \            \"quantity\": 20,\r
+
+          \            \"uom\": \"TABLET\",\r
+
+          \            \"price_before_discount\": 2500,\r
+
+          \            \"discount1_percentage\": 2,\r
+
+          \            \"discount2_percentage\": 1\r
+
+          \        }\r
+
+          \    ]\r
+
+          }"
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Date
+          value: Wed, 25 Feb 2026 08:36:27 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "361"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Purchase order confirmation created successfully",
+              "data": {
+                  "confirmation_id": "b7577769-1913-4385-8eb3-dd44a66a685b",
+                  "transaction_no": "PO/KDY/2025/12/0141",
+                  "status": "draft",
+                  "total_gross": 800000,
+                  "total_discount": 113990,
+                  "total_net": 686010,
+                  "user_create": "077540ce-58d2-41b8-a0b4-1b49613be62f",
+                  "created_at": "2026-02-25T15:36:27+07:00"
+              }
+          }
+  - name: Err duplicate transaction no
+    request:
+      url: "{{BASE_URL}}/purchase-order-confirmations"
+      method: POST
+      body:
+        type: json
+        data: "{\r
+
+          \    \"company_id\": \"2da6a1bd-ba62-43ec-91f8-4085d5d6d498\",\r
+
+          \    \"business_unit_id\": \"53aad077-9fb1-4f08-85f3-af9fd9a36517\",\r
+
+          \    \"transaction_no\": \"PO/KDY/2025/12/0141\",\r
+
+          \    \"transaction_date\": \"2026-02-25T11:46:17+07:00\",\r
+
+          \    \"supplier_id\": \"6fbdf5d9-0670-498c-986e-063075ecb1fc\",\r
+
+          \    \"supplier_name\": \"PT Mitra Medika Utama (Updated)\",\r
+
+          \    \"is_taxable\": true,\r
+
+          \    \"leadtime_in_days\": 5,\r
+
+          \    \"currency_id\": \"f447478c-e978-4906-9a2f-f13424b0fff6\",\r
+
+          \    \"currency_rate\": 1,\r
+
+          \    \"remarks\": \"Confirmed by supplier\",\r
+
+          \    \"user_create\": \"admin\",\r
+
+          \    \"details\": [\r
+
+          \        {\r
+
+          \            \"item_id\": \"1200001092\",\r
+
+          \            \"item_name\": \"LAMESON 8 MG\",\r
+
+          \            \"quantity\": 100,\r
+
+          \            \"uom\": \"TABLET\",\r
+
+          \            \"price_before_discount\": 7500,\r
+
+          \            \"discount1_percentage\": 15,\r
+
+          \            \"discount2_percentage\": 0\r
+
+          \        },\r
+
+          \        {\r
+
+          \            \"item_id\": \"1200001252\",\r
+
+          \            \"item_name\": \"PARACETAMOL 8 MG\",\r
+
+          \            \"quantity\": 20,\r
+
+          \            \"uom\": \"TABLET\",\r
+
+          \            \"price_before_discount\": 2500,\r
+
+          \            \"discount1_percentage\": 2,\r
+
+          \            \"discount2_percentage\": 1\r
+
+          \        }\r
+
+          \    ]\r
+
+          }"
+    response:
+      status: 409
+      statusText: Conflict
+      headers:
+        - name: Date
+          value: Wed, 25 Feb 2026 08:36:35 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "119"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "error",
+              "message": "purchase order confirmation with transaction number 'PO/KDY/2025/12/0141' already exists"
+          }
+  - name: Success
+    request:
+      url: "{{BASE_URL}}/purchase-order-confirmations"
+      method: POST
+      body:
+        type: json
+        data: "{\r
+
+          \    \"company_id\": \"2da6a1bd-ba62-43ec-91f8-4085d5d6d498\",\r
+
+          \    \"business_unit_id\": \"53aad077-9fb1-4f08-85f3-af9fd9a36517\",\r
+
+          \    \"transaction_no\": \"PO/KDY/2026/03/0141\",\r
+
+          \    \"transaction_date\": \"2026-02-25T11:46:17+07:00\",\r
+
+          \    \"supplier_id\": \"6fbdf5d9-0670-498c-986e-063075ecb1fc\",\r
+
+          \    \"supplier_name\": \"PT Mitra Medika Utama\",\r
+
+          \    \"is_taxable\": true,\r
+
+          \    \"currency_id\": \"f447478c-e978-4906-9a2f-f13424b0fff6\",\r
+
+          \    \"currency_rate\": 1,\r
+
+          \    \"remarks\": \"Confirmed by supplier\",\r
+
+          \    \"buyer_company_name\": \"PT Mitra Medika Utama\",\r
+
+          \    \"buyer_address\": \"Jakarta\",\r
+
+          \    \"details\": [\r
+
+          \        {\r
+
+          \            \"item_id\": \"1200001092\",\r
+
+          \            \"item_name\": \"LAMESON 8 MG\",\r
+
+          \            \"quantity\": 100,\r
+
+          \            \"uom\": \"TABLET\",\r
+
+          \            \"lead_time\":\"2026-04-01\",\r
+
+          \            \"is_pda\":false,\r
+
+          \            \"price_before_discount\": 7500,\r
+
+          \            \"discount1_percentage\": 15,\r
+
+          \            \"discount2_percentage\": 0\r
+
+          \        },\r
+
+          \        {\r
+
+          \            \"item_id\": \"1200001252\",\r
+
+          \            \"item_name\": \"PARACETAMOL 8 MG\",\r
+
+          \            \"quantity\": 20,\r
+
+          \            \"lead_time\":\"2026-04-01\",\r
+
+          \            \"is_pda\":true,\r
+
+          \            \"uom\": \"TABLET\",\r
+
+          \            \"price_before_discount\": 2500,\r
+
+          \            \"discount1_percentage\": 2,\r
+
+          \            \"discount2_percentage\": 1\r
+
+          \        }\r
+
+          \    ]\r
+
+          }"
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: :status
+          value: "201"
+        - name: date
+          value: Mon, 09 Mar 2026 05:06:12 GMT
+        - name: content-type
+          value: application/json
+        - name: content-length
+          value: "366"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Purchase order confirmation created successfully",
+              "data": {
+                  "confirmation_id": "4b9cb1bc-c82f-437b-bb2a-3e79d83cb3a4",
+                  "transaction_no": "PO/KDY/2026/03/0141",
+                  "status": "on_process",
+                  "total_gross": 800000,
+                  "total_discount": 113990,
+                  "total_net": 686010,
+                  "user_create": "1cae4f2c-3081-4be5-b002-291f6dfe7937",
+                  "created_at": "2026-03-09T12:06:12+07:00"
+              }
+          }

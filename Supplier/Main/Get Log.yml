@@ -1,0 +1,124 @@
+info:
+  name: Get Log
+  type: http
+  seq: 13
+
+http:
+  method: GET
+  url: "{{BASE_URL}}/suppliers/:supplier_id/logs?version=20260826111224"
+  params:
+    - name: version
+      value: "20260826111224"
+      type: query
+    - name: supplier_id
+      value: 974eef16-ab88-4ef2-9ab6-6fd194b52331
+      type: path
+  body:
+    type: json
+    data: ""
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: "{{BASE_URL}}/suppliers/:supplier_id/logs?version=20260826"
+      method: GET
+      params:
+        - name: version
+          value: "20260826"
+          type: query
+        - name: supplier_id
+          value: 974eef16-ab88-4ef2-9ab6-6fd194b52331
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Date
+          value: Wed, 26 Aug 2026 07:23:52 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "1841"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Log supplier by version retrieved successfully",
+              "data": [
+                  {
+                      "id": "50cc37e2-385c-41ae-8fc1-6fd290de6365",
+                      "supplier_id": "974eef16-ab88-4ef2-9ab6-6fd194b52331",
+                      "operation": "create",
+                      "log_user": "8e74dcf4-1e0d-4290-83c2-07bfdafe5084",
+                      "log_date": "2026-08-26T11:12:24+07:00",
+                      "data_before": {},
+                      "data_after": {},
+                      "version": "20260826111224"
+                  },
+                  {
+                      "id": "bec6142a-a5f8-4941-8d04-22cfd91f2f1b",
+                      "supplier_id": "974eef16-ab88-4ef2-9ab6-6fd194b52331",
+                      "operation": "update_supplier",
+                      "log_user": "8e74dcf4-1e0d-4290-83c2-07bfdafe5084",
+                      "log_date": "2026-08-26T13:28:01+07:00",
+                      "data_before": {
+                          "company_name": "PT Nusantara Sukses Sejahtera Update",
+                          "company_website": "www.nusantarasuksesbaru.co.id"
+                      },
+                      "data_after": {
+                          "company_name": "PT Nusantara Sukses Sejahtera",
+                          "company_website": "www.nusantarasukses.co.id"
+                      },
+                      "version": "20260826132801"
+                  },
+                  {
+                      "id": "2c01a861-069e-4323-a0b1-8b9b9de05442",
+                      "supplier_id": "974eef16-ab88-4ef2-9ab6-6fd194b52331",
+                      "operation": "update_supplier_address",
+                      "log_user": "8e74dcf4-1e0d-4290-83c2-07bfdafe5084",
+                      "log_date": "2026-08-26T13:45:52+07:00",
+                      "data_before": {
+                          "phone_no": "+622134567890",
+                          "updated_at": null,
+                          "supplier_id": "974eef16-ab88-4ef2-9ab6-6fd194b52331",
+                          "user_update": null,
+                          "address_title": "Kantor Pusat"
+                      },
+                      "data_after": {
+                          "phone_no": "+622134567888",
+                          "updated_at": "2026-08-26T13:45:52+07:00",
+                          "supplier_id": "",
+                          "user_update": "8e74dcf4-1e0d-4290-83c2-07bfdafe5084",
+                          "address_title": "Kantor Pusat Baru"
+                      },
+                      "version": "20260826134552"
+                  },
+                  {
+                      "id": "156156a6-e681-4eb4-a6e0-4feab15fba54",
+                      "supplier_id": "974eef16-ab88-4ef2-9ab6-6fd194b52331",
+                      "operation": "update_supplier_address",
+                      "log_user": "8e74dcf4-1e0d-4290-83c2-07bfdafe5084",
+                      "log_date": "2026-08-26T14:10:17+07:00",
+                      "data_before": {
+                          "phone_no": "+622134567888",
+                          "address_title": "Kantor Pusat Baru"
+                      },
+                      "data_after": {
+                          "phone_no": "+622134567889",
+                          "address_title": "Kantor Pusat"
+                      },
+                      "version": "20260826141017"
+                  }
+              ]
+          }

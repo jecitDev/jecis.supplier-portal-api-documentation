@@ -1,0 +1,94 @@
+info:
+  name: Accept
+  type: http
+  seq: 7
+
+http:
+  method: PATCH
+  url: "{{BASE_URL}}/propose-changes/:id/accept"
+  params:
+    - name: id
+      value: e1b91b8b-9392-473c-8f84-71ea87971347
+      type: path
+  body:
+    type: json
+    data: ""
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: "{{BASE_URL}}/propose-changes/:id/accept"
+      method: PATCH
+      params:
+        - name: id
+          value: e1b91b8b-9392-473c-8f84-71ea87971347
+          type: path
+      body:
+        type: json
+        data: ""
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Date
+          value: Tue, 03 Mar 2026 02:54:15 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "447"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Propose change accepted successfully. PO Confirmation updated with proposed changes. Email notification sent to supplier",
+              "data": {
+                  "id": "e1b91b8b-9392-473c-8f84-71ea87971347",
+                  "status": "accept",
+                  "accepted_date": "2026-03-03T09:54:15+07:00",
+                  "updated_at": "2026-03-03T09:54:15+07:00",
+                  "po_confirmation_updated": {
+                      "confirmation_id": "3f54add3-6081-42cd-853d-eab07b215ba4",
+                      "previous_total_net": 686010,
+                      "new_total_net": 85500000
+                  }
+              }
+          }
+  - name: Err already accepted
+    request:
+      url: "{{BASE_URL}}/propose-changes/:id/accept"
+      method: PATCH
+      params:
+        - name: id
+          value: e1b91b8b-9392-473c-8f84-71ea87971347
+          type: path
+      body:
+        type: json
+        data: ""
+    response:
+      status: 422
+      statusText: Unprocessable Entity
+      headers:
+        - name: Date
+          value: Tue, 03 Mar 2026 02:56:27 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "65"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "error",
+              "message": "propose change is already accepted"
+          }

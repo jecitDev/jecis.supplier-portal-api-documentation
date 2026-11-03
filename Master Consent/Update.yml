@@ -1,0 +1,39 @@
+info:
+  name: Update
+  type: http
+  seq: 4
+
+http:
+  method: PUT
+  url: "{{BASE_URL}}/admin/master-consents/:id"
+  params:
+    - name: id
+      value: f017b693-fded-492f-b7c9-a40e3246465f
+      type: path
+  body:
+    type: json
+    data: "{\r
+
+      \    \"title\": \"Test Update Non-Disclosure Agreement v1.1\",\r
+
+      \    \"html_content\": \"<p>Dengan ini <b><input type='text' name='company_name'></b> menyetujui...</p><br><input type='checkbox' name='agree_terms'> Saya Setuju\",\r
+
+      \    \"input_schema\": {\r
+
+      \        \"company_name\": \"string\",\r
+
+      \        \"agree_terms\": \"boolean\"\r
+
+      \    }\r
+
+      }"
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

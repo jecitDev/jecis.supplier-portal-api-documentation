@@ -1,0 +1,81 @@
+info:
+  name: Self Registration
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{BASE_URL}}/auth/register"
+  headers:
+    - name: X-User-ID
+      value: 53aad077-9fb1-4f08-85f3-af9fd9a36517
+  body:
+    type: json
+    data: "{\r
+
+      \    \"email\": \"justki7o.26@gmail.com\",\r
+
+      \    \"password\": \"Coba@12345\",\r
+
+      \    \"password_confirmation\": \"Coba@12345\"\r
+
+      }"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: http://localhost:8081/auth/register
+      method: POST
+      headers:
+        - name: X-User-ID
+          value: 53aad077-9fb1-4f08-85f3-af9fd9a36517
+      body:
+        type: json
+        data: "{\r
+
+          \    \"email\": \"johnjoceph6660@gmail.com\",\r
+
+          \    \"password\": \"Coba@12345\",\r
+
+          \    \"password_confirmation\": \"Coba@12345\"\r
+
+          }"
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Date
+          value: Wed, 18 Feb 2026 08:53:52 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "383"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "User registered successfully",
+              "data": {
+                  "user": {
+                      "id": "72af4b54-1110-483f-92de-15ba3e54c726",
+                      "email": "johnjoceph6660@gmail.com",
+                      "role": "supplier",
+                      "is_active": false,
+                      "is_invitation": false,
+                      "invitation_id": null,
+                      "last_login_at": null,
+                      "user_create": "53aad077-9fb1-4f08-85f3-af9fd9a36517",
+                      "created_at": "2026-02-18T15:53:49+07:00"
+                  },
+                  "verification_email_sent": true
+              }
+          }

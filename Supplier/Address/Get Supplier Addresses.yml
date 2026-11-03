@@ -1,0 +1,100 @@
+info:
+  name: Get Supplier Addresses
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: http://localhost:8081/suppliers/:supplier_id/addresses
+  params:
+    - name: supplier_id
+      value: 6fbdf5d9-0670-498c-986e-063075ecb1fc
+      type: path
+  body:
+    type: json
+    data: ""
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJNeUFwcGxpY2F0aW9uIiwiZXhwIjoxNzcwNjgzMzkxLCJuYmYiOjE3NzAwNzg1OTEsImlhdCI6MTc3MDA3ODU5MSwianRpIjoiMDc3NTQwY2UtNThkMi00MWI4LWEwYjQtMWI0OTYxM2JlNjJmIiwiaWQiOiIwNzc1NDBjZS01OGQyLTQxYjgtYTBiNC0xYjQ5NjEzYmU2MmYiLCJ1dWlkIjoiNzU4NTY5NTktYTFhZi00OTZhLTk0ODAtYzE3ZTlmZmUxZjZjIiwiZW1haWwiOiJzdXJ5YS5hdzI2QGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlzX2FjdGl2ZSI6dHJ1ZSwidG9rZW5faWQiOiJjNjA0MTI0OC1kMjY2LTRiYjItOTJmZC05YmRjMzc4M2QzNTAifQ.Df5XjXiKXHowU-e4CdAIVxebOhgvDn3Ka7SVU8FXsyE
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: http://localhost:8081/suppliers/:supplier_id/addresses
+      method: GET
+      params:
+        - name: supplier_id
+          value: 6fbdf5d9-0670-498c-986e-063075ecb1fc
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Date
+          value: Tue, 03 Feb 2026 06:33:09 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "1251"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Supplier addresses retrieved successfully",
+              "data": {
+                  "addresses": [
+                      {
+                          "id": "16bc1765-c7e2-47fe-baad-064c49fe6789",
+                          "supplier_id": "6fbdf5d9-0670-498c-986e-063075ecb1fc",
+                          "address_title": "Head Office",
+                          "address_type": "head_office",
+                          "email": "headoffice@mitramedika.co.id",
+                          "phone_no": "+62 21 1234 9999",
+                          "fax_no": "+62 21 1234 5679",
+                          "street_address": "Jl. Sudirman No. 123",
+                          "city": "Jakarta",
+                          "state_province": "DKI Jakarta",
+                          "country": "Indonesia",
+                          "postal_code": "12190",
+                          "is_primary": true,
+                          "created_at": ""
+                      },
+                      {
+                          "id": "3c96dff2-d21c-47f2-9cf6-e7bd06a3e430",
+                          "supplier_id": "6fbdf5d9-0670-498c-986e-063075ecb1fc",
+                          "address_title": "Warehouse Tangerang",
+                          "address_type": "warehouse",
+                          "email": "warehouse@mitramedika.co.id",
+                          "phone_no": "+62 21 9876 5432",
+                          "street_address": "Jl. Industri No. 456",
+                          "city": "Tangerang",
+                          "state_province": "Banten",
+                          "country": "Indonesia",
+                          "postal_code": "15810",
+                          "is_primary": false,
+                          "created_at": ""
+                      },
+                      {
+                          "id": "d772fd17-9e2c-4bd3-9709-7a865193892d",
+                          "supplier_id": "6fbdf5d9-0670-498c-986e-063075ecb1fc",
+                          "address_title": "New Branch Office",
+                          "address_type": "branch_office",
+                          "street_address": "Jl. Gatot Subroto No. 789",
+                          "city": "Bandung",
+                          "state_province": "Jawa Barat",
+                          "country": "Indonesia",
+                          "postal_code": "40111",
+                          "is_primary": false,
+                          "created_at": ""
+                      }
+                  ]
+              }
+          }

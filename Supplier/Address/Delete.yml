@@ -1,0 +1,28 @@
+info:
+  name: Delete
+  type: http
+  seq: 4
+
+http:
+  method: DELETE
+  url: "{{BASE_URL}}/suppliers/:supplier_id/addresses/:address_id"
+  params:
+    - name: supplier_id
+      value: 6fbdf5d9-0670-498c-986e-063075ecb1fc
+      type: path
+    - name: address_id
+      value: 5a687106-6dc1-4fbf-83f4-a19e163dba1c
+      type: path
+  body:
+    type: json
+    data: ""
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJNeUFwcGxpY2F0aW9uIiwiZXhwIjoxNzcwNjgzMzkxLCJuYmYiOjE3NzAwNzg1OTEsImlhdCI6MTc3MDA3ODU5MSwianRpIjoiMDc3NTQwY2UtNThkMi00MWI4LWEwYjQtMWI0OTYxM2JlNjJmIiwiaWQiOiIwNzc1NDBjZS01OGQyLTQxYjgtYTBiNC0xYjQ5NjEzYmU2MmYiLCJ1dWlkIjoiNzU4NTY5NTktYTFhZi00OTZhLTk0ODAtYzE3ZTlmZmUxZjZjIiwiZW1haWwiOiJzdXJ5YS5hdzI2QGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlzX2FjdGl2ZSI6dHJ1ZSwidG9rZW5faWQiOiJjNjA0MTI0OC1kMjY2LTRiYjItOTJmZC05YmRjMzc4M2QzNTAifQ.Df5XjXiKXHowU-e4CdAIVxebOhgvDn3Ka7SVU8FXsyE
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

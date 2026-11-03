@@ -1,0 +1,89 @@
+info:
+  name: Submit
+  type: http
+  seq: 6
+
+http:
+  method: PATCH
+  url: "{{BASE_URL}}/propose-changes/:id/submit"
+  params:
+    - name: id
+      value: e1b91b8b-9392-473c-8f84-71ea87971347
+      type: path
+  body:
+    type: json
+    data: ""
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: "{{BASE_URL}}/propose-changes/:id/submit"
+      method: PATCH
+      params:
+        - name: id
+          value: e1b91b8b-9392-473c-8f84-71ea87971347
+          type: path
+      body:
+        type: json
+        data: ""
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Date
+          value: Tue, 03 Mar 2026 01:34:38 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "277"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Propose change submitted successfully. Email notification sent to procurement team",
+              "data": {
+                  "id": "e1b91b8b-9392-473c-8f84-71ea87971347",
+                  "status": "process",
+                  "sent_proccess_date": "2026-03-03T08:34:34+07:00",
+                  "updated_at": "2026-03-03T08:34:34+07:00"
+              }
+          }
+  - name: Err already submitted
+    request:
+      url: "{{BASE_URL}}/propose-changes/:id/submit"
+      method: PATCH
+      params:
+        - name: id
+          value: e1b91b8b-9392-473c-8f84-71ea87971347
+          type: path
+      body:
+        type: json
+        data: ""
+    response:
+      status: 422
+      statusText: Unprocessable Entity
+      headers:
+        - name: Date
+          value: Tue, 03 Mar 2026 01:38:18 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "66"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "error",
+              "message": "propose change is already submitted"
+          }

@@ -1,0 +1,124 @@
+info:
+  name: Update
+  type: http
+  seq: 4
+
+http:
+  method: PUT
+  url: http://localhost:8081/service-categories/:id
+  params:
+    - name: id
+      value: 2717c2fb-49b3-4384-80b0-5ccf4c635e85
+      type: path
+  body:
+    type: json
+    data: "{\r
+
+      \  \"name\": \"Architectural Services Update\",\r
+
+      //   \"name_id\": \"Jasa Arsitektur dan Desain\",\r
+
+      \  \"code\": \"JASA-ARSI-DESIGN\"\r
+
+      //   \"is_active\": true\r
+
+      }"
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJNeUFwcGxpY2F0aW9uIiwiZXhwIjoxNzcwMDAxNzU5LCJuYmYiOjE3Njk5OTgxNTksImlhdCI6MTc2OTk5ODE1OSwianRpIjoiMDc3NTQwY2UtNThkMi00MWI4LWEwYjQtMWI0OTYxM2JlNjJmIiwiaWQiOiIwNzc1NDBjZS01OGQyLTQxYjgtYTBiNC0xYjQ5NjEzYmU2MmYiLCJ1dWlkIjoiNGM5MjhlMzYtMTlhOC00NDM1LWFmNDktZGU1YzVmMjFlODE0IiwiZW1haWwiOiJzdXJ5YS5hdzI2QGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlzX2FjdGl2ZSI6dHJ1ZSwidG9rZW5faWQiOiI0YzkyOGUzNi0xOWE4LTQ0MzUtYWY0OS1kZTVjNWYyMWU4MTQifQ.kyvqYAR_R8kHR1mYYbxGNnceBU7s4NYBYbGGMC8mVpo
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: http://localhost:8081/service-categories/:id
+      method: PUT
+      params:
+        - name: id
+          value: 2717c2fb-49b3-4384-80b0-5ccf4c635e85
+          type: path
+      body:
+        type: json
+        data: "{\r
+
+          \  \"name\": \"Architectural Services Update\",\r
+
+          //   \"name_id\": \"Jasa Arsitektur dan Desain\",\r
+
+          \  \"code\": \"JASA-ARSI-DESIGN\"\r
+
+          //   \"is_active\": true\r
+
+          }"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Date
+          value: Mon, 02 Feb 2026 02:57:41 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "421"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Service category updated successfully",
+              "data": {
+                  "id": "2717c2fb-49b3-4384-80b0-5ccf4c635e85",
+                  "name": "Architectural Services Update",
+                  "name_id": "Jasa Arsitektur",
+                  "code": "JASA-ARSI-DESIGN",
+                  "is_active": true,
+                  "user_create": "077540ce-58d2-41b8-a0b4-1b49613be62f",
+                  "created_at": "2026-02-02T09:09:24+07:00",
+                  "user_update": "077540ce-58d2-41b8-a0b4-1b49613be62f",
+                  "updated_at": "2026-02-02T09:57:41+07:00"
+              }
+          }
+  - name: Err not found
+    request:
+      url: http://localhost:8081/service-categories/:id
+      method: PUT
+      params:
+        - name: id
+          value: 2717c2fb-49b3-4384-80b0-5ccf4c635e86
+          type: path
+      body:
+        type: json
+        data: "{\r
+
+          \  \"name\": \"Architectural Services Update\",\r
+
+          //   \"name_id\": \"Jasa Arsitektur dan Desain\",\r
+
+          \  \"code\": \"JASA-ARSI-DESIGN\"\r
+
+          //   \"is_active\": true\r
+
+          }"
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Date
+          value: Mon, 02 Feb 2026 02:58:14 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "57"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "error",
+              "message": "service category not found"
+          }

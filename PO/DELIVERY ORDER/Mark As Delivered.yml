@@ -1,0 +1,75 @@
+info:
+  name: Mark As Delivered
+  type: http
+  seq: 2
+
+http:
+  method: PATCH
+  url: "{{BASE_URL}}/delivery-orders/:id/deliver"
+  params:
+    - name: id
+      value: d771e5c8-7cbb-44d0-81a9-80089fe4bc36
+      type: path
+  body:
+    type: json
+    data: "{\r
+
+      \    \"received_by\":\"Fernando Riyo Junedy Simbolon\",\r
+
+      \    \"received_date\":\"2026-03-23T08:01:32+07:00\"\r
+
+      }"
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Mark As Delivered
+    request:
+      url: "{{BASE_URL}}/delivery-orders/:id/deliver"
+      method: PATCH
+      params:
+        - name: id
+          value: d771e5c8-7cbb-44d0-81a9-80089fe4bc36
+          type: path
+      body:
+        type: json
+        data: "{\r
+
+          \    \"received_by\":\"Fernando Riyo Junedy Simbolon\",\r
+
+          \    \"received_date\":\"2026-03-23T08:01:32+07:00\"\r
+
+          }"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: :status
+          value: "200"
+        - name: date
+          value: Tue, 24 Mar 2026 00:25:37 GMT
+        - name: content-type
+          value: application/json
+        - name: content-length
+          value: "242"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Delivery order marked as delivered successfully",
+              "data": {
+                  "id": "d771e5c8-7cbb-44d0-81a9-80089fe4bc36",
+                  "delivery_order_no": "DO/PO/KDY/2026/03/0151/2",
+                  "status": "delivered",
+                  "updated_at": "2026-03-24T07:25:37+07:00"
+              }
+          }

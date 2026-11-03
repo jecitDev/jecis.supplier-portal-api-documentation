@@ -1,0 +1,111 @@
+info:
+  name: Suspend
+  type: http
+  seq: 11
+
+http:
+  method: PATCH
+  url: "{{BASE_URL}}/suppliers/:id/suspend"
+  params:
+    - name: id
+      value: 6fbdf5d9-0670-498c-986e-063075ecb1fc
+      type: path
+  body:
+    type: json
+    data: "{\r
+
+      \    \"suspension_reason\": \"Multiple customer complaints received. Quality issues under investigation.\",\r
+
+      \    \"notes\": \"Temporary suspension for 30 days pending quality audit. All active projects on hold.\"\r
+
+      }"
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJNeUFwcGxpY2F0aW9uIiwiZXhwIjoxNzcwNjgzMzkxLCJuYmYiOjE3NzAwNzg1OTEsImlhdCI6MTc3MDA3ODU5MSwianRpIjoiMDc3NTQwY2UtNThkMi00MWI4LWEwYjQtMWI0OTYxM2JlNjJmIiwiaWQiOiIwNzc1NDBjZS01OGQyLTQxYjgtYTBiNC0xYjQ5NjEzYmU2MmYiLCJ1dWlkIjoiNzU4NTY5NTktYTFhZi00OTZhLTk0ODAtYzE3ZTlmZmUxZjZjIiwiZW1haWwiOiJzdXJ5YS5hdzI2QGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlzX2FjdGl2ZSI6dHJ1ZSwidG9rZW5faWQiOiJjNjA0MTI0OC1kMjY2LTRiYjItOTJmZC05YmRjMzc4M2QzNTAifQ.Df5XjXiKXHowU-e4CdAIVxebOhgvDn3Ka7SVU8FXsyE
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: http://localhost:8081/suppliers/:id/suspend
+      method: PATCH
+      params:
+        - name: id
+          value: 6fbdf5d9-0670-498c-986e-063075ecb1fc
+          type: path
+      body:
+        type: json
+        data: "{\r
+
+          \    \"suspension_reason\": \"Multiple customer complaints received. Quality issues under investigation.\",\r
+
+          \    \"notes\": \"Temporary suspension for 30 days pending quality audit. All active projects on hold.\"\r
+
+          }"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Date
+          value: Tue, 03 Feb 2026 05:09:33 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "411"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Supplier suspended successfully",
+              "data": {
+                  "id": "6fbdf5d9-0670-498c-986e-063075ecb1fc",
+                  "company_name": "PT Mitra Medika Utama (Updated)",
+                  "status": "suspended",
+                  "rejection_reason": "Multiple customer complaints received. Quality issues under investigation.",
+                  "approved_at": "",
+                  "approved_by": "",
+                  "user_update": "077540ce-58d2-41b8-a0b4-1b49613be62f",
+                  "updated_at": "2026-02-03T12:09:34+07:00"
+              }
+          }
+  - name: Err only approved suppliers can be suspended
+    request:
+      url: http://localhost:8081/suppliers/:id/suspend
+      method: PATCH
+      params:
+        - name: id
+          value: 6fbdf5d9-0670-498c-986e-063075ecb1fc
+          type: path
+      body:
+        type: json
+        data: "{\r
+
+          \    \"suspension_reason\": \"Multiple customer complaints received. Quality issues under investigation.\",\r
+
+          \    \"notes\": \"Temporary suspension for 30 days pending quality audit. All active projects on hold.\"\r
+
+          }"
+    response:
+      status: 422
+      statusText: Unprocessable Entity
+      headers:
+        - name: Date
+          value: Tue, 03 Feb 2026 04:45:38 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "71"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "error",
+              "message": "Only approved suppliers can be suspended"
+          }

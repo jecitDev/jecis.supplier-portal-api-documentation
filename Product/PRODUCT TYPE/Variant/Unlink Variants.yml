@@ -1,0 +1,33 @@
+info:
+  name: Unlink Variants
+  type: http
+  seq: 3
+
+http:
+  method: DELETE
+  url: "{{BASE_URL}}/product-types/:id/variants"
+  params:
+    - name: id
+      value: 4225c33f-38b3-489c-af94-d800df9713bc
+      type: path
+  body:
+    type: json
+    data: "{\r
+
+      \    \"variant_ids\": [\r
+
+      \        \"5c9a1e4f-2b7d-4e3a-af6c-8d1e4b9c2f71\"\r
+
+      \    ]\r
+
+      }"
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

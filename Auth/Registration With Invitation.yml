@@ -1,0 +1,32 @@
+info:
+  name: Registration With Invitation
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{BASE_URL}}/auth/register/invitation"
+  headers:
+    - name: X-User-ID
+      value: 53aad077-9fb1-4f08-85f3-af9fd9a36517
+  body:
+    type: json
+    data: "{\r
+
+      \    \"invitation_code\": \"INV-2026-e52050\",\r
+
+      \    \"email\": \"justki7o.26@gmail.com\",\r
+
+      \    \"password\": \"Coba@12345\",\r
+
+      \    \"password_confirmation\": \"Coba@12345\"\r
+
+      }"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

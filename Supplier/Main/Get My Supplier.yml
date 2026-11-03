@@ -1,0 +1,209 @@
+info:
+  name: Get My Supplier
+  type: http
+  seq: 4
+
+http:
+  method: GET
+  url: "{{BASE_URL}}/suppliers/me?include=addresses,contacts,assessment,documents,service_categories"
+  params:
+    - name: include
+      value: addresses,contacts,assessment,documents,service_categories
+      type: query
+  body:
+    type: json
+    data: ""
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJNeUFwcGxpY2F0aW9uIiwiZXhwIjoxNzcwNjgzMzkxLCJuYmYiOjE3NzAwNzg1OTEsImlhdCI6MTc3MDA3ODU5MSwianRpIjoiMDc3NTQwY2UtNThkMi00MWI4LWEwYjQtMWI0OTYxM2JlNjJmIiwiaWQiOiIwNzc1NDBjZS01OGQyLTQxYjgtYTBiNC0xYjQ5NjEzYmU2MmYiLCJ1dWlkIjoiNzU4NTY5NTktYTFhZi00OTZhLTk0ODAtYzE3ZTlmZmUxZjZjIiwiZW1haWwiOiJzdXJ5YS5hdzI2QGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlzX2FjdGl2ZSI6dHJ1ZSwidG9rZW5faWQiOiJjNjA0MTI0OC1kMjY2LTRiYjItOTJmZC05YmRjMzc4M2QzNTAifQ.Df5XjXiKXHowU-e4CdAIVxebOhgvDn3Ka7SVU8FXsyE
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: http://localhost:8081/suppliers/me?include=addresses,contacts,assessment,documents,service_categories
+      method: GET
+      params:
+        - name: include
+          value: addresses,contacts,assessment,documents,service_categories
+          type: query
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Date
+          value: Tue, 03 Feb 2026 00:40:22 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "3013"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Supplier retrieved successfully",
+              "data": {
+                  "supplier": {
+                      "id": "6fbdf5d9-0670-498c-986e-063075ecb1fc",
+                      "user_id": "077540ce-58d2-41b8-a0b4-1b49613be62f",
+                      "company_name": "PT Mitra Medika Utama",
+                      "npwp": "01.234.567.8-901.000",
+                      "nib": "1234567890123",
+                      "legal_entity_type": "PT",
+                      "date_of_establishment": "2020-01-15T00:00:00Z",
+                      "ownership_status": "domestic",
+                      "company_website": "https://www.mitramedika.co.id",
+                      "status": "",
+                      "approved_at": null,
+                      "approved_by": null,
+                      "rejection_reason": null,
+                      "is_consent_document_accurate": true,
+                      "is_willing_to_verification": true,
+                      "is_aggree_anti_bribery_policy": true,
+                      "user_create": "077540ce-58d2-41b8-a0b4-1b49613be62f",
+                      "created_at": "2026-02-02T07:12:27Z",
+                      "user_update": null,
+                      "updated_at": null,
+                      "addresses": [
+                          {
+                              "id": "16bc1765-c7e2-47fe-baad-064c49fe6789",
+                              "supplier_id": "",
+                              "address_title": "Head Office",
+                              "address_type": "head_office",
+                              "street_address": "",
+                              "city": "Jakarta",
+                              "state_province": "DKI Jakarta",
+                              "country": "",
+                              "is_primary": true,
+                              "created_at": ""
+                          },
+                          {
+                              "id": "3c96dff2-d21c-47f2-9cf6-e7bd06a3e430",
+                              "supplier_id": "",
+                              "address_title": "Warehouse Tangerang",
+                              "address_type": "warehouse",
+                              "street_address": "",
+                              "city": "Tangerang",
+                              "state_province": "Banten",
+                              "country": "",
+                              "is_primary": false,
+                              "created_at": ""
+                          }
+                      ],
+                      "contacts": [
+                          {
+                              "id": "b1c2dd83-6ad8-428a-a196-f95e5c244213",
+                              "supplier_id": "",
+                              "contact_type": "main_pic",
+                              "full_name": "Dr. Siti Nurhaliza",
+                              "email": "siti.nurhaliza@mitramedika.co.id",
+                              "mobile_number": "+62 812 3456 7890",
+                              "is_verified": false,
+                              "created_at": ""
+                          },
+                          {
+                              "id": "808775d4-d71d-4cce-9891-5ec80918bf6c",
+                              "supplier_id": "",
+                              "contact_type": "technical_pic",
+                              "full_name": "Budi Santoso",
+                              "email": "budi.santoso@mitramedika.co.id",
+                              "mobile_number": "+62 813 4567 8901",
+                              "is_verified": false,
+                              "created_at": ""
+                          },
+                          {
+                              "id": "9acc7d61-d71e-47e2-a8d6-b5ebd5aa190a",
+                              "supplier_id": "",
+                              "contact_type": "finance_pic",
+                              "full_name": "Maya Wijaya",
+                              "email": "maya.wijaya@mitramedika.co.id",
+                              "mobile_number": "+62 814 5678 9012",
+                              "is_verified": false,
+                              "created_at": ""
+                          }
+                      ],
+                      "assessment": {
+                          "id": "051d8960-25b7-4fa1-90de-aac683d66859",
+                          "supplier_id": "",
+                          "offering_type_goods": true,
+                          "offering_type_services": false,
+                          "goods_category_medic": true,
+                          "goods_category_non_medic": false,
+                          "service_categories": null,
+                          "created_at": ""
+                      },
+                      "documents": [
+                          {
+                              "id": "4940aca0-cf92-4a71-a373-dd2895fe66e7",
+                              "supplier_id": "",
+                              "document_type": "deed_of_establishment",
+                              "category_document": "legal",
+                              "file_name": "akta_pendirian.pdf",
+                              "file_path": "/uploads/suppliers/documents/akta_pendirian_123.pdf",
+                              "file_size": null,
+                              "mime_type": null,
+                              "expired_date": null,
+                              "is_required": false,
+                              "is_verified": false,
+                              "verified_at": null,
+                              "verified_by": null,
+                              "user_create": "",
+                              "created_at": "",
+                              "user_update": null,
+                              "updated_at": null
+                          },
+                          {
+                              "id": "eb1a05ec-430d-460a-852b-6b1702f4e9d3",
+                              "supplier_id": "",
+                              "document_type": "npwp",
+                              "category_document": "legal",
+                              "file_name": "npwp.pdf",
+                              "file_path": "/uploads/suppliers/documents/npwp_123.pdf",
+                              "file_size": null,
+                              "mime_type": null,
+                              "expired_date": null,
+                              "is_required": false,
+                              "is_verified": false,
+                              "verified_at": null,
+                              "verified_by": null,
+                              "user_create": "",
+                              "created_at": "",
+                              "user_update": null,
+                              "updated_at": null
+                          }
+                      ]
+                  }
+              }
+          }
+  - name: Err supplier not found
+    request:
+      url: http://localhost:8081/suppliers/me?include=addresses,contacts,assessment,documents,service_categories
+      method: GET
+      params:
+        - name: include
+          value: addresses,contacts,assessment,documents,service_categories
+          type: query
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Date
+          value: Tue, 03 Feb 2026 00:40:51 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "49"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "error",
+              "message": "supplier not found"
+          }

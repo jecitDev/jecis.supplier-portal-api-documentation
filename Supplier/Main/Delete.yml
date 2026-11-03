@@ -1,0 +1,111 @@
+info:
+  name: Delete
+  type: http
+  seq: 8
+
+http:
+  method: DELETE
+  url: "{{BASE_URL}}/suppliers/:id"
+  params:
+    - name: id
+      value: 6fbdf5d9-0670-498c-986e-063075ecb1fc
+      type: path
+  body:
+    type: json
+    data: ""
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJNeUFwcGxpY2F0aW9uIiwiZXhwIjoxNzcwNjgzMzkxLCJuYmYiOjE3NzAwNzg1OTEsImlhdCI6MTc3MDA3ODU5MSwianRpIjoiMDc3NTQwY2UtNThkMi00MWI4LWEwYjQtMWI0OTYxM2JlNjJmIiwiaWQiOiIwNzc1NDBjZS01OGQyLTQxYjgtYTBiNC0xYjQ5NjEzYmU2MmYiLCJ1dWlkIjoiNzU4NTY5NTktYTFhZi00OTZhLTk0ODAtYzE3ZTlmZmUxZjZjIiwiZW1haWwiOiJzdXJ5YS5hdzI2QGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlzX2FjdGl2ZSI6dHJ1ZSwidG9rZW5faWQiOiJjNjA0MTI0OC1kMjY2LTRiYjItOTJmZC05YmRjMzc4M2QzNTAifQ.Df5XjXiKXHowU-e4CdAIVxebOhgvDn3Ka7SVU8FXsyE
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: http://localhost:8081/suppliers/:id
+      method: DELETE
+      params:
+        - name: id
+          value: 6fbdf5d9-0670-498c-986e-063075ecb1fc
+          type: path
+      body:
+        type: json
+        data: "{\r
+
+          \    \"company_name\": \"PT Mitra Medika Utama (Updated)\",\r
+
+          \    \"company_website\": \"https://www.mitramedika-new.co.id\",\r
+
+          \    \"is_consent_document_accurate\": true,\r
+
+          \    \"is_willing_to_verification\": true,\r
+
+          \    \"is_aggree_anti_bribery_policy\": true,\r
+
+          \    \"addresses\": [\r
+
+          \        {\r
+
+          \            \"id\": \"223e4567-e89b-12d3-a456-426614174001\",\r
+
+          \            \"phone_no\": \"+62 21 1234 9999\"\r
+
+          \        },\r
+
+          \        {\r
+
+          \            \"address_title\": \"New Branch Office\",\r
+
+          \            \"address_type\": \"branch_office\",\r
+
+          \            \"street_address\": \"Jl. Gatot Subroto No. 789\",\r
+
+          \            \"city\": \"Bandung\",\r
+
+          \            \"state_province\": \"Jawa Barat\",\r
+
+          \            \"country\": \"Indonesia\",\r
+
+          \            \"postal_code\": \"40111\",\r
+
+          \            \"is_primary\": false\r
+
+          \        }\r
+
+          \    ],\r
+
+          \    \"contacts\": [\r
+
+          \        {\r
+
+          \            \"id\": \"423e4567-e89b-12d3-a456-426614174003\",\r
+
+          \            \"mobile_number\": \"+62 812 9999 8888\"\r
+
+          \        }\r
+
+          \    ]\r
+
+          }"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Date
+          value: Tue, 03 Feb 2026 02:34:39 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "83"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Supplier and all related data deleted successfully"
+          }

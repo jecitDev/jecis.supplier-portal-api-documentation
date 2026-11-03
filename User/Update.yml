@@ -1,0 +1,28 @@
+info:
+  name: Update
+  type: http
+  seq: 2
+
+http:
+  method: PUT
+  url: http://localhost:8081/users/me
+  headers:
+    - name: X-User-ID
+      value: 53aad077-9fb1-4f08-85f3-af9fd9a36517
+  body:
+    type: json
+    data: "{\r
+
+      \    \"email\": \"surya.aw26@gmail.com\"\r
+
+      }"
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJNeUFwcGxpY2F0aW9uIiwiZXhwIjoxNzY5NzczNTYxLCJuYmYiOjE3Njk3Njk5NjEsImlhdCI6MTc2OTc2OTk2MSwianRpIjoiMDc3NTQwY2UtNThkMi00MWI4LWEwYjQtMWI0OTYxM2JlNjJmIiwiaWQiOiIwNzc1NDBjZS01OGQyLTQxYjgtYTBiNC0xYjQ5NjEzYmU2MmYiLCJ1dWlkIjoiNjViZWJjZjgtY2VhYS00ZGVmLWEzNTctNDBlNThiYThiZmU2IiwiZW1haWwiOiJqdXN0a2k3by4yNkBnbWFpbC5jb20iLCJyb2xlIjoiIiwiaXNfYWN0aXZlIjp0cnVlLCJ0b2tlbl9pZCI6IjY1YmViY2Y4LWNlYWEtNGRlZi1hMzU3LTQwZTU4YmE4YmZlNiJ9.ayrD_uUnnuxpz60lS9V9u2TC5DdSoEVO0AuSy3iqOno
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

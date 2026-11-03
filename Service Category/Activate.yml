@@ -1,0 +1,117 @@
+info:
+  name: Activate
+  type: http
+  seq: 6
+
+http:
+  method: PATCH
+  url: http://localhost:8081/service-categories/:id/activate
+  params:
+    - name: id
+      value: 2717c2fb-49b3-4384-80b0-5ccf4c635e85
+      type: path
+  body:
+    type: json
+    data: ""
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJNeUFwcGxpY2F0aW9uIiwiZXhwIjoxNzcwMDAxNzU5LCJuYmYiOjE3Njk5OTgxNTksImlhdCI6MTc2OTk5ODE1OSwianRpIjoiMDc3NTQwY2UtNThkMi00MWI4LWEwYjQtMWI0OTYxM2JlNjJmIiwiaWQiOiIwNzc1NDBjZS01OGQyLTQxYjgtYTBiNC0xYjQ5NjEzYmU2MmYiLCJ1dWlkIjoiNGM5MjhlMzYtMTlhOC00NDM1LWFmNDktZGU1YzVmMjFlODE0IiwiZW1haWwiOiJzdXJ5YS5hdzI2QGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlzX2FjdGl2ZSI6dHJ1ZSwidG9rZW5faWQiOiI0YzkyOGUzNi0xOWE4LTQ0MzUtYWY0OS1kZTVjNWYyMWU4MTQifQ.kyvqYAR_R8kHR1mYYbxGNnceBU7s4NYBYbGGMC8mVpo
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: http://localhost:8081/service-categories/:id/activate
+      method: PATCH
+      params:
+        - name: id
+          value: 2717c2fb-49b3-4384-80b0-5ccf4c635e85
+          type: path
+      body:
+        type: json
+        data: ""
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Date
+          value: Mon, 02 Feb 2026 03:06:11 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "222"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Service category activated successfully",
+              "data": {
+                  "id": "2717c2fb-49b3-4384-80b0-5ccf4c635e85",
+                  "name": "Architectural Services Update",
+                  "is_active": true,
+                  "updated_at": "2026-02-02T10:06:11+07:00"
+              }
+          }
+  - name: Err data already active
+    request:
+      url: http://localhost:8081/service-categories/:id/activate
+      method: PATCH
+      params:
+        - name: id
+          value: 2717c2fb-49b3-4384-80b0-5ccf4c635e85
+          type: path
+      body:
+        type: json
+        data: ""
+    response:
+      status: 422
+      statusText: Unprocessable Entity
+      headers:
+        - name: Date
+          value: Mon, 02 Feb 2026 03:06:26 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "65"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "error",
+              "message": "service category is already active"
+          }
+  - name: Err not found
+    request:
+      url: http://localhost:8081/service-categories/:id/activate
+      method: PATCH
+      params:
+        - name: id
+          value: 2717c2fb-49b3-4384-80b0-5ccf4c635e86
+          type: path
+      body:
+        type: json
+        data: ""
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Date
+          value: Mon, 02 Feb 2026 03:06:43 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "57"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "error",
+              "message": "service category not found"
+          }

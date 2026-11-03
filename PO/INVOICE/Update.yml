@@ -1,0 +1,95 @@
+info:
+  name: Update
+  type: http
+  seq: 5
+
+http:
+  method: PUT
+  url: "{{BASE_URL}}/invoices/:id"
+  params:
+    - name: id
+      value: f7104a65-d0e4-4521-b5f2-2ba9f0e80b18
+      type: path
+  body:
+    type: json
+    data: "{\r
+
+      \    \"invoice_no\": \"INV-2024-001-REV\",\r
+
+      \    // \"issued_date\": \"2024-02-11T10:00:00Z\",\r
+
+      \    // \"due_date\": \"2024-03-11T10:00:00Z\",\r
+
+      \    // \"document_url\": \"https://storage.company.com/invoices/INV-2024-001-REV.pdf\",\r
+
+      \    \"notes\": \"Payment terms: Net 30 days. Bank transfer to BCA account 1234567890. Early payment discount 2%.\",\r
+
+      \    \"reff_no\": \"REF-2024-001-UPDATED\"\r
+
+      }"
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: "{{BASE_URL}}/invoices/:id"
+      method: PUT
+      params:
+        - name: id
+          value: f7104a65-d0e4-4521-b5f2-2ba9f0e80b18
+          type: path
+      body:
+        type: json
+        data: "{\r
+
+          \    \"invoice_no\": \"INV-2024-001-REV\",\r
+
+          \    // \"issued_date\": \"2024-02-11T10:00:00Z\",\r
+
+          \    // \"due_date\": \"2024-03-11T10:00:00Z\",\r
+
+          \    // \"document_url\": \"https://storage.company.com/invoices/INV-2024-001-REV.pdf\",\r
+
+          \    \"notes\": \"Payment terms: Net 30 days. Bank transfer to BCA account 1234567890. Early payment discount 2%.\",\r
+
+          \    \"reff_no\": \"REF-2024-001-UPDATED\"\r
+
+          }"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Date
+          value: Fri, 06 Mar 2026 03:31:27 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "579"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Invoice updated successfully",
+              "data": {
+                  "id": "f7104a65-d0e4-4521-b5f2-2ba9f0e80b18",
+                  "poc_id": "a1b7627a-83b3-4faf-94c0-4cced7ab8b4d",
+                  "invoice_no": "INV-2024-001-REV",
+                  "issued_date": "2026-03-05T11:39:51+07:00",
+                  "due_date": "2026-03-28T11:39:51+07:00",
+                  "document_url": "https://storage.company.com/invoices/INV-2024-001.pdf",
+                  "notes": "Payment terms: Net 30 days. Bank transfer to BCA account 1234567890. Early payment discount 2%.",
+                  "reff_no": "REF-2024-001-UPDATED",
+                  "user_update": "077540ce-58d2-41b8-a0b4-1b49613be62f",
+                  "updated_at": "2026-03-06T10:31:27+07:00"
+              }
+          }

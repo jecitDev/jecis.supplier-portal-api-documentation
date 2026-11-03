@@ -1,0 +1,96 @@
+info:
+  name: Get Supplier Documents
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{BASE_URL}}/suppliers/:supplier_id/documents"
+  params:
+    - name: document_type
+      value: npwp
+      type: query
+      disabled: true
+    - name: category_document
+      value: legal
+      type: query
+      disabled: true
+    - name: is_verified
+      value: "false"
+      type: query
+      disabled: true
+    - name: supplier_id
+      value: 6fbdf5d9-0670-498c-986e-063075ecb1fc
+      type: path
+  body:
+    type: json
+    data: ""
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJNeUFwcGxpY2F0aW9uIiwiZXhwIjoxNzcxNDUyOTMxLCJuYmYiOjE3NzA4NDgxMzEsImlhdCI6MTc3MDg0ODEzMSwianRpIjoiMDc3NTQwY2UtNThkMi00MWI4LWEwYjQtMWI0OTYxM2JlNjJmIiwiaWQiOiIwNzc1NDBjZS01OGQyLTQxYjgtYTBiNC0xYjQ5NjEzYmU2MmYiLCJ1dWlkIjoiYTM1ZDVlN2ItZTU5Yi00YTEwLTgxZTMtOWZiNTBjZTBjOTNhIiwiZW1haWwiOiJzdXJ5YS5hdzI2QGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlzX2FjdGl2ZSI6dHJ1ZSwidG9rZW5faWQiOiIzMzE4NWEwMi1mODRlLTQ4MTgtYjJiMC03YmIzZmVhYzg2YzcifQ.7grkgPEpEmhJ_TmBg8M1gk9KlWVLpsTBd8i8xT0L1DQ
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: http://localhost:8081/suppliers/:supplier_id/documents?document_type=npwp&category_document=legal&is_verified=false
+      method: GET
+      params:
+        - name: document_type
+          value: npwp
+          type: query
+        - name: category_document
+          value: legal
+          type: query
+        - name: is_verified
+          value: "false"
+          type: query
+        - name: supplier_id
+          value: 6fbdf5d9-0670-498c-986e-063075ecb1fc
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Date
+          value: Wed, 04 Feb 2026 00:41:38 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "492"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Supplier documents retrieved successfully",
+              "data": {
+                  "documents": [
+                      {
+                          "id": "eb1a05ec-430d-460a-852b-6b1702f4e9d3",
+                          "supplier_id": "",
+                          "document_type": "npwp",
+                          "category_document": "legal",
+                          "file_name": "npwp.pdf",
+                          "file_path": "/uploads/suppliers/documents/npwp_123.pdf",
+                          "file_size": null,
+                          "mime_type": null,
+                          "expired_date": null,
+                          "is_required": false,
+                          "is_verified": false,
+                          "verified_at": null,
+                          "verified_by": null,
+                          "user_create": "",
+                          "created_at": "",
+                          "user_update": null,
+                          "updated_at": null
+                      }
+                  ]
+              }
+          }

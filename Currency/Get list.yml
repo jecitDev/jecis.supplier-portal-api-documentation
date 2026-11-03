@@ -1,0 +1,148 @@
+info:
+  name: Get list
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: "{{BASE_URL}}/currencies?page=1&page_size=10&code =IDR"
+  params:
+    - name: page
+      value: "1"
+      type: query
+    - name: page_size
+      value: "10"
+      type: query
+    - name: "code "
+      value: IDR
+      type: query
+    - name: is_active
+      value: "true"
+      type: query
+      disabled: true
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: http://localhost:8081/currencies
+      method: POST
+      body:
+        type: json
+        data: "{\r
+
+          \    \"name\": \"Indonesian Rupiah\",\r
+
+          \    \"code\": \"IDR\",\r
+
+          \    \"symbol\": \"Rp\",\r
+
+          \    \"html_entity\": \"&#8377;\"\r
+
+          }"
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Date
+          value: Wed, 04 Feb 2026 04:59:23 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "340"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Currency created successfully",
+              "data": {
+                  "ID": "f447478c-e978-4906-9a2f-f13424b0fff6",
+                  "Name": "Indonesian Rupiah",
+                  "Code": "IDR",
+                  "Symbol": "Rp",
+                  "HTMLEntity": "&#8377;",
+                  "IsActive": true,
+                  "UserCreate": "077540ce-58d2-41b8-a0b4-1b49613be62f",
+                  "CreatedAt": "2026-02-04T11:59:23+07:00",
+                  "UserUpdate": null,
+                  "UpdatedAt": null
+              }
+          }
+  - name: Err duplicate code
+    request:
+      url: http://localhost:8081/currencies
+      method: POST
+      body:
+        type: json
+        data: "{\r
+
+          \    \"name\": \"Indonesian Rupiah\",\r
+
+          \    \"code\": \"IDR\",\r
+
+          \    \"symbol\": \"Rp\",\r
+
+          \    \"html_entity\": \"&#8377;\"\r
+
+          }"
+    response:
+      status: 409
+      statusText: Conflict
+      headers:
+        - name: Date
+          value: Wed, 04 Feb 2026 04:59:39 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "70"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "error",
+              "message": "currency with code 'IDR' already exists"
+          }
+  - name: Err invalid code
+    request:
+      url: http://localhost:8081/currencies
+      method: POST
+      body:
+        type: json
+        data: "{\r
+
+          \    \"name\": \"Indonesian Rupiah\",\r
+
+          \    \"code\": \"tes\",\r
+
+          \    \"symbol\": \"Rp\",\r
+
+          \    \"html_entity\": \"&#8377;\"\r
+
+          }"
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Date
+          value: Wed, 04 Feb 2026 05:00:03 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "74"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "error",
+              "message": "code must be a valid ISO 4217 currency code"
+          }

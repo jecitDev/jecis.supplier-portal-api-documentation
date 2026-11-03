@@ -1,0 +1,28 @@
+info:
+  name: Delete
+  type: http
+  seq: 5
+
+http:
+  method: DELETE
+  url: "{{BASE_URL}}/master-references/:reference_type/:id"
+  params:
+    - name: reference_type
+      value: product_brand
+      type: path
+    - name: id
+      value: 2740eee5-5533-4b90-a076-ff6e7ae00502
+      type: path
+  body:
+    type: json
+    data: ""
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

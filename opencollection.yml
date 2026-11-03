@@ -1,0 +1,45 @@
+opencollection: 1.0.0
+
+info:
+  name: 1. JECIS Supplier Portal - Local
+
+request:
+  variables:
+    - name: BASE_URL
+      value: http://localhost:8080
+    - name: xtoken
+      value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJNeUFwcGxpY2F0aW9uIiwiZXhwIjoxNjk1MTg2ODM0LCJuYmYiOjE2OTUxODUwMzQsImlhdCI6MTY5NTE4NTAzNCwianRpIjoibmFuZG8iLCJpZCI6Im5hbmRvIiwidXVpZCI6IjM0MWNlNmM5LTdjMGMtNGNiYS04YWRmLTJhYzM4NDU4YWQwYiIsInVzZXJfaWQiOiIiLCJmaXJzdF9uYW1lIjoiRmVybmFuZG8iLCJsYXN0X25hbWUiOiJTaW1ib2xvbiIsImVtYWlsIjoiZmVybmFuZG8ucml5b0BqZWMuY28uaWQifQ.KZFVBq9w4oJD71VwXKyNsSjbmj-kG3M-Ho4T6C-Gr8I
+    - name: x-refresh-token
+      value: ""
+    - name: instrumentemr_xtoken
+      value: 12341231sfa.eyJpc3MiOiJKZWNpcy5NYXN0ZXJEYXRhIiwiaWF0IjoxNjk3MDIxMDk0LCJleHAiOjE3Mjg1NTcwOTQsImF1ZCI6IlVzZXJNYXN0ZXIiLCJzdWIiOiJVc2VyTWFzdGVyIiwiR2l2ZW5OYW1lIjoiVXNlck1hc3RlciIsIlN1cm5hbWUiOiJVc2VyTWFzdGVyIiwiRW1haWwiOiJpdC5kZXZAamVjLmNvLmlkIn0.GgBJrQ5xiaKdxgi_7GNrxMho7n6MeGA_jY-CvTXDAnA
+    - name: admission_xtoken
+      value: admission_token_gateway
+    - name: marketing_xtoken
+      value: marketing_token_gateway
+    - name: master_xtoken
+      value: master_token_gateway
+    - name: supply_xtoken
+      value: supply_chain_token_gateway
+    - name: billing_xtoken
+      value: billing_token_gateway
+    - name: finance_xtoken
+      value: finance_token_gateway
+    - name: medical_record_xtoken
+      value: medical_record_token_gateway
+    - name: BASE_URL_SERVICE_BROKER
+      value: ""
+    - name: BASE_URL_SANDBOX
+      value: ""
+    - name: token
+      value: ""
+    - name: refresh-token
+      value: ""
+    - name: json_web_token_18vw
+      value: ""
+bundled: false
+extensions:
+  bruno:
+    ignore:
+      - node_modules
+      - .git

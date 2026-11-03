@@ -1,0 +1,219 @@
+info:
+  name: Get By ID
+  type: http
+  seq: 3
+
+http:
+  method: GET
+  url: "{{BASE_URL}}/propose-changes/:id?include=items,po_confirmation,comparison"
+  params:
+    - name: include
+      value: items,po_confirmation,comparison
+      type: query
+    - name: id
+      value: 6c8f38f4-e634-4db2-af67-0b27aae2ddb7
+      type: path
+  body:
+    type: json
+    data: "{\r
+
+      \    \"company_id\": \"2da6a1bd-ba62-43ec-91f8-4085d5d6d498\",\r
+
+      \    \"business_unit_id\": \"53aad077-9fb1-4f08-85f3-af9fd9a36517\",\r
+
+      \    \"transaction_no\": \"PO/KDY/2025/12/0141\",\r
+
+      \    \"transaction_date\": \"2026-02-25 14:12:27+07\",\r
+
+      \    \"supplier_id\": \"6fbdf5d9-0670-498c-986e-063075ecb1fc\",\r
+
+      \    \"supplier_name\": \"PT Mitra Medika Utama (Updated)\",\r
+
+      \    \"is_taxable\": true,\r
+
+      \    \"leadtime_in_days\": 5,\r
+
+      \    \"currency_id\": \"IDR\",\r
+
+      \    \"currency_rate\": 1,\r
+
+      \    \"remarks\": \"Confirmed by supplier\",\r
+
+      \    \"user_create\": \"admin\",\r
+
+      \    \"details\": [\r
+
+      \        {\r
+
+      \            \"item_id\": \"1200001092\",\r
+
+      \            \"item_name\": \"LAMESON 8 MG\",\r
+
+      \            \"quantity\": 100,\r
+
+      \            \"uom\": \"TABLET\",\r
+
+      \            \"price_before_discount\": 7500,\r
+
+      \            \"discount1_percentage\": 15,\r
+
+      \            \"discount2_percentage\": 0\r
+
+      \        }\r
+
+      \    ]\r
+
+      }"
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: "{{BASE_URL}}/propose-changes/:id"
+      method: GET
+      params:
+        - name: id
+          value: 6c8f38f4-e634-4db2-af67-0b27aae2ddb7
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Date
+          value: Mon, 02 Mar 2026 03:38:19 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "291"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Propose change retrieved successfully",
+              "data": {
+                  "id": "6c8f38f4-e634-4db2-af67-0b27aae2ddb7",
+                  "confirmation_id": "3f54add3-6081-42cd-853d-eab07b215ba4",
+                  "status": "draft",
+                  "user_create": "077540ce-58d2-41b8-a0b4-1b49613be62f",
+                  "created_at": "2026-03-02T08:49:39+07:00"
+              }
+          }
+  - name: Success With Additional Data
+    request:
+      url: "{{BASE_URL}}/propose-changes/:id?include=items,po_confirmation,comparison"
+      method: GET
+      params:
+        - name: include
+          value: items,po_confirmation,comparison
+          type: query
+        - name: id
+          value: 6c8f38f4-e634-4db2-af67-0b27aae2ddb7
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Date
+          value: Mon, 02 Mar 2026 03:39:12 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "1416"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Propose change retrieved successfully",
+              "data": {
+                  "id": "6c8f38f4-e634-4db2-af67-0b27aae2ddb7",
+                  "confirmation_id": "3f54add3-6081-42cd-853d-eab07b215ba4",
+                  "status": "draft",
+                  "user_create": "077540ce-58d2-41b8-a0b4-1b49613be62f",
+                  "created_at": "2026-03-02T08:49:39+07:00",
+                  "po_confirmation": {
+                      "confirmation_id": "3f54add3-6081-42cd-853d-eab07b215ba4",
+                      "transaction_no": "PO/KDY/2025/12/0143",
+                      "transaction_date": "",
+                      "supplier_name": "PT Mitra Medika Utama (Updated)",
+                      "total_net": 686010,
+                      "status": "draft"
+                  },
+                  "items": [
+                      {
+                          "detail_id": "1ec3e9c3-d919-4765-b283-44d944a63215",
+                          "propose_change_id": "6c8f38f4-e634-4db2-af67-0b27aae2ddb7",
+                          "item_id": "ITEM-001",
+                          "item_name": "Digital Blood Pressure Monitor",
+                          "quantity": 120,
+                          "uom": "PCS",
+                          "price_before_discount": 950000,
+                          "discount1_percentage": 5,
+                          "discount2_percentage": 5,
+                          "gross_amount": 114000000,
+                          "discount_amount": 11115000,
+                          "net_amount": 102885000,
+                          "is_deleted": true,
+                          "deleted_note": "Stok Habis"
+                      },
+                      {
+                          "detail_id": "4d8adc00-199f-4172-9a92-07cdfde8472f",
+                          "propose_change_id": "6c8f38f4-e634-4db2-af67-0b27aae2ddb7",
+                          "item_id": "ITEM-002",
+                          "item_name": "Medical Thermometer",
+                          "quantity": 200,
+                          "uom": "PCS",
+                          "price_before_discount": 350000,
+                          "discount1_percentage": 10,
+                          "discount2_percentage": 0,
+                          "gross_amount": 70000000,
+                          "discount_amount": 7000000,
+                          "net_amount": 63000000
+                      }
+                  ],
+                  "comparison": {
+                      "original_total_net": 686010,
+                      "proposed_total_net": 165885000,
+                      "difference": 165198990,
+                      "percentage_change": 24081.134385796126
+                  }
+              }
+          }
+  - name: Err not found
+    request:
+      url: "{{BASE_URL}}/propose-changes/:id?include=items,po_confirmation,comparison"
+      method: GET
+      params:
+        - name: include
+          value: items,po_confirmation,comparison
+          type: query
+        - name: id
+          value: 6c8f38f4-e634-4db2-af67-0b27aae2ddb9
+          type: path
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Date
+          value: Mon, 02 Mar 2026 03:39:47 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "55"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "error",
+              "message": "propose change not found"
+          }

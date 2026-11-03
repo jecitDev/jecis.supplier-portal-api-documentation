@@ -1,0 +1,50 @@
+info:
+  name: Update
+  type: http
+  seq: 4
+
+http:
+  method: PUT
+  url: http://localhost:8081/invitations/:id
+  headers:
+    - name: x-token
+      value: "{{admission_xtoken}}"
+    - name: X-User-ID
+      value: 53aad077-9fb1-4f08-85f3-af9fd9a36517
+  params:
+    - name: id
+      value: 663ffb21-49cf-4f75-aecf-ea6d85a255fb
+      type: path
+  body:
+    type: json
+    data: "{\r
+
+      \    \"invitation_code\": \"INV-2026-742777\",\r
+
+      \    \"invitation_type\": \"albedo_system\",\r
+
+      \    \"reference_id\": \"REF-ALBEDO-2024-001\",\r
+
+      \    \"invited_email\": \"supplier@example.com\",\r
+
+      \    \"expires_at\": \"2026-01-29T00:00:00+07:00\",\r
+
+      \    \"is_active\": true,\r
+
+      \    \"metadata\": {\r
+
+      \        \"company_name\": \"PT Example Indonesia Update\",\r
+
+      \        \"source_campaign\": \"Q1-2024-Recruitment\"\r
+
+      \    }\r
+
+      }"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

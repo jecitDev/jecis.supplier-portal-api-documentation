@@ -1,0 +1,171 @@
+info:
+  name: Create
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{BASE_URL}}/admin/master-consents"
+  body:
+    type: json
+    data: "{\r
+
+      \    \"document_code\": \"NDA\",\r
+
+      \    \"version\": \"1.0\",\r
+
+      \    \"title\": \"Non-Disclosure Agreement v1.0\",\r
+
+      \    \"html_content\": \"<p>Dengan ini <b><input type='text' name='company_name'></b> menyetujui...</p><br><input type='checkbox' name='agree_terms'> Saya Setuju\",\r
+
+      \    \"input_schema\": {\r
+
+      \        \"company_name\": \"string\",\r
+
+      \        \"agree_terms\": \"boolean\"\r
+
+      \    }\r
+
+      }"
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: "{{BASE_URL}}/admin/master-consents"
+      method: POST
+      body:
+        type: json
+        data: "{\r
+
+          \    \"document_code\": \"NDA\",\r
+
+          \    \"version\": \"1.0\",\r
+
+          \    \"title\": \"Non-Disclosure Agreement v1.0\",\r
+
+          \    \"html_content\": \"<p>Dengan ini <b><input type='text' name='company_name'></b> menyetujui...</p><br><input type='checkbox' name='agree_terms'> Saya Setuju\",\r
+
+          \    \"input_schema\": {\r
+
+          \        \"company_name\": \"string\",\r
+
+          \        \"agree_terms\": \"boolean\"\r
+
+          \    }\r
+
+          }"
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: date
+          value: Wed, 21 Oct 2026 05:59:54 GMT
+        - name: content-type
+          value: application/json
+        - name: content-length
+          value: "266"
+      body:
+        type: json
+        data: |-
+          {
+            "status": "success",
+            "message": "MasterConsent created successfully",
+            "data": {
+              "document_code": "NDA",
+              "version": "1.0",
+              "title": "Non-Disclosure Agreement v1.0",
+              "is_active": false,
+              "user_create": "e7c5daaf-f2cd-4947-9f08-4514f9ae067c",
+              "created_at": "2026-10-21T12:59:54+07:00"
+            }
+          }
+  - name: Err Duplicate Document Code Version
+    request:
+      url: "{{BASE_URL}}/admin/master-consents"
+      method: POST
+      body:
+        type: json
+        data: "{\r
+
+          \    \"document_code\": \"NDA\",\r
+
+          \    \"version\": \"1.0\",\r
+
+          \    \"title\": \"Non-Disclosure Agreement v1.0\",\r
+
+          \    \"html_content\": \"<p>Dengan ini <b><input type='text' name='company_name'></b> menyetujui...</p><br><input type='checkbox' name='agree_terms'> Saya Setuju\",\r
+
+          \    \"input_schema\": {\r
+
+          \        \"company_name\": \"string\",\r
+
+          \        \"agree_terms\": \"boolean\"\r
+
+          \    }\r
+
+          }"
+    response:
+      status: 409
+      statusText: Conflict
+      headers:
+        - name: date
+          value: Wed, 21 Oct 2026 06:00:28 GMT
+        - name: content-type
+          value: application/json
+        - name: content-length
+          value: "103"
+      body:
+        type: json
+        data: |-
+          {
+            "status": "error",
+            "message": "master consent with document code 'NDA' and version '1.0' already exists"
+          }
+  - name: Err Bad Request
+    request:
+      url: "{{BASE_URL}}/admin/master-consents"
+      method: POST
+      body:
+        type: json
+        data: "{\r
+
+          \    \"title\": \"Non-Disclosure Agreement v1.0\",\r
+
+          \    \"html_content\": \"<p>Dengan ini <b><input type='text' name='company_name'></b> menyetujui...</p><br><input type='checkbox' name='agree_terms'> Saya Setuju\",\r
+
+          \    \"input_schema\": {\r
+
+          \        \"company_name\": \"string\",\r
+
+          \        \"agree_terms\": \"boolean\"\r
+
+          \    }\r
+
+          }"
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: date
+          value: Wed, 21 Oct 2026 06:00:51 GMT
+        - name: content-type
+          value: application/json
+        - name: content-length
+          value: "56"
+      body:
+        type: json
+        data: |-
+          {
+            "status": "error",
+            "message": "document_code is required"
+          }

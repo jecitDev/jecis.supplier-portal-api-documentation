@@ -1,0 +1,153 @@
+info:
+  name: Update
+  type: http
+  seq: 4
+
+http:
+  method: PUT
+  url: "{{BASE_URL}}/propose-changes/:id"
+  params:
+    - name: id
+      value: e1b91b8b-9392-473c-8f84-71ea87971347
+      type: path
+  body:
+    type: json
+    data: "{\r
+
+      \    \"items\": [\r
+
+      \        {\r
+
+      \            \"detail_id\": \"4df006fa-fe16-4218-9ad4-700044795660\",\r
+
+      \            \"item_id\": \"ITEM-001\",\r
+
+      \            \"item_name\": \"Digital Blood Pressure Monitor\",\r
+
+      \            \"quantity\": 130,\r
+
+      \            \"uom\": \"PCS\",\r
+
+      \            \"price_before_discount\": 950000.00,\r
+
+      \            \"discount1_percentage\": 5.00,\r
+
+      \            \"discount2_percentage\": 5.00\r
+
+      \        },\r
+
+      \        {\r
+
+      \            \"item_id\": \"ITEM-003\",\r
+
+      \            \"item_name\": \"Pulse Oximeter\",\r
+
+      \            \"quantity\": 50,\r
+
+      \            \"uom\": \"PCS\",\r
+
+      \            \"price_before_discount\": 450000.00,\r
+
+      \            \"discount1_percentage\": 0.00,\r
+
+      \            \"discount2_percentage\": 0.00\r
+
+      \        }\r
+
+      \    ]\r
+
+      }"
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: "{{BASE_URL}}/propose-changes/:id"
+      method: PUT
+      params:
+        - name: id
+          value: 6c8f38f4-e634-4db2-af67-0b27aae2ddb7
+          type: path
+      body:
+        type: json
+        data: "{\r
+
+          \    \"items\": [\r
+
+          \        {\r
+
+          \            \"detail_id\": \"1ec3e9c3-d919-4765-b283-44d944a63215\",\r
+
+          \            \"item_id\": \"ITEM-001\",\r
+
+          \            \"item_name\": \"Digital Blood Pressure Monitor\",\r
+
+          \            \"quantity\": 130,\r
+
+          \            \"uom\": \"PCS\",\r
+
+          \            \"price_before_discount\": 950000.00,\r
+
+          \            \"discount1_percentage\": 5.00,\r
+
+          \            \"discount2_percentage\": 5.00\r
+
+          \        },\r
+
+          \        {\r
+
+          \            \"item_id\": \"ITEM-003\",\r
+
+          \            \"item_name\": \"Pulse Oximeter\",\r
+
+          \            \"quantity\": 50,\r
+
+          \            \"uom\": \"PCS\",\r
+
+          \            \"price_before_discount\": 450000.00,\r
+
+          \            \"discount1_percentage\": 0.00,\r
+
+          \            \"discount2_percentage\": 0.00\r
+
+          \        }\r
+
+          \    ]\r
+
+          }"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Date
+          value: Mon, 02 Mar 2026 04:58:15 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "361"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Propose change updated successfully",
+              "data": {
+                  "id": "6c8f38f4-e634-4db2-af67-0b27aae2ddb7",
+                  "confirmation_id": "3f54add3-6081-42cd-853d-eab07b215ba4",
+                  "total_gross": 146000000,
+                  "total_discount": 12041250,
+                  "total_net": 133958750,
+                  "status": "draft",
+                  "user_update": "077540ce-58d2-41b8-a0b4-1b49613be62f",
+                  "updated_at": "2026-03-02T11:58:15+07:00"
+              }
+          }

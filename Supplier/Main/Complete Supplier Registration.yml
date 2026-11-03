@@ -1,0 +1,133 @@
+info:
+  name: Complete Supplier Registration
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{BASE_URL}}/suppliers"
+  body:
+    type: json
+    data: "{\r
+
+      \    \"company_name\": \"Sehat Selalu\",\r
+
+      \    \"npwp\": \"123123123123123\",\r
+
+      \    \"nib\": \"123123123123123\",\r
+
+      \    \"entity\": \"Manufacturer\",\r
+
+      \    \"date_of_establishment\": \"2026-02-24\",\r
+
+      \    \"company_website\": \"sehat-selalu.com\",\r
+
+      \    \"is_consent_document_accurate\": true,\r
+
+      \    \"is_willing_to_verification\": true,\r
+
+      \    \"is_aggree_anti_bribery_policy\": true,\r
+
+      \    \"addresses\": [\r
+
+      \        {\r
+
+      \            \"address_title\": \"Griya Mas Matahari Sumber\",\r
+
+      \            \"address_type\": \"head_office\",\r
+
+      \            \"email\": \"ramaedwindap@gmail.com\",\r
+
+      \            \"phone_no\": \"+6287722275005\",\r
+
+      \            \"fax_no\": \"+6287722275005\",\r
+
+      \            \"street_address\": \"Griya Mas Matahari Sumber\",\r
+
+      \            \"city\": \"Rejang Lebong\",\r
+
+      \            \"state_province\": \"Bengkulu\",\r
+
+      \            \"country\": \"Indonesia\",\r
+
+      \            \"postal_code\": \"39154\",\r
+
+      \            \"is_primary\": true\r
+
+      \        }\r
+
+      \    ],\r
+
+      \    \"contacts\": [\r
+
+      \        {\r
+
+      \            \"contact_type\": \"main_pic\",\r
+
+      \            \"full_name\": \"Rama Edwinda Putra\",\r
+
+      \            \"position\": \"Staff\",\r
+
+      \            \"email\": \"ramaedwindap@gmail.com\",\r
+
+      \            \"mobile_number\": \"+6287722275005\"\r
+
+      \        },\r
+
+      \        {\r
+
+      \            \"contact_type\": \"technical_pic\",\r
+
+      \            \"full_name\": \"Rama Edwinda Putra\",\r
+
+      \            \"position\": \"Staff\",\r
+
+      \            \"email\": \"ramaedwindap@gmail.com\",\r
+
+      \            \"mobile_number\": \"+6287722275005\"\r
+
+      \        },\r
+
+      \        {\r
+
+      \            \"contact_type\": \"finance_pic\",\r
+
+      \            \"full_name\": \"Rama Edwinda Putra\",\r
+
+      \            \"position\": \"Staff\",\r
+
+      \            \"email\": \"ramaedwindap@gmail.com\",\r
+
+      \            \"mobile_number\": \"+6287722275005\"\r
+
+      \        }\r
+
+      \    ],\r
+
+      \    \"assessment\": {\r
+
+      \        \"offering_type_goods\": true,\r
+
+      \        \"offering_type_services\": false,\r
+
+      \        \"goods_category_medic\": false,\r
+
+      \        \"goods_category_non_medic\": true,\r
+
+      \        \"service_category_ids\": []\r
+
+      \    },\r
+
+      \    \"documents\": []\r
+
+      }"
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

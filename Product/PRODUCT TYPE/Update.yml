@@ -1,0 +1,45 @@
+info:
+  name: Update
+  type: http
+  seq: 5
+
+http:
+  method: PUT
+  url: "{{BASE_URL}}/product-types/:id"
+  params:
+    - name: id
+      value: c58c28ea-0709-44a7-ab83-0ebe81fa3415
+      type: path
+  body:
+    type: json
+    data: "{\r
+
+      \    \"name\": \"Single Vision Lens Updated\",\r
+
+      \    \"category_id\": \"07f39501-eaef-4439-8e02-286dd80a15f2\",\r
+
+      \    \"brand_ids\": [\r
+
+      \        \"2740eee5-5533-4b90-a076-ff6e7ae00502\",\r
+
+      \        \"186c94a2-cb3d-490e-9e71-0f72d5047923\"\r
+
+      \    ],\r
+
+      \    \"variant_ids\": [\r
+
+      \        \"a94d1346-03a2-42ef-a00d-1eb11888f092\"\r
+
+      \    ]\r
+
+      }"
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

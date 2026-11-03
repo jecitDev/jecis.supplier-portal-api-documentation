@@ -1,0 +1,111 @@
+info:
+  name: Create
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{BASE_URL}}/settings"
+  body:
+    type: json
+    data: "{\r
+
+      \    \"id\": \"finance_team_email\",\r
+
+      \    \"name\": \"Finance Team Email\",\r
+
+      \    \"value\": \"finance@company.com\",\r
+
+      \    \"is_active\": true\r
+
+      }"
+  auth:
+    type: bearer
+    token: "{{x-refresh-token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: http://localhost:8081/settings
+      method: POST
+      body:
+        type: json
+        data: "{\r
+
+          \    \"id\": \"legal_team_email\",\r
+
+          \    \"name\": \"Legal Team Email\",\r
+
+          \    \"value\": \"legal@company.com\",\r
+
+          \    \"is_active\": true\r
+
+          }"
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Date
+          value: Mon, 23 Feb 2026 05:31:47 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "291"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Setting created successfully",
+              "data": {
+                  "ID": "legal_team_email",
+                  "Name": "Legal Team Email",
+                  "Value": "legal@company.com",
+                  "IsActive": true,
+                  "UserCreate": "077540ce-58d2-41b8-a0b4-1b49613be62f",
+                  "CreatedAt": "2026-02-23T12:31:46+07:00",
+                  "UserUpdate": null,
+                  "UpdatedAt": null
+              }
+          }
+  - name: Error duplicate id
+    request:
+      url: http://localhost:8081/settings
+      method: POST
+      body:
+        type: json
+        data: "{\r
+
+          \    \"id\": \"legal_team_email\",\r
+
+          \    \"name\": \"Legal Team Email\",\r
+
+          \    \"value\": \"legal@company.com\",\r
+
+          \    \"is_active\": true\r
+
+          }"
+    response:
+      status: 409
+      statusText: Conflict
+      headers:
+        - name: Date
+          value: Mon, 23 Feb 2026 05:32:11 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "80"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "error",
+              "message": "setting with id 'legal_team_email' already exists"
+          }

@@ -1,0 +1,161 @@
+info:
+  name: Create Product
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{BASE_URL}}/products"
+  body:
+    type: json
+    data: "{\r
+
+      \    \"product_name\": \"Digital Blood Pressure Monitor OMRON HEM-7156T\",\r
+
+      \    \"category_id\": \"550e8400-e29b-41d4-a716-446655440000\",\r
+
+      \    \"description\": \"Automatic digital blood pressure monitor with Bluetooth connectivity and irregular heartbeat detection. Clinically validated accuracy.\",\r
+
+      \    \"brand\": \"OMRON\",\r
+
+      \    \"manufacturer\": \"OMRON Healthcare Co., Ltd.\",\r
+
+      \    \"country_of_origin\": \"Japan\",\r
+
+      \    \"minimum_order_quantity\": 10,\r
+
+      \    \"lead_time_days\": 14,\r
+
+      \    \"price_per_unit\": 850000,\r
+
+      \    \"currency_id\": \"f447478c-e978-4906-9a2f-f13424b0fff6\",\r
+
+      \    \"unit_of_measure_id\": \"40f1d370-54a1-4c27-bbae-91f6e30e57f1\",\r
+
+      \    \"warranty_terms\": \"2 years manufacturer warranty. Free replacement for manufacturing defects.\",\r
+
+      \    \"technical_specifications\": \"Measurement Range: 0-299 mmHg (pressure), 40-180 bpm (pulse). Accuracy: ±3 mmHg (pressure), ±5% (pulse). Memory: 100 measurements. Cuff Size: 22-42 cm. Power: 4 AA batteries or AC adapter.\"\r
+
+      \    // \"stock_quantity\": 150\r
+
+      }"
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJNeUFwcGxpY2F0aW9uIiwiZXhwIjoxNzcwNzg1OTU1LCJuYmYiOjE3NzAxODExNTUsImlhdCI6MTc3MDE4MTE1NSwianRpIjoiMDc3NTQwY2UtNThkMi00MWI4LWEwYjQtMWI0OTYxM2JlNjJmIiwiaWQiOiIwNzc1NDBjZS01OGQyLTQxYjgtYTBiNC0xYjQ5NjEzYmU2MmYiLCJ1dWlkIjoiY2NkMjM1MzctMGY4Yy00MDQyLWI1MTUtNmYzYTZhM2I5OGJhIiwiZW1haWwiOiJzdXJ5YS5hdzI2QGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlzX2FjdGl2ZSI6dHJ1ZSwidG9rZW5faWQiOiJkODAzMmRjYy04MzQzLTRkMmUtODM5MS1kODE3M2QwZDg5NDIifQ.EPvac_IA32svAI_qNTxUFkSqM22u4tgow9NY2pzweWo
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Err supplier not approved
+    request:
+      url: http://localhost:8081/products
+      method: POST
+      body:
+        type: json
+        data: "{\r
+
+          \    \"product_name\": \"Digital Blood Pressure Monitor OMRON HEM-7156T\",\r
+
+          \    \"category_id\": \"550e8400-e29b-41d4-a716-446655440000\",\r
+
+          \    \"description\": \"Automatic digital blood pressure monitor with Bluetooth connectivity and irregular heartbeat detection. Clinically validated accuracy.\",\r
+
+          \    \"brand\": \"OMRON\",\r
+
+          \    \"manufacturer\": \"OMRON Healthcare Co., Ltd.\",\r
+
+          \    \"country_of_origin\": \"Japan\",\r
+
+          \    \"minimum_order_quantity\": 10,\r
+
+          \    \"lead_time_days\": 14,\r
+
+          \    \"price_per_unit\": 850000,\r
+
+          \    \"currency_id\": \"f447478c-e978-4906-9a2f-f13424b0fff7\",\r
+
+          \    \"unit_of_measure_id\": \"40f1d370-54a1-4c27-bbae-91f6e30e57f1\",\r
+
+          \    \"warranty_terms\": \"2 years manufacturer warranty. Free replacement for manufacturing defects.\",\r
+
+          \    \"technical_specifications\": \"Measurement Range: 0-299 mmHg (pressure), 40-180 bpm (pulse). Accuracy: ±3 mmHg (pressure), ±5% (pulse). Memory: 100 measurements. Cuff Size: 22-42 cm. Power: 4 AA batteries or AC adapter.\"\r
+
+          \    // \"stock_quantity\": 150\r
+
+          }"
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Date
+          value: Sun, 08 Feb 2026 14:38:51 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "97"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "error",
+              "message": "Supplier not approved. Only approved suppliers can create products"
+          }
+  - name: Err currency not found
+    request:
+      url: http://localhost:8081/products
+      method: POST
+      body:
+        type: json
+        data: "{\r
+
+          \    \"product_name\": \"Digital Blood Pressure Monitor OMRON HEM-7156T\",\r
+
+          \    \"category_id\": \"550e8400-e29b-41d4-a716-446655440000\",\r
+
+          \    \"description\": \"Automatic digital blood pressure monitor with Bluetooth connectivity and irregular heartbeat detection. Clinically validated accuracy.\",\r
+
+          \    \"brand\": \"OMRON\",\r
+
+          \    \"manufacturer\": \"OMRON Healthcare Co., Ltd.\",\r
+
+          \    \"country_of_origin\": \"Japan\",\r
+
+          \    \"minimum_order_quantity\": 10,\r
+
+          \    \"lead_time_days\": 14,\r
+
+          \    \"price_per_unit\": 850000,\r
+
+          \    \"currency_id\": \"f447478c-e978-4906-9a2f-f13424b0fff7\",\r
+
+          \    \"unit_of_measure_id\": \"40f1d370-54a1-4c27-bbae-91f6e30e57f1\",\r
+
+          \    \"warranty_terms\": \"2 years manufacturer warranty. Free replacement for manufacturing defects.\",\r
+
+          \    \"technical_specifications\": \"Measurement Range: 0-299 mmHg (pressure), 40-180 bpm (pulse). Accuracy: ±3 mmHg (pressure), ±5% (pulse). Memory: 100 measurements. Cuff Size: 22-42 cm. Power: 4 AA batteries or AC adapter.\"\r
+
+          \    // \"stock_quantity\": 150\r
+
+          }"
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Date
+          value: Sun, 08 Feb 2026 14:39:53 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "49"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "error",
+              "message": "currency not found"
+          }

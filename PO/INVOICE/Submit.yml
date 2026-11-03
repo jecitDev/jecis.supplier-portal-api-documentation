@@ -1,0 +1,117 @@
+info:
+  name: Submit
+  type: http
+  seq: 3
+
+http:
+  method: PATCH
+  url: "{{BASE_URL}}/invoices/:id/submit"
+  params:
+    - name: id
+      value: d03eada2-760e-465e-9b03-f9a4c6cc7eb6
+      type: path
+  body:
+    type: json
+    data: ""
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Err invoice inactive
+    request:
+      url: "{{BASE_URL}}/invoices/:id/submit"
+      method: PATCH
+      params:
+        - name: id
+          value: f7104a65-d0e4-4521-b5f2-2ba9f0e80b18
+          type: path
+      body:
+        type: json
+        data: ""
+    response:
+      status: 422
+      statusText: Unprocessable Entity
+      headers:
+        - name: Date
+          value: Fri, 06 Mar 2026 03:46:22 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "50"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "error",
+              "message": "invoice is inactive"
+          }
+  - name: Success
+    request:
+      url: "{{BASE_URL}}/invoices/:id/submit"
+      method: PATCH
+      params:
+        - name: id
+          value: d03eada2-760e-465e-9b03-f9a4c6cc7eb6
+          type: path
+      body:
+        type: json
+        data: ""
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Date
+          value: Fri, 06 Mar 2026 03:48:03 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "206"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Invoice submitted successfully",
+              "data": {
+                  "id": "d03eada2-760e-465e-9b03-f9a4c6cc7eb6",
+                  "invoice_no": "INV-2024-001",
+                  "status": "submitted",
+                  "updated_at": "2026-03-06T10:48:04+07:00"
+              }
+          }
+  - name: Err invoice already submitted
+    request:
+      url: "{{BASE_URL}}/invoices/:id/submit"
+      method: PATCH
+      params:
+        - name: id
+          value: d03eada2-760e-465e-9b03-f9a4c6cc7eb6
+          type: path
+      body:
+        type: json
+        data: ""
+    response:
+      status: 422
+      statusText: Unprocessable Entity
+      headers:
+        - name: Date
+          value: Fri, 06 Mar 2026 03:48:51 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "59"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "error",
+              "message": "invoice is already submitted"
+          }

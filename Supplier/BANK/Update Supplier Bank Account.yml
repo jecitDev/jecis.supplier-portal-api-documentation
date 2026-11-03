@@ -1,0 +1,104 @@
+info:
+  name: Update Supplier Bank Account
+  type: http
+  seq: 3
+
+http:
+  method: PUT
+  url: "{{BASE_URL}}/suppliers/:supplier_id/bank-accounts/:bank_account_id"
+  params:
+    - name: supplier_id
+      value: 6fbdf5d9-0670-498c-986e-063075ecb1fc
+      type: path
+    - name: bank_account_id
+      value: 55ae907c-fb19-40b7-81ca-770889d35e91
+      type: path
+  body:
+    type: json
+    data: "{\r
+
+      \    \"bank_id\": 3,\r
+
+      \    \"branch_name\": \"BCA\",\r
+
+      \    \"account_number\": \"3412321\",\r
+
+      \    \"account_holder\": \"Surya Adhi Waskito\",\r
+
+      \    \"swift_code\": \"CENAIDJA\",\r
+
+      \    \"currency_id\": \"f447478c-e978-4906-9a2f-f13424b0fff6\"\r
+
+      }"
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: "{{BASE_URL}}/suppliers/:supplier_id/bank-accounts/:bank_account_id"
+      method: PUT
+      params:
+        - name: supplier_id
+          value: 6fbdf5d9-0670-498c-986e-063075ecb1fc
+          type: path
+        - name: bank_account_id
+          value: 55ae907c-fb19-40b7-81ca-770889d35e91
+          type: path
+      body:
+        type: json
+        data: "{\r
+
+          \    \"bank_id\": 3,\r
+
+          \    \"branch_name\": \"BCA\",\r
+
+          \    \"account_number\": \"3412321\",\r
+
+          \    \"account_holder\": \"Surya Adhi Waskito\",\r
+
+          \    \"swift_code\": \"CENAIDJA\",\r
+
+          \    \"currency_id\": \"f447478c-e978-4906-9a2f-f13424b0fff6\"\r
+
+          }"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Date
+          value: Thu, 16 Apr 2026 07:52:39 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "500"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Supplier bank account updated successfully",
+              "data": {
+                  "id": "55ae907c-fb19-40b7-81ca-770889d35e91",
+                  "supplier_id": "6fbdf5d9-0670-498c-986e-063075ecb1fc",
+                  "branch_name": "BCA",
+                  "bank_id": 3,
+                  "account_number": "3412321",
+                  "account_holder": "Surya Adhi Waskito",
+                  "swift_code": "CENAIDJA",
+                  "currency_id": "f447478c-e978-4906-9a2f-f13424b0fff6",
+                  "is_active": false,
+                  "user_create": "",
+                  "created_at": "",
+                  "user_update": "077540ce-58d2-41b8-a0b4-1b49613be62f",
+                  "updated_at": "2026-04-16T14:52:40+07:00"
+              }
+          }

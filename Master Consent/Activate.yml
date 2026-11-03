@@ -1,0 +1,25 @@
+info:
+  name: Activate
+  type: http
+  seq: 6
+
+http:
+  method: PATCH
+  url: "{{BASE_URL}}/admin/master-consents/:id/activate"
+  params:
+    - name: id
+      value: f017b693-fded-492f-b7c9-a40e3246465f
+      type: path
+  body:
+    type: json
+    data: ""
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

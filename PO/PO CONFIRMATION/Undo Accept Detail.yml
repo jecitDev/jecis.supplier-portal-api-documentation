@@ -1,0 +1,28 @@
+info:
+  name: Undo Accept Detail
+  type: http
+  seq: 8
+
+http:
+  method: PATCH
+  url: "{{BASE_URL}}/purchase-order-confirmations/:confirmation_id/details/:detail_id/undo-accept"
+  params:
+    - name: confirmation_id
+      value: 59bb1a75-524e-44fd-8a47-cec3849e4ddf
+      type: path
+    - name: detail_id
+      value: 7c167822-d797-4f51-88dd-e4ca441397fc
+      type: path
+  body:
+    type: json
+    data: ""
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

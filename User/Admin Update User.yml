@@ -1,0 +1,36 @@
+info:
+  name: Admin Update User
+  type: http
+  seq: 6
+
+http:
+  method: PUT
+  url: "{{BASE_URL}}/users/:id"
+  headers:
+    - name: X-User-ID
+      value: 53aad077-9fb1-4f08-85f3-af9fd9a36517
+  params:
+    - name: id
+      value: ""
+      type: path
+  body:
+    type: json
+    data: "{\r
+
+      \    \"email\": \"suryaadilovers@gmail.com\",\r
+
+      \    \"role\": \"supplier\",\r
+
+      \    \"is_active\": true\r
+
+      }"
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJNeUFwcGxpY2F0aW9uIiwiZXhwIjoxNzY5OTEyNjY3LCJuYmYiOjE3Njk5MDkwNjcsImlhdCI6MTc2OTkwOTA2NywianRpIjoiMDc3NTQwY2UtNThkMi00MWI4LWEwYjQtMWI0OTYxM2JlNjJmIiwiaWQiOiIwNzc1NDBjZS01OGQyLTQxYjgtYTBiNC0xYjQ5NjEzYmU2MmYiLCJ1dWlkIjoiYjNkZWMyNTYtOTM2Yi00MTFjLWI2MDItZTVlMDZiMDBlOGZmIiwiZW1haWwiOiJzdXJ5YS5hdzI2QGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlzX2FjdGl2ZSI6dHJ1ZSwidG9rZW5faWQiOiJiM2RlYzI1Ni05MzZiLTQxMWMtYjYwMi1lNWUwNmIwMGU4ZmYifQ.4sjOCBiADIXdGMRUYZhYZATZleUmokItSyPo3o6VG1Y
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

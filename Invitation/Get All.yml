@@ -1,0 +1,43 @@
+info:
+  name: Get All
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: "{{BASE_URL}}/invitations?page=1&page_size=10&invitation_type=albedo_system&is_used=false&sort_by=created_at&sort_order=desc"
+  headers:
+    - name: x-token
+      value: "{{admission_xtoken}}"
+    - name: X-User-ID
+      value: 53aad077-9fb1-4f08-85f3-af9fd9a36517
+  params:
+    - name: page
+      value: "1"
+      type: query
+    - name: page_size
+      value: "10"
+      type: query
+    - name: invitation_type
+      value: albedo_system
+      type: query
+    - name: is_used
+      value: "false"
+      type: query
+    - name: sort_by
+      value: created_at
+      type: query
+    - name: sort_order
+      value: desc
+      type: query
+  body:
+    type: json
+    data: ""
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

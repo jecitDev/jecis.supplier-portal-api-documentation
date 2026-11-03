@@ -1,0 +1,27 @@
+info:
+  name: Create
+  type: http
+  seq: 8
+
+http:
+  method: POST
+  url: "{{BASE_URL}}/product-types"
+  body:
+    type: json
+    data: "{\r
+
+      \    \"name\": \"Single Vision Lens\",\r
+
+      \    \"category_id\": \"f6474707-0d0f-48bc-ab0c-da31618275a8\"\r
+
+      }"
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

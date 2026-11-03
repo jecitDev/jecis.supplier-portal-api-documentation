@@ -1,0 +1,47 @@
+info:
+  name: Link Variants
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{BASE_URL}}/product-types/:id/variants"
+  params:
+    - name: id
+      value: 4225c33f-38b3-489c-af94-d800df9713bc
+      type: path
+  body:
+    type: json
+    data: "{\r
+
+      \    \"variants\": [\r
+
+      \        {\r
+
+      \            \"variant_id\": \"5c9a1e4f-2b7d-4e3a-af6c-8d1e4b9c2f70\",\r
+
+      \            \"variant_name\": \"Blue Light Filter\"\r
+
+      \        },\r
+
+      \        {\r
+
+      \            \"variant_id\": \"1f4e7a3c-9d2b-4c8e-b5a1-3e8f6c9d2a40\",\r
+
+      \            \"variant_name\": \"Anti Reflective\"\r
+
+      \        }\r
+
+      \    ]\r
+
+      }"
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

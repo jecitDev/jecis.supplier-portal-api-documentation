@@ -1,0 +1,28 @@
+info:
+  name: Validate
+  type: http
+  seq: 8
+
+http:
+  method: GET
+  url: "{{BASE_URL}}/invitations/validate/:invitation_code"
+  headers:
+    - name: x-token
+      value: "{{admission_xtoken}}"
+    - name: X-User-ID
+      value: 53aad077-9fb1-4f08-85f3-af9fd9a36517
+  params:
+    - name: invitation_code
+      value: INV-2026-742888
+      type: path
+  body:
+    type: json
+    data: ""
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

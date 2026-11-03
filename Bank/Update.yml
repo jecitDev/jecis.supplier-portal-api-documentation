@@ -1,0 +1,117 @@
+info:
+  name: Update
+  type: http
+  seq: 4
+
+http:
+  method: PUT
+  url: "{{BASE_URL}}/banks/:bank_id"
+  params:
+    - name: bank_id
+      value: "1"
+      type: path
+  body:
+    type: json
+    data: "{\r
+
+      \    \"bank_name\": \"Bank Central Asia (BCA)\",\r
+
+      \    \"bi_code\": \"014\",\r
+
+      \    \"is_active\": true\r
+
+      }"
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: "{{BASE_URL}}/banks/:bank_id"
+      method: PUT
+      params:
+        - name: bank_id
+          value: "1"
+          type: path
+      body:
+        type: json
+        data: "{\r
+
+          \    \"bank_name\": \"Bank Central Asia (BCA)\",\r
+
+          \    \"bi_code\": \"014\",\r
+
+          \    \"is_active\": true\r
+
+          }"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Date
+          value: Wed, 25 Feb 2026 04:44:50 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "338"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Bank updated successfully",
+              "data": {
+                  "bank_id": 1,
+                  "bank_name": "Bank Central Asia (BCA)",
+                  "bi_code": "014",
+                  "is_active": true,
+                  "user_create": "077540ce-58d2-41b8-a0b4-1b49613be62f",
+                  "created_at": "2026-02-25T11:15:20+07:00",
+                  "user_update": "077540ce-58d2-41b8-a0b4-1b49613be62f",
+                  "updated_at": "2026-02-25T11:44:50+07:00"
+              }
+          }
+  - name: Err not found
+    request:
+      url: "{{BASE_URL}}/banks/:bank_id"
+      method: PUT
+      params:
+        - name: bank_id
+          value: "99"
+          type: path
+      body:
+        type: json
+        data: "{\r
+
+          \    \"bank_name\": \"Bank Central Asia (BCA)\",\r
+
+          \    \"bi_code\": \"014\",\r
+
+          \    \"is_active\": true\r
+
+          }"
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Date
+          value: Wed, 25 Feb 2026 04:45:10 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "45"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "error",
+              "message": "bank not found"
+          }

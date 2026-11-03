@@ -1,0 +1,161 @@
+info:
+  name: Add Delivery Order Item
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{BASE_URL}}/delivery-orders/:id/items"
+  params:
+    - name: id
+      value: 8ea9ec4c-ab71-4f97-8d2d-bf383b21db0e
+      type: path
+  body:
+    type: json
+    data: "{\r
+
+      \    \"item_id\": \"1200001252\",\r
+
+      \    \"item_name\": \"PARACETAMOL 8 MG\",\r
+
+      \    \"quantity\": 30,\r
+
+      \    \"uom\": \"TABLET\"\r
+
+      }"
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Err item not exists in po
+    request:
+      url: "{{BASE_URL}}/delivery-orders/:id/items"
+      method: POST
+      params:
+        - name: id
+          value: 8ea9ec4c-ab71-4f97-8d2d-bf383b21db0e
+          type: path
+      body:
+        type: json
+        data: "{\r
+
+          \    \"item_id\": \"ITEM-003\",\r
+
+          \    \"item_name\": \"Surgical Mask\",\r
+
+          \    \"quantity\": 500,\r
+
+          \    \"uom\": \"PCS\"\r
+
+          }"
+    response:
+      status: 422
+      statusText: Unprocessable Entity
+      headers:
+        - name: Date
+          value: Thu, 05 Mar 2026 01:53:29 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "115"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "error",
+              "message": "Item ITEM-003 does not exist in PO Confirmation a1b7627a-83b3-4faf-94c0-4cced7ab8b4d"
+          }
+  - name: Err item exceeds remaining qty
+    request:
+      url: "{{BASE_URL}}/delivery-orders/:id/items"
+      method: POST
+      params:
+        - name: id
+          value: 8ea9ec4c-ab71-4f97-8d2d-bf383b21db0e
+          type: path
+      body:
+        type: json
+        data: "{\r
+
+          \    \"item_id\": \"1200001252\",\r
+
+          \    \"item_name\": \"PARACETAMOL 8 MG\",\r
+
+          \    \"quantity\": 30,\r
+
+          \    \"uom\": \"TABLET\"\r
+
+          }"
+    response:
+      status: 422
+      statusText: Unprocessable Entity
+      headers:
+        - name: Date
+          value: Thu, 05 Mar 2026 01:56:31 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "109"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "error",
+              "message": "quantity for item 1200001252 exceeds remaining quantity. remaining quantity: 0"
+          }
+  - name: Success
+    request:
+      url: "{{BASE_URL}}/delivery-orders/:id/items"
+      method: POST
+      params:
+        - name: id
+          value: 8ea9ec4c-ab71-4f97-8d2d-bf383b21db0e
+          type: path
+      body:
+        type: json
+        data: "{\r
+
+          \    \"item_id\": \"1200001252\",\r
+
+          \    \"item_name\": \"PARACETAMOL 8 MG\",\r
+
+          \    \"quantity\": 50,\r
+
+          \    \"uom\": \"TABLET\"\r
+
+          }"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Date
+          value: Thu, 05 Mar 2026 02:03:32 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "360"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Delivery order item added successfully",
+              "data": {
+                  "id": "0200c1f9-0fc6-4521-ae22-136796b580c3",
+                  "delivery_order_id": "8ea9ec4c-ab71-4f97-8d2d-bf383b21db0e",
+                  "item_id": "1200001252",
+                  "item_name": "PARACETAMOL 8 MG",
+                  "quantity": 50,
+                  "uom": "TABLET",
+                  "user_create": "077540ce-58d2-41b8-a0b4-1b49613be62f",
+                  "created_at": "2026-03-05T09:03:33+07:00"
+              }
+          }

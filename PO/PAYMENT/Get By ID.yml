@@ -1,0 +1,85 @@
+info:
+  name: Get By ID
+  type: http
+  seq: 3
+
+http:
+  method: GET
+  url: "{{BASE_URL}}/payments/:id"
+  params:
+    - name: id
+      value: 0407e083-2e92-45ce-9036-4d390aacbb49
+      type: path
+  body:
+    type: json
+    data: "{\r
+
+      \    \"poc_id\": \"a1b7627a-83b3-4faf-94c0-4cced7ab8b4d\",\r
+
+      \    \"amount\": 15300000.00,\r
+
+      \    \"invoice_exchange_date\": \"2026-03-05T11:39:51+07:00\",\r
+
+      \    \"bank_name\": \"Bank Central Asia\",\r
+
+      \    \"bank_account_name\": \"PT Mitra Medika Utama\",\r
+
+      \    \"bank_account_no\": \"1234567890\",\r
+
+      \    \"notes\": \"Payment for Invoice INV-2024-001. PO Confirmation POC-2024-001.\",\r
+
+      \    \"reff_no\": \"INV-2024-001\"\r
+
+      }"
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: "{{BASE_URL}}/payments/:id"
+      method: GET
+      params:
+        - name: id
+          value: 0407e083-2e92-45ce-9036-4d390aacbb49
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Date
+          value: Mon, 09 Mar 2026 01:41:06 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "573"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Payment retrieved successfully",
+              "data": {
+                  "id": "0407e083-2e92-45ce-9036-4d390aacbb49",
+                  "poc_id": "a1b7627a-83b3-4faf-94c0-4cced7ab8b4d",
+                  "status": "on_process",
+                  "amount": 15300000,
+                  "invoice_exchange_date": "2026-03-05T11:39:51+07:00",
+                  "bank_name": "Bank Central Asia",
+                  "bank_account_name": "PT Mitra Medika Utama",
+                  "bank_account_no": "1234567890",
+                  "notes": "Payment for Invoice INV-2024-001. PO Confirmation POC-2024-001.",
+                  "reff_no": "INV-2024-001",
+                  "is_active": true,
+                  "user_create": "077540ce-58d2-41b8-a0b4-1b49613be62f",
+                  "created_at": "2026-03-09T08:38:03+07:00"
+              }
+          }

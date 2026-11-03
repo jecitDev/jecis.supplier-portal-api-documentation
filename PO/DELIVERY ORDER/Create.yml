@@ -1,0 +1,278 @@
+info:
+  name: Create
+  type: http
+  seq: 7
+
+http:
+  method: POST
+  url: "{{BASE_URL}}/delivery-orders"
+  body:
+    type: json
+    data: "{\r
+
+      \    \"poc_id\": \"4b9cb1bc-c82f-437b-bb2a-3e79d83cb3a4\",\r
+
+      \    \"delivery_order_no\": \"DO-2026-0308-001\",\r
+
+      \    \"delivery_date\": \"2026-03-04T09:18:22+07:00\",\r
+
+      \    // \"document_url\": \"https://storage.company.com/delivery-orders/DO-2024-001.pdf\",\r
+
+      \    \"document_base64\":\"JVBERi0xLjQKJcfsj6IKJSVJbnZvY2F0aW9uOiBwYXRoL2dzd2luNjRjLmV4ZSAtZERpc3BsYXlGb3JtYXQ9MTk4Nzg4IC1kRGlzcGxheVJlc29sdXRpb249MTIwIC1zREVWSUNFPXBkZndyaXRlIC1kQ29tcGF0aWJpbGl0eUxldmVsPTEuNCAtZFBERlNFVFRJTkdTPS9lYm9vayAtZE5PUEFVU0UgLWRCQVRDSCAtZEF1dG9GaWx0ZXJDb2xvckltYWdlcz1mYWxzZSAtZEF1dG9GaWx0ZXJHcmF5SW1hZ2VzPWZhbHNlIC1kQ29sb3JJbWFnZUZpbHRlcj0vRmxhdGVFbmNvZGUKJSUrIC1kR3JheUltYWdlRmlsdGVyPS9GbGF0ZUVuY29kZSAtZERvd25zYW1wbGVDb2xvckltYWdlcz10cnVlIC1kRG93bnNhbXBsZUdyYXlJbWFnZXM9dHJ1ZSAtZENvbG9ySW1hZ2VSZXNvbHV0aW9uPTE1MCAtZEdyYXlJbWFnZVJlc29sdXRpb249MTUwIC1kUHJlc2VydmVIYWxmdG9uZUluZm89dHJ1ZSAtc091dHB1dEZpbGU9PyA/CjUgMCBvYmoKPDwvTGVuZ3RoIDYgMCBSL0ZpbHRlciAvRmxhdGVEZWNvZGU+PgpzdHJlYW0KeJwrVDDQM1QwAEEonZzLFcgFADVJBGVlbmRzdHJlYW0KZW5kb2JqCjYgMCBvYmoKMjMKZW5kb2JqCjQgMCBvYmoKPDwvVHlwZS9QYWdlL01lZGlhQm94IFswIDAgNjEyIDc5Ml0KL1BhcmVudCAzIDAgUgovUmVzb3VyY2VzPDwvUHJvY1NldFsvUERGXQo+PgovQ29udGVudHMgNSAwIFIKPj4KZW5kb2JqCjMgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFsKNCAwIFIKXSAvQ291bnQgMQo+PgplbmRvYmoKMSAwIG9iago8PC9UeXBlIC9DYXRhbG9nIC9QYWdlcyAzIDAgUgovTWV0YWRhdGEgNyAwIFIKPj4KZW5kb2JqCjcgMCBvYmoKPDwvVHlwZS9NZXRhZGF0YQovU3VidHlwZS9YTUwvTGVuZ3RoIDExODI+PnN0cmVhbQo8P3hwYWNrZXQgYmVnaW49J++7vycgaWQ9J1c1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCc/Pgo8P2Fkb2JlLXhhcC1maWx0ZXJzIGVzYz0iQ1JMRiI/Pgo8eDp4bXBtZXRhIHhtbG5zOng9J2Fkb2JlOm5zOm1ldGEvJyB4OnhtcHRrPSdYTVAgdG9vbGtpdCAyLjkuMS0xMywgZnJhbWV3b3JrIDEuNic+CjxyZGY6UkRGIHhtbG5zOnJkZj0naHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIycgeG1sbnM6aVg9J2h0dHA6Ly9ucy5hZG9iZS5jb20vaVgvMS4wLyc+CjxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnBkZj0naHR0cDovL25zLmFkb2JlLmNvbS9wZGYvMS4zLycgcGRmOlByb2R1Y2VyPSdHUEwgR2hvc3RzY3JpcHQgOS41Ni4xJy8+CjxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0naHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyc+PHhtcDpNb2RpZnlEYXRlPjIwMjUtMTItMTlUMjA6MzU6NTQrMDc6MDA8L3htcDpNb2RpZnlEYXRlPgo8eG1wOkNyZWF0ZURhdGU+MjAyNS0xMi0xOVQyMDozNTo1NCswNzowMDwveG1wOkNyZWF0ZURhdGU+Cjx4bXA6Q3JlYXRvclRvb2w+VW5rbm93bkFwcGxpY2F0aW9uPC94bXA6Q3JlYXRvclRvb2w+PC9yZGY6RGVzY3JpcHRpb24+CjxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhhcE1NPSdodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vJyB4YXBNTTpEb2N1bWVudElEPSd1dWlkOjI0NWIzMWM5LWRmM2ItMTFmMC0wMDAwLTkzZjM4YWRiNGM5ZicvPgo8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczpkYz0naHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8nIGRjOmZvcm1hdD0nYXBwbGljYXRpb24vcGRmJz48ZGM6dGl0bGU+PHJkZjpBbHQ+PHJkZjpsaSB4bWw6bGFuZz0neC1kZWZhdWx0Jz5VbnRpdGxlZDwvcmRmOmxpPjwvcmRmOkFsdD48L2RjOnRpdGxlPjwvcmRmOkRlc2NyaXB0aW9uPgo8L3JkZjpSREY+CjwveDp4bXBtZXRhPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCjw/eHBhY2tldCBlbmQ9J3cnPz4KZW5kc3RyZWFtCmVuZG9iagoyIDAgb2JqCjw8L1Byb2R1Y2VyKEdQTCBHaG9zdHNjcmlwdCA5LjU2LjEpCi9DcmVhdGlvbkRhdGUoRDoyMDI1MTIxOTIwMzU1NCswNycwMCcpCi9Nb2REYXRlKEQ6MjAyNTEyMTkyMDM1NTQrMDcnMDAnKT4+ZW5kb2JqCnhyZWYKMCA4CjAwMDAwMDAwMDAgNjU1MzUgZiAKMDAwMDAwMDc0MSAwMDAwMCBuIAowMDAwMDAyMDYzIDAwMDAwIG4gCjAwMDAwMDA2ODIgMDAwMDAgbiAKMDAwMDAwMDU2OCAwMDAwMCBuIAowMDAwMDAwNDU3IDAwMDAwIG4gCjAwMDAwMDA1NTAgMDAwMDAgbiAKMDAwMDAwMDgwNSAwMDAwMCBuIAp0cmFpbGVyCjw8IC9TaXplIDggL1Jvb3QgMSAwIFIgL0luZm8gMiAwIFIKL0lEIFs8OUY5QzZBOEI3NkVEOUNDQzdCQTBEMTA3NEE1Qjc4NUU+PDlGOUM2QThCNzZFRDlDQ0M3QkEwRDEwNzRBNUI3ODVFPl0KPj4Kc3RhcnR4cmVmCjIxODgKJSVFT0Y=\",\r
+
+      \    \"items\": [\r
+
+      \        {\r
+
+      \            \"item_id\": \"1200001092\",\r
+
+      \            \"item_name\": \"LAMESON 8 MG\",\r
+
+      \            \"quantity\": 100,\r
+
+      \            \"uom\": \"TABLET\"\r
+
+      \        },\r
+
+      \        {\r
+
+      \            \"item_id\": \"1200001252\",\r
+
+      \            \"item_name\": \"PARACETAMOL 8 MG\",\r
+
+      \            \"quantity\": 20,\r
+
+      \            \"uom\": \"TABLET\"\r
+
+      \        }\r
+
+      \    ]\r
+
+      }"
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Err item not found in po
+    request:
+      url: "{{BASE_URL}}/delivery-orders"
+      method: POST
+      body:
+        type: json
+        data: "{\r
+
+          \    \"poc_id\": \"a1b7627a-83b3-4faf-94c0-4cced7ab8b4d\",\r
+
+          \    \"delivery_order_no\": \"DO-2024-001\",\r
+
+          \    \"delivery_date\": \"2026-03-01T10:00:00Z\",\r
+
+          \    // \"document_url\": \"https://storage.company.com/delivery-orders/DO-2024-001.pdf\",\r
+
+          \    \"items\": [\r
+
+          \        {\r
+
+          \            \"item_id\": \"ITEM-001\",\r
+
+          \            \"item_name\": \"Digital Blood Pressure Monitor\",\r
+
+          \            \"quantity\": 50,\r
+
+          \            \"uom\": \"PCS\"\r
+
+          \        },\r
+
+          \        {\r
+
+          \            \"item_id\": \"ITEM-002\",\r
+
+          \            \"item_name\": \"Medical Thermometer\",\r
+
+          \            \"quantity\": 100,\r
+
+          \            \"uom\": \"PCS\"\r
+
+          \        }\r
+
+          \    ]\r
+
+          }"
+    response:
+      status: 422
+      statusText: Unprocessable Entity
+      headers:
+        - name: Date
+          value: Tue, 03 Mar 2026 11:51:13 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "115"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "error",
+              "message": "Item ITEM-001 does not exist in PO Confirmation a1b7627a-83b3-4faf-94c0-4cced7ab8b4d"
+          }
+  - name: Err item exceeds remaining quantity
+    request:
+      url: "{{BASE_URL}}/delivery-orders"
+      method: POST
+      body:
+        type: json
+        data: "{\r
+
+          \    \"poc_id\": \"a1b7627a-83b3-4faf-94c0-4cced7ab8b4d\",\r
+
+          \    \"delivery_order_no\": \"DO-2024-001\",\r
+
+          \    \"delivery_date\": \"2026-03-01T10:00:00Z\",\r
+
+          \    // \"document_url\": \"https://storage.company.com/delivery-orders/DO-2024-001.pdf\",\r
+
+          \    \"items\": [\r
+
+          \        {\r
+
+          \            \"item_id\": \"1200001092\",\r
+
+          \            \"item_name\": \"Digital Blood Pressure Monitor\",\r
+
+          \            \"quantity\": 101,\r
+
+          \            \"uom\": \"PCS\"\r
+
+          \        },\r
+
+          \        {\r
+
+          \            \"item_id\": \"ITEM-002\",\r
+
+          \            \"item_name\": \"Medical Thermometer\",\r
+
+          \            \"quantity\": 100,\r
+
+          \            \"uom\": \"PCS\"\r
+
+          \        }\r
+
+          \    ]\r
+
+          }"
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Date
+          value: Wed, 04 Mar 2026 01:09:55 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "111"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "error",
+              "message": "quantity for item 1200001092 exceeds remaining quantity. remaining quantity: 100"
+          }
+  - name: Success (1 do)
+    request:
+      url: "{{BASE_URL}}/delivery-orders"
+      method: POST
+      body:
+        type: json
+        data: "{\r
+
+          \    \"poc_id\": \"a1b7627a-83b3-4faf-94c0-4cced7ab8b4d\",\r
+
+          \    \"delivery_order_no\": \"DO-2024-001\",\r
+
+          \    \"delivery_date\": \"2026-03-04T09:18:22+07:00\",\r
+
+          \    // \"document_url\": \"https://storage.company.com/delivery-orders/DO-2024-001.pdf\",\r
+
+          \    \"items\": [\r
+
+          \        {\r
+
+          \            \"item_id\": \"1200001092\",\r
+
+          \            \"item_name\": \"LAMESON 8 MG\",\r
+
+          \            \"quantity\": 100,\r
+
+          \            \"uom\": \"TABLET\"\r
+
+          \        },\r
+
+          \        {\r
+
+          \            \"item_id\": \"1200001252\",\r
+
+          \            \"item_name\": \"PARACETAMOL 8 MG\",\r
+
+          \            \"quantity\": 20,\r
+
+          \            \"uom\": \"TABLET\"\r
+
+          \        }\r
+
+          \    ]\r
+
+          }"
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Date
+          value: Wed, 04 Mar 2026 02:00:50 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "828"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Delivery order created successfully",
+              "data": {
+                  "id": "8ea9ec4c-ab71-4f97-8d2d-bf383b21db0e",
+                  "poc_id": "a1b7627a-83b3-4faf-94c0-4cced7ab8b4d",
+                  "delivery_order_no": "DO-2024-001",
+                  "delivery_date": "2026-03-04T09:18:22+07:00",
+                  "status": "on_process",
+                  "user_create": "077540ce-58d2-41b8-a0b4-1b49613be62f",
+                  "created_at": "2026-03-04T09:00:50+07:00",
+                  "items": [
+                      {
+                          "id": "f65007b5-af10-4dd0-ab3b-7573c8f00c34",
+                          "delivery_order_id": "8ea9ec4c-ab71-4f97-8d2d-bf383b21db0e",
+                          "item_id": "1200001092",
+                          "item_name": "LAMESON 8 MG",
+                          "quantity": 100,
+                          "uom": "TABLET",
+                          "created_at": "2026-03-04T09:00:50+07:00"
+                      },
+                      {
+                          "id": "333e203d-6b87-4e6c-86b7-414b56b2b741",
+                          "delivery_order_id": "8ea9ec4c-ab71-4f97-8d2d-bf383b21db0e",
+                          "item_id": "1200001252",
+                          "item_name": "PARACETAMOL 8 MG",
+                          "quantity": 20,
+                          "uom": "TABLET",
+                          "created_at": "2026-03-04T09:00:50+07:00"
+                      }
+                  ]
+              }
+          }

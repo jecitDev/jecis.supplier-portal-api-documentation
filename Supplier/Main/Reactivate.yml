@@ -1,0 +1,77 @@
+info:
+  name: Reactivate
+  type: http
+  seq: 12
+
+http:
+  method: PATCH
+  url: "{{BASE_URL}}/suppliers/:id/reactivate"
+  params:
+    - name: id
+      value: 6fbdf5d9-0670-498c-986e-063075ecb1fc
+      type: path
+  body:
+    type: json
+    data: "{\r
+
+      \    \"reactivation_reason\": \"Investigation completed. Quality issues resolved and corrective actions implemented.\",\r
+
+      \    \"notes\": \"Quality audit passed with score 95/100. All customer complaints addressed.\"\r
+
+      }"
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJNeUFwcGxpY2F0aW9uIiwiZXhwIjoxNzcwNjgzMzkxLCJuYmYiOjE3NzAwNzg1OTEsImlhdCI6MTc3MDA3ODU5MSwianRpIjoiMDc3NTQwY2UtNThkMi00MWI4LWEwYjQtMWI0OTYxM2JlNjJmIiwiaWQiOiIwNzc1NDBjZS01OGQyLTQxYjgtYTBiNC0xYjQ5NjEzYmU2MmYiLCJ1dWlkIjoiNzU4NTY5NTktYTFhZi00OTZhLTk0ODAtYzE3ZTlmZmUxZjZjIiwiZW1haWwiOiJzdXJ5YS5hdzI2QGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlzX2FjdGl2ZSI6dHJ1ZSwidG9rZW5faWQiOiJjNjA0MTI0OC1kMjY2LTRiYjItOTJmZC05YmRjMzc4M2QzNTAifQ.Df5XjXiKXHowU-e4CdAIVxebOhgvDn3Ka7SVU8FXsyE
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: http://localhost:8081/suppliers/:id/reactivate
+      method: PATCH
+      params:
+        - name: id
+          value: 6fbdf5d9-0670-498c-986e-063075ecb1fc
+          type: path
+      body:
+        type: json
+        data: "{\r
+
+          \    \"reactivation_reason\": \"Investigation completed. Quality issues resolved and corrective actions implemented.\",\r
+
+          \    \"notes\": \"Quality audit passed with score 95/100. All customer complaints addressed.\"\r
+
+          }"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Date
+          value: Tue, 03 Feb 2026 05:11:35 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "338"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Supplier reactivated successfully",
+              "data": {
+                  "id": "6fbdf5d9-0670-498c-986e-063075ecb1fc",
+                  "company_name": "PT Mitra Medika Utama (Updated)",
+                  "status": "active",
+                  "rejection_reason": null,
+                  "approved_at": "",
+                  "approved_by": "",
+                  "user_update": "077540ce-58d2-41b8-a0b4-1b49613be62f",
+                  "updated_at": "2026-02-03T12:11:35+07:00"
+              }
+          }

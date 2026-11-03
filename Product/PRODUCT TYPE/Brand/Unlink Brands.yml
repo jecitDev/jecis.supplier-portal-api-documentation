@@ -1,0 +1,35 @@
+info:
+  name: Unlink Brands
+  type: http
+  seq: 3
+
+http:
+  method: DELETE
+  url: "{{BASE_URL}}/product-types/:id/brands"
+  params:
+    - name: id
+      value: 4225c33f-38b3-489c-af94-d800df9713bc
+      type: path
+  body:
+    type: json
+    data: "{\r
+
+      \    \"brand_ids\": [\r
+
+      \        \"7a1f3e92-6b4d-4c8a-9e2f-1d5c8a3b7f60\",\r
+
+      \        \"e3d8b2c1-4f7a-4a6e-8c1d-9b2a5e7f3d41\"\r
+
+      \    ]\r
+
+      }"
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

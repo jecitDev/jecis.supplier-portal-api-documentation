@@ -1,0 +1,115 @@
+info:
+  name: Create Supplier Address
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: http://localhost:8081/suppliers/:supplier_id/addresses
+  params:
+    - name: supplier_id
+      value: 6fbdf5d9-0670-498c-986e-063075ecb1fc
+      type: path
+  body:
+    type: json
+    data: "{\r
+
+      \    \"address_title\": \"Distribution Center\",\r
+
+      \    \"address_type\": \"warehouse\",\r
+
+      \    \"email\": \"dc@mitramedika.co.id\",\r
+
+      \    \"phone_no\": \"+62 21 5555 6666\",\r
+
+      \    \"street_address\": \"Jl. Logistik No. 999\",\r
+
+      \    \"city\": \"Bekasi\",\r
+
+      \    \"state_province\": \"Jawa Barat\",\r
+
+      \    \"country\": \"Indonesia\",\r
+
+      \    \"postal_code\": \"17530\",\r
+
+      \    \"is_primary\": false\r
+
+      }"
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJNeUFwcGxpY2F0aW9uIiwiZXhwIjoxNzcwNjgzMzkxLCJuYmYiOjE3NzAwNzg1OTEsImlhdCI6MTc3MDA3ODU5MSwianRpIjoiMDc3NTQwY2UtNThkMi00MWI4LWEwYjQtMWI0OTYxM2JlNjJmIiwiaWQiOiIwNzc1NDBjZS01OGQyLTQxYjgtYTBiNC0xYjQ5NjEzYmU2MmYiLCJ1dWlkIjoiNzU4NTY5NTktYTFhZi00OTZhLTk0ODAtYzE3ZTlmZmUxZjZjIiwiZW1haWwiOiJzdXJ5YS5hdzI2QGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlzX2FjdGl2ZSI6dHJ1ZSwidG9rZW5faWQiOiJjNjA0MTI0OC1kMjY2LTRiYjItOTJmZC05YmRjMzc4M2QzNTAifQ.Df5XjXiKXHowU-e4CdAIVxebOhgvDn3Ka7SVU8FXsyE
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: http://localhost:8081/suppliers/:supplier_id/addresses
+      method: POST
+      params:
+        - name: supplier_id
+          value: 6fbdf5d9-0670-498c-986e-063075ecb1fc
+          type: path
+      body:
+        type: json
+        data: "{\r
+
+          \    \"address_title\": \"Distribution Center\",\r
+
+          \    \"address_type\": \"warehouse\",\r
+
+          \    \"email\": \"dc@mitramedika.co.id\",\r
+
+          \    \"phone_no\": \"+62 21 5555 6666\",\r
+
+          \    \"street_address\": \"Jl. Logistik No. 999\",\r
+
+          \    \"city\": \"Bekasi\",\r
+
+          \    \"state_province\": \"Jawa Barat\",\r
+
+          \    \"country\": \"Indonesia\",\r
+
+          \    \"postal_code\": \"17530\",\r
+
+          \    \"is_primary\": false\r
+
+          }"
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Date
+          value: Tue, 03 Feb 2026 06:41:01 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "545"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Supplier address created successfully",
+              "data": {
+                  "id": "5a687106-6dc1-4fbf-83f4-a19e163dba1c",
+                  "supplier_id": "6fbdf5d9-0670-498c-986e-063075ecb1fc",
+                  "address_title": "Distribution Center",
+                  "address_type": "warehouse",
+                  "email": "dc@mitramedika.co.id",
+                  "phone_no": "+62 21 5555 6666",
+                  "street_address": "Jl. Logistik No. 999",
+                  "city": "Bekasi",
+                  "state_province": "Jawa Barat",
+                  "country": "Indonesia",
+                  "postal_code": "17530",
+                  "is_primary": false,
+                  "user_create": "077540ce-58d2-41b8-a0b4-1b49613be62f",
+                  "created_at": "2026-02-03T13:41:00+07:00"
+              }
+          }

@@ -1,0 +1,202 @@
+info:
+  name: Create Service Category
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://localhost:8081/service-categories
+  body:
+    type: json
+    data: "{\r
+
+      \    \"name\": \"Architecture Services New\",\r
+
+      \    \"name_id\": \"Jasa Arsitektur New\",\r
+
+      \    \"code\": \"JASA-ARSI\"\r
+
+      }"
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJNeUFwcGxpY2F0aW9uIiwiZXhwIjoxNzcwMDA2MTg2LCJuYmYiOjE3NzAwMDI1ODYsImlhdCI6MTc3MDAwMjU4NiwianRpIjoiMDc3NTQwY2UtNThkMi00MWI4LWEwYjQtMWI0OTYxM2JlNjJmIiwiaWQiOiIwNzc1NDBjZS01OGQyLTQxYjgtYTBiNC0xYjQ5NjEzYmU2MmYiLCJ1dWlkIjoiODk4NGJiNzgtMzY2Ny00NzVkLTg0M2EtZGQ0ODdjNmU0MjI1IiwiZW1haWwiOiJzdXJ5YS5hdzI2QGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlzX2FjdGl2ZSI6dHJ1ZSwidG9rZW5faWQiOiI4OTg0YmI3OC0zNjY3LTQ3NWQtODQzYS1kZDQ4N2M2ZTQyMjUifQ.-CnPcvZkPD1O-5bFRqPQcfbB_8ZiQWfz8womwxEYaBg
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: http://localhost:8081/service-categories
+      method: POST
+      body:
+        type: json
+        data: "{\r
+
+          \    \"name\": \"Architecture Services\",\r
+
+          \    \"name_id\": \"Jasa Arsitektur\",\r
+
+          \    \"code\": \"JASA-ARSI\"\r
+
+          }"
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Date
+          value: Mon, 02 Feb 2026 02:09:24 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "349"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Service category created successfully",
+              "data": {
+                  "id": "2717c2fb-49b3-4384-80b0-5ccf4c635e85",
+                  "name": "Architecture Services",
+                  "name_id": "Jasa Arsitektur",
+                  "code": "JASA-ARSI",
+                  "is_active": true,
+                  "user_create": "077540ce-58d2-41b8-a0b4-1b49613be62f",
+                  "created_at": "2026-02-02T09:09:24+07:00",
+                  "user_update": null,
+                  "updated_at": null
+              }
+          }
+  - name: Err Access Denied
+    request:
+      url: http://localhost:8081/service-categories
+      method: POST
+      body:
+        type: json
+        data: "{\r
+
+          \    \"name\": \"Architecture Services\",\r
+
+          \    \"name_id\": \"Jasa Arsitektur\",\r
+
+          \    \"code\": \"JASA-ARSI\"\r
+
+          }"
+    response:
+      status: 401
+      statusText: Unauthorized
+      headers:
+        - name: Date
+          value: Mon, 02 Feb 2026 02:08:52 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "65"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "error",
+              "message": "access denied. admin role required"
+          }
+  - name: Err duplicate name
+    request:
+      url: http://localhost:8081/service-categories
+      method: POST
+      body:
+        type: json
+        data: "{\r
+
+          \    \"name\": \"Architecture Services\",\r
+
+          \    \"name_id\": \"Jasa Arsitektur\",\r
+
+          \    \"code\": \"JASA-ARSI\"\r
+
+          }"
+    response:
+      status: 409
+      statusText: Conflict
+      headers:
+        - name: Date
+          value: Mon, 02 Feb 2026 02:09:46 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "77"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "error",
+              "message": "Service category with this name already exists"
+          }
+  - name: Err duplicate code
+    request:
+      url: http://localhost:8081/service-categories
+      method: POST
+      body:
+        type: json
+        data: "{\r
+
+          \    \"name\": \"Architecture Services New\",\r
+
+          \    \"name_id\": \"Jasa Arsitektur\",\r
+
+          \    \"code\": \"JASA-ARSI\"\r
+
+          }"
+    response:
+      status: 409
+      statusText: Conflict
+      headers:
+        - name: Date
+          value: Mon, 02 Feb 2026 02:10:20 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "77"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "error",
+              "message": "Service category with this code already exists"
+          }
+  - name: Err bad request code
+    request:
+      url: http://localhost:8081/service-categories
+      method: POST
+      body:
+        type: json
+        data: "{\r
+
+          \    \"name\": \"Architecture Services New\",\r
+
+          \    \"name_id\": \"Jasa Arsitektur New\",\r
+
+          \    \"code\": \"JASA ARSI\"\r
+
+          }"
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Date
+          value: Mon, 02 Feb 2026 02:11:23 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "89"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "error",
+              "message": "code must contain only alphanumeric characters and hyphens"
+          }

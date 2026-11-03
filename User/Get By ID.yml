@@ -1,0 +1,28 @@
+info:
+  name: Get By ID
+  type: http
+  seq: 4
+
+http:
+  method: GET
+  url: http://localhost:8081/users/:id
+  headers:
+    - name: X-User-ID
+      value: 53aad077-9fb1-4f08-85f3-af9fd9a36517
+  params:
+    - name: id
+      value: 077540ce-58d2-41b8-a0b4-1b49613be62f
+      type: path
+  body:
+    type: json
+    data: ""
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJNeUFwcGxpY2F0aW9uIiwiZXhwIjoxNzY5NzY4NTk3LCJuYmYiOjE3Njk3NjQ5OTcsImlhdCI6MTc2OTc2NDk5NywianRpIjoiMDc3NTQwY2UtNThkMi00MWI4LWEwYjQtMWI0OTYxM2JlNjJmIiwiaWQiOiIwNzc1NDBjZS01OGQyLTQxYjgtYTBiNC0xYjQ5NjEzYmU2MmYiLCJ1dWlkIjoiNWU1ZGZhOGItMjlkNy00YjExLTllZGItODA3ZGFiMDQ0OWZiIiwiZW1haWwiOiJqdXN0a2k3by4yNkBnbWFpbC5jb20iLCJyb2xlIjoiIiwiaXNfYWN0aXZlIjp0cnVlLCJ0b2tlbl9pZCI6IjVlNWRmYThiLTI5ZDctNGIxMS05ZWRiLTgwN2RhYjA0NDlmYiJ9.uUOUcRKfxy3CA30QkOXITwBnMVReSuc48A87dvKEnjQ
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

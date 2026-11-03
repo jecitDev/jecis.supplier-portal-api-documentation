@@ -1,0 +1,75 @@
+info:
+  name: Update
+  type: http
+  seq: 4
+
+http:
+  method: PUT
+  url: "{{BASE_URL}}/master-references/:reference_type/:id"
+  params:
+    - name: reference_type
+      value: product_brand
+      type: path
+    - name: id
+      value: 2740eee5-5533-4b90-a076-ff6e7ae00502
+      type: path
+  body:
+    type: json
+    data: "{\r\n    \"name\": \"Essilor\"\r\n}"
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: "{{BASE_URL}}/master-references/:reference_type/:id"
+      method: PUT
+      params:
+        - name: reference_type
+          value: product_brand
+          type: path
+        - name: id
+          value: 2740eee5-5533-4b90-a076-ff6e7ae00502
+          type: path
+      body:
+        type: json
+        data: "{\r
+
+          \    \"name\": \"Essilor Updated\"\r
+
+          }"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Date
+          value: Wed, 11 Mar 2026 05:24:46 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "386"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Master reference updated successfully",
+              "data": {
+                  "id": "2740eee5-5533-4b90-a076-ff6e7ae00502",
+                  "reference_type": "product_brand",
+                  "name": "Essilor Updated",
+                  "is_active": true,
+                  "user_create": "077540ce-58d2-41b8-a0b4-1b49613be62f",
+                  "created_at": "2026-03-11T11:16:22+07:00",
+                  "user_update": "077540ce-58d2-41b8-a0b4-1b49613be62f",
+                  "updated_at": "2026-03-11T12:24:46+07:00"
+              }
+          }

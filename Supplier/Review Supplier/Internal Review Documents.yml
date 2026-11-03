@@ -1,0 +1,67 @@
+info:
+  name: Internal Review Documents
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{BASE_URL}}/suppliers/:supplier_id/internal/verification"
+  params:
+    - name: status
+      value: approved
+      type: query
+      disabled: true
+    - name: supplier_id
+      value: 6fbdf5d9-0670-498c-986e-063075ecb1fc
+      type: path
+  body:
+    type: json
+    data: "{\r
+
+      \    \"verification_stage_id\": \"6fc15c3a-0eb1-48fa-b3f3-614c24e48821\",\r
+
+      \    \"documents\": [\r
+
+      \        {\r
+
+      \            \"document_id\": \"4940aca0-cf92-4a71-a373-dd2895fe66e7\",\r
+
+      \            \"notes\": \"\",\r
+
+      \            \"status\": \"approved\"\r
+
+      \        },\r
+
+      \        {\r
+
+      \            \"document_id\": \"d85add11-e41a-43ce-a276-6128bfa8b4fa\",\r
+
+      \            \"notes\": \"\",\r
+
+      \            \"status\": \"approved\"\r
+
+      \        },\r
+
+      \        {\r
+
+      \            \"document_id\": \"eb1a05ec-430d-460a-852b-6b1702f4e9d3\",\r
+
+      \            \"notes\": \"dokumen belum memenuhi standar\",\r
+
+      \            \"status\": \"rejected\"\r
+
+      \        }\r
+
+      \    ]\r
+
+      }"
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJNeUFwcGxpY2F0aW9uIiwiZXhwIjoxNzcxMjkzMzA4LCJuYmYiOjE3NzA2ODg1MDgsImlhdCI6MTc3MDY4ODUwOCwianRpIjoiMDc3NTQwY2UtNThkMi00MWI4LWEwYjQtMWI0OTYxM2JlNjJmIiwiaWQiOiIwNzc1NDBjZS01OGQyLTQxYjgtYTBiNC0xYjQ5NjEzYmU2MmYiLCJ1dWlkIjoiYzQ1MTRmNTktMmY2ZC00MmYxLTk5ZjUtNzhhYjU2OThkZjBiIiwiZW1haWwiOiJzdXJ5YS5hdzI2QGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlzX2FjdGl2ZSI6dHJ1ZSwidG9rZW5faWQiOiIwNjZjNWViYi01NmUyLTQzMWQtODM4MS0xYTVkMmFmMGQ2MDIifQ.ZMwaB4Mfgb4viZUrgcpej9JV0m_H2bkX2AxJPc-nSjw
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

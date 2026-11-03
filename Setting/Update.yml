@@ -1,0 +1,117 @@
+info:
+  name: Update
+  type: http
+  seq: 4
+
+http:
+  method: PUT
+  url: "{{BASE_URL}}/settings/:id"
+  params:
+    - name: id
+      value: legal_team_email
+      type: path
+  body:
+    type: json
+    data: "{\r
+
+      \    \"name\": \"Legal Team Email Update\",\r
+
+      \    \"value\": \"legal@company.com\",\r
+
+      \    \"is_active\": true\r
+
+      }"
+  auth:
+    type: bearer
+    token: "{{x-refresh-token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: "{{BASE_URL}}/settings/:id"
+      method: PUT
+      params:
+        - name: id
+          value: legal_team_email
+          type: path
+      body:
+        type: json
+        data: "{\r
+
+          \    \"name\": \"Legal Team Email Update\",\r
+
+          \    \"value\": \"legal@company.com\",\r
+
+          \    \"is_active\": true\r
+
+          }"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Date
+          value: Mon, 23 Feb 2026 06:28:54 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "355"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Setting updated successfully",
+              "data": {
+                  "ID": "legal_team_email",
+                  "Name": "Legal Team Email Update",
+                  "Value": "legal@company.com",
+                  "IsActive": true,
+                  "UserCreate": "077540ce-58d2-41b8-a0b4-1b49613be62f",
+                  "CreatedAt": "2026-02-23T12:31:46+07:00",
+                  "UserUpdate": "077540ce-58d2-41b8-a0b4-1b49613be62f",
+                  "UpdatedAt": "2026-02-23T13:28:55+07:00"
+              }
+          }
+  - name: Err not found
+    request:
+      url: "{{BASE_URL}}/settings/:id"
+      method: PUT
+      params:
+        - name: id
+          value: legal_team_email_not_found
+          type: path
+      body:
+        type: json
+        data: "{\r
+
+          \    \"name\": \"Legal Team Email Update\",\r
+
+          \    \"value\": \"legal@company.com\",\r
+
+          \    \"is_active\": true\r
+
+          }"
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Date
+          value: Mon, 23 Feb 2026 06:29:52 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "48"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "error",
+              "message": "setting not found"
+          }

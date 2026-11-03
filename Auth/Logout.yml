@@ -1,0 +1,25 @@
+info:
+  name: Logout
+  type: http
+  seq: 5
+
+http:
+  method: POST
+  url: "{{BASE_URL}}/auth/logout"
+  body:
+    type: json
+    data: "{\r
+
+      \    \"refresh_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJNeUFwcGxpY2F0aW9uIiwiZXhwIjoxNzcxMjM5OTEzLCJuYmYiOjE3NzA2MzUxMTMsImlhdCI6MTc3MDYzNTExMywianRpIjoiMDc3NTQwY2UtNThkMi00MWI4LWEwYjQtMWI0OTYxM2JlNjJmIiwiaWQiOiIwNzc1NDBjZS01OGQyLTQxYjgtYTBiNC0xYjQ5NjEzYmU2MmYiLCJ1dWlkIjoiMjRhZDFlOTktNDcwOS00ZGUwLWIzNjItNDdjYTFkOWM3MjBlIiwiZW1haWwiOiJzdXJ5YS5hdzI2QGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlzX2FjdGl2ZSI6dHJ1ZSwidG9rZW5faWQiOiJjNzFjYWI0My1iOWYyLTRkMWItODA2Yy1jMjEyZDQyY2FlYjcifQ.EYpd_5sB6WxoBp3Hk8WP4yOfTxh1DCEmakdEhSJap6M\"\r
+
+      }"
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJNeUFwcGxpY2F0aW9uIiwiZXhwIjoxNzcwNjM4NzEzLCJuYmYiOjE3NzA2MzUxMTMsImlhdCI6MTc3MDYzNTExMywianRpIjoiMDc3NTQwY2UtNThkMi00MWI4LWEwYjQtMWI0OTYxM2JlNjJmIiwiaWQiOiIwNzc1NDBjZS01OGQyLTQxYjgtYTBiNC0xYjQ5NjEzYmU2MmYiLCJ1dWlkIjoiYzcxY2FiNDMtYjlmMi00ZDFiLTgwNmMtYzIxMmQ0MmNhZWI3IiwiZW1haWwiOiJzdXJ5YS5hdzI2QGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlzX2FjdGl2ZSI6dHJ1ZSwidG9rZW5faWQiOiJjNzFjYWI0My1iOWYyLTRkMWItODA2Yy1jMjEyZDQyY2FlYjcifQ.cfa1ofgSBybMmlyVdRrgN-N-RGtwYCKwa897OZcv9aU
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

@@ -1,0 +1,101 @@
+info:
+  name: Login With Temporary Token
+  type: http
+  seq: 12
+
+http:
+  method: POST
+  url: "{{BASE_URL}}/auth/login/temporary"
+  body:
+    type: json
+    data: "{\r
+
+      \    \"token\": \"tmp_rOV0FQnt678-9iWLDbuO4tL_inO8rY3XQ5JfsINb2rU\"\r
+
+      }"
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Err Token Invalid or Expired
+    request:
+      url: "{{BASE_URL}}/auth/login/temporary"
+      method: POST
+      body:
+        type: json
+        data: "{\r
+
+          \    \"token\": \"tmp_rOV0FQnt678-9iWLDbuO4tL_inO8rY3XQ5JfsINb2rU\"\r
+
+          }"
+    response:
+      status: 401
+      statusText: Unauthorized
+      headers:
+        - name: Date
+          value: Thu, 02 Jul 2026 23:28:43 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "65"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "error",
+              "message": "invalid or expired temporary token"
+          }
+  - name: Success
+    request:
+      url: "{{BASE_URL}}/auth/login/temporary"
+      method: POST
+      body:
+        type: json
+        data: "{\r
+
+          \    \"token\": \"tmp_Hr9jrafuF06gIMiSBZzdeGgH1uYqrRB8PzJr8FlX2jw\"\r
+
+          }"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Date
+          value: Thu, 02 Jul 2026 23:30:20 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "932"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Login with temporary token successful",
+              "data": {
+                  "user": {
+                      "id": "df660c79-a4b4-4a17-94ae-f50d04397bc0",
+                      "email": "justki7o.26@gmail.com",
+                      "role": "supplier",
+                      "is_active": false,
+                      "is_invitation": false,
+                      "user_create": "",
+                      "created_at": ""
+                  },
+                  "access_token": "{{supabase_service_role_api_key_15d1}}",
+                  "token_type": "Bearer",
+                  "expires_in": 3600,
+                  "allowed_endpoints": [
+                      "/supplier*",
+                      "/item*"
+                  ]
+              }
+          }

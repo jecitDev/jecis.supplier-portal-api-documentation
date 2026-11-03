@@ -1,0 +1,113 @@
+info:
+  name: Get All
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: "{{BASE_URL}}/propose-changes?confirmation_id=3f54add3-6081-42cd-853d-eab07b215ba4&status=draft&created_date_from=2026-02-24&created_date_to=2026-02-25&page=1&page_size=50&sort_by=created_at&sort_order=desc"
+  params:
+    - name: confirmation_id
+      value: 3f54add3-6081-42cd-853d-eab07b215ba4
+      type: query
+    - name: status
+      value: draft
+      type: query
+    - name: created_date_from
+      value: 2026-02-24
+      type: query
+    - name: created_date_to
+      value: 2026-02-25
+      type: query
+    - name: page
+      value: "1"
+      type: query
+    - name: page_size
+      value: "50"
+      type: query
+    - name: sort_by
+      value: created_at
+      type: query
+    - name: sort_order
+      value: desc
+      type: query
+  body:
+    type: json
+    data: ""
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: "{{BASE_URL}}/propose-changes?confirmation_id=3f54add3-6081-42cd-853d-eab07b215ba4&status=draft&created_date_from=2026-02-24&created_date_to=2026-02-25&page=1&page_size=50&sort_by=created_at&sort_order=desc"
+      method: GET
+      params:
+        - name: confirmation_id
+          value: 3f54add3-6081-42cd-853d-eab07b215ba4
+          type: query
+        - name: status
+          value: draft
+          type: query
+        - name: created_date_from
+          value: 2026-02-24
+          type: query
+        - name: created_date_to
+          value: 2026-02-25
+          type: query
+        - name: page
+          value: "1"
+          type: query
+        - name: page_size
+          value: "50"
+          type: query
+        - name: sort_by
+          value: created_at
+          type: query
+        - name: sort_order
+          value: desc
+          type: query
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Date
+          value: Mon, 02 Mar 2026 02:47:09 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "426"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Propose changes retrieved successfully",
+              "data": {
+                  "propose_changes": [
+                      {
+                          "id": "6c8f38f4-e634-4db2-af67-0b27aae2ddb7",
+                          "confirmation_id": "3f54add3-6081-42cd-853d-eab07b215ba4",
+                          "status": "draft",
+                          "user_create": "077540ce-58d2-41b8-a0b4-1b49613be62f",
+                          "created_at": "2026-03-02T08:49:39+07:00"
+                      }
+                  ],
+                  "pagination": {
+                      "current_page": 1,
+                      "per_page": 50,
+                      "total_items": 1,
+                      "total_pages": 1,
+                      "has_next": false,
+                      "has_prev": false
+                  }
+              }
+          }

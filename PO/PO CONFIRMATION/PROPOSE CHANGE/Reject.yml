@@ -1,0 +1,29 @@
+info:
+  name: Reject
+  type: http
+  seq: 8
+
+http:
+  method: PATCH
+  url: "{{BASE_URL}}/propose-changes/:id/reject"
+  params:
+    - name: id
+      value: e1b91b8b-9392-473c-8f84-71ea87971347
+      type: path
+  body:
+    type: json
+    data: "{\r
+
+      \    \"rejected_note\": \"Proposed price increase is too high. Original pricing was agreed upon with management. Please maintain original pricing or provide justification for the increase.\"\r
+
+      }"
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

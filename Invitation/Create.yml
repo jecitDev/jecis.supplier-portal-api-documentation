@@ -1,0 +1,46 @@
+info:
+  name: Create
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{BASE_URL}}/invitations"
+  headers:
+    - name: x-token
+      value: "{{admission_xtoken}}"
+    - name: X-User-ID
+      value: 53aad077-9fb1-4f08-85f3-af9fd9a36517
+  body:
+    type: json
+    data: "{\r
+
+      \    \"invitation_type\": \"albedo_system\",\r
+
+      \    \"reference_id\": \"REF-ALBEDO-2024-001\",\r
+
+      \    \"invited_email\": \"supplier@example.com\",\r
+
+      \    \"expires_at\": \"2026-01-30T00:00:00+07:00\",\r
+
+      \    \"is_active\": true,\r
+
+      \    \"metadata\": {\r
+
+      \        \"company_name\": \"PT Example Indonesia\",\r
+
+      \        \"source_campaign\": \"Q1-2024-Recruitment\"\r
+
+      \    }\r
+
+      }"
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

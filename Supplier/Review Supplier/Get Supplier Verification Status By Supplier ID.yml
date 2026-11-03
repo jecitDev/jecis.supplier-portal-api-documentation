@@ -1,0 +1,29 @@
+info:
+  name: Get Supplier Verification Status By Supplier ID
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: http://localhost:8081/suppliers/:supplier_id/verification-status
+  params:
+    - name: status
+      value: approved
+      type: query
+      disabled: true
+    - name: supplier_id
+      value: 6fbdf5d9-0670-498c-986e-063075ecb1fc
+      type: path
+  body:
+    type: json
+    data: ""
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJNeUFwcGxpY2F0aW9uIiwiZXhwIjoxNzcxMjkzMzA4LCJuYmYiOjE3NzA2ODg1MDgsImlhdCI6MTc3MDY4ODUwOCwianRpIjoiMDc3NTQwY2UtNThkMi00MWI4LWEwYjQtMWI0OTYxM2JlNjJmIiwiaWQiOiIwNzc1NDBjZS01OGQyLTQxYjgtYTBiNC0xYjQ5NjEzYmU2MmYiLCJ1dWlkIjoiYzQ1MTRmNTktMmY2ZC00MmYxLTk5ZjUtNzhhYjU2OThkZjBiIiwiZW1haWwiOiJzdXJ5YS5hdzI2QGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlzX2FjdGl2ZSI6dHJ1ZSwidG9rZW5faWQiOiIwNjZjNWViYi01NmUyLTQzMWQtODM4MS0xYTVkMmFmMGQ2MDIifQ.ZMwaB4Mfgb4viZUrgcpej9JV0m_H2bkX2AxJPc-nSjw
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

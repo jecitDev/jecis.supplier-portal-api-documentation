@@ -1,0 +1,108 @@
+info:
+  name: Get All
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: "{{BASE_URL}}/payments?page=1&page_size=20&status=on_process&poc_id=a1b7627a-83b3-4faf-94c0-4cced7ab8b4d&sort_by=created_at&sort_order=desc"
+  params:
+    - name: page
+      value: "1"
+      type: query
+    - name: page_size
+      value: "20"
+      type: query
+    - name: status
+      value: on_process
+      type: query
+    - name: poc_id
+      value: a1b7627a-83b3-4faf-94c0-4cced7ab8b4d
+      type: query
+    - name: sort_by
+      value: created_at
+      type: query
+    - name: sort_order
+      value: desc
+      type: query
+  body:
+    type: json
+    data: ""
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: "{{BASE_URL}}/payments?page=1&page_size=20&status=on_process&poc_id=a1b7627a-83b3-4faf-94c0-4cced7ab8b4d&sort_by=created_at&sort_order=desc"
+      method: GET
+      params:
+        - name: page
+          value: "1"
+          type: query
+        - name: page_size
+          value: "20"
+          type: query
+        - name: status
+          value: on_process
+          type: query
+        - name: poc_id
+          value: a1b7627a-83b3-4faf-94c0-4cced7ab8b4d
+          type: query
+        - name: sort_by
+          value: created_at
+          type: query
+        - name: sort_order
+          value: desc
+          type: query
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Date
+          value: Mon, 09 Mar 2026 01:40:43 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "648"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Payments retrieved successfully",
+              "data": {
+                  "payments": [
+                      {
+                          "id": "0407e083-2e92-45ce-9036-4d390aacbb49",
+                          "poc_id": "a1b7627a-83b3-4faf-94c0-4cced7ab8b4d",
+                          "status": "on_process",
+                          "amount": 15300000,
+                          "invoice_exchange_date": "2026-03-05T11:39:51+07:00",
+                          "bank_name": "Bank Central Asia",
+                          "bank_account_name": "PT Mitra Medika Utama",
+                          "bank_account_no": "1234567890",
+                          "notes": "Payment for Invoice INV-2024-001. PO Confirmation POC-2024-001.",
+                          "reff_no": "INV-2024-001",
+                          "is_active": true,
+                          "created_at": "2026-03-09T08:38:03+07:00"
+                      }
+                  ],
+                  "pagination": {
+                      "current_page": 1,
+                      "per_page": 20,
+                      "total_items": 1,
+                      "total_pages": 1,
+                      "has_next": false,
+                      "has_prev": false
+                  }
+              }
+          }

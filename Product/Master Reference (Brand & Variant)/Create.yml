@@ -1,0 +1,67 @@
+info:
+  name: Create
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{BASE_URL}}/master-references"
+  body:
+    type: json
+    data: "{\r
+
+      \    \"reference_type\": \"product_brand\",\r
+
+      \    \"name\": \"Essilor\"\r
+
+      }"
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: "{{BASE_URL}}/master-references"
+      method: POST
+      body:
+        type: json
+        data: "{\r
+
+          \    \"reference_type\": \"product_brand\",\r
+
+          \    \"name\": \"Essilor\"\r
+
+          }"
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Date
+          value: Wed, 11 Mar 2026 04:16:22 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "285"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Master reference created successfully",
+              "data": {
+                  "id": "2740eee5-5533-4b90-a076-ff6e7ae00502",
+                  "reference_type": "product_brand",
+                  "name": "Essilor",
+                  "is_active": false,
+                  "user_create": "077540ce-58d2-41b8-a0b4-1b49613be62f",
+                  "created_at": "2026-03-11T11:16:22+07:00"
+              }
+          }

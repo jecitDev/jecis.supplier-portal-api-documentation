@@ -1,0 +1,108 @@
+info:
+  name: Get By ID
+  type: http
+  seq: 6
+
+http:
+  method: GET
+  url: "{{BASE_URL}}/invoices/:id?include=po_confirmation,delivery_orders,items"
+  params:
+    - name: include
+      value: po_confirmation,delivery_orders,items
+      type: query
+    - name: id
+      value: d03eada2-760e-465e-9b03-f9a4c6cc7eb6
+      type: path
+  body:
+    type: json
+    data: ""
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: "{{BASE_URL}}/invoices/:id?include=po_confirmation,delivery_orders,items"
+      method: GET
+      params:
+        - name: include
+          value: po_confirmation,delivery_orders,items
+          type: query
+        - name: id
+          value: f7104a65-d0e4-4521-b5f2-2ba9f0e80b18
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Date
+          value: Fri, 06 Mar 2026 03:22:18 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "1369"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Invoice retrieved successfully",
+              "data": {
+                  "id": "f7104a65-d0e4-4521-b5f2-2ba9f0e80b18",
+                  "poc_id": "a1b7627a-83b3-4faf-94c0-4cced7ab8b4d",
+                  "delivery_order_ids": [
+                      "8ea9ec4c-ab71-4f97-8d2d-bf383b21db0e"
+                  ],
+                  "invoice_no": "INV-2024-001",
+                  "issued_date": "2026-03-05T11:39:51+07:00",
+                  "due_date": "2026-03-28T11:39:51+07:00",
+                  "status": "draft",
+                  "total_gross": 750000,
+                  "total_discount": 112500,
+                  "total_net": 637500,
+                  "document_url": "https://storage.company.com/invoices/INV-2024-001.pdf",
+                  "notes": "Payment terms: Net 30 days. Bank transfer to BCA account 1234567890.",
+                  "reff_no": "REF-2024-001",
+                  "is_active": true,
+                  "user_create": "077540ce-58d2-41b8-a0b4-1b49613be62f",
+                  "created_at": "2026-03-05T14:06:49+07:00",
+                  "po_confirmation": {
+                      "poc_id": "a1b7627a-83b3-4faf-94c0-4cced7ab8b4d",
+                      "transaction_no": "PO/KDY/2025/12/0141",
+                      "transaction_date": "2026-02-25T11:46:17+07:00",
+                      "supplier_name": "PT Mitra Medika Utama (Updated)",
+                      "currency_id": "f447478c-e978-4906-9a2f-f13424b0fff6",
+                      "status": "confirmed"
+                  },
+                  "delivery_orders": [
+                      {
+                          "id": "8ea9ec4c-ab71-4f97-8d2d-bf383b21db0e",
+                          "delivery_order_no": "DO-2025-001-REV",
+                          "delivery_date": "2026-03-04T09:18:22+07:00",
+                          "status": "delivered"
+                      }
+                  ],
+                  "items": [
+                      {
+                          "item_id": "1200001092",
+                          "item_name": "LAMESON 8 MG",
+                          "quantity": 100,
+                          "uom": "TABLET",
+                          "price_before_discount": 0,
+                          "discount1_percentage": 0,
+                          "discount2_percentage": 0,
+                          "gross_amount": 0,
+                          "discount_amount": 0,
+                          "net_amount": 0
+                      }
+                  ]
+              }
+          }

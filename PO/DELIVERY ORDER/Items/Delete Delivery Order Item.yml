@@ -1,0 +1,92 @@
+info:
+  name: Delete Delivery Order Item
+  type: http
+  seq: 4
+
+http:
+  method: DELETE
+  url: "{{BASE_URL}}/delivery-orders/:id/items/:item_id"
+  params:
+    - name: id
+      value: 8ea9ec4c-ab71-4f97-8d2d-bf383b21db0e
+      type: path
+    - name: item_id
+      value: "1200001252"
+      type: path
+  body:
+    type: json
+    data: ""
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: "{{BASE_URL}}/delivery-orders/:id/items/:item_id"
+      method: DELETE
+      params:
+        - name: id
+          value: 8ea9ec4c-ab71-4f97-8d2d-bf383b21db0e
+          type: path
+        - name: item_id
+          value: "1200001252"
+          type: path
+      body:
+        type: json
+        data: ""
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Date
+          value: Thu, 05 Mar 2026 02:28:05 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "73"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Delivery order item deleted successfully"
+          }
+  - name: Err cannot delete the only active item
+    request:
+      url: "{{BASE_URL}}/delivery-orders/:id/items/:item_id"
+      method: DELETE
+      params:
+        - name: id
+          value: 8ea9ec4c-ab71-4f97-8d2d-bf383b21db0e
+          type: path
+        - name: item_id
+          value: "1200001092"
+          type: path
+      body:
+        type: json
+        data: ""
+    response:
+      status: 422
+      statusText: Unprocessable Entity
+      headers:
+        - name: Date
+          value: Thu, 05 Mar 2026 02:28:25 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "85"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "error",
+              "message": "cannot delete the only active item in a delivery order"
+          }

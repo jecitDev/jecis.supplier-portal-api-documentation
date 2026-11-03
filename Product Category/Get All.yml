@@ -1,0 +1,104 @@
+info:
+  name: Get All
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: "{{BASE_URL}}/product-categories?page=1&page_size=20&is_active=true&keyword=personal&sort_by=name&sort_order=asc"
+  params:
+    - name: page
+      value: "1"
+      type: query
+    - name: page_size
+      value: "20"
+      type: query
+    - name: is_active
+      value: "true"
+      type: query
+    - name: keyword
+      value: personal
+      type: query
+    - name: sort_by
+      value: name
+      type: query
+    - name: sort_order
+      value: asc
+      type: query
+  body:
+    type: json
+    data: ""
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJNeUFwcGxpY2F0aW9uIiwiZXhwIjoxNzcxOTQ0NTEwLCJuYmYiOjE3NzE5NDA5MTAsImlhdCI6MTc3MTk0MDkxMCwianRpIjoiMDc3NTQwY2UtNThkMi00MWI4LWEwYjQtMWI0OTYxM2JlNjJmIiwiaWQiOiIwNzc1NDBjZS01OGQyLTQxYjgtYTBiNC0xYjQ5NjEzYmU2MmYiLCJ1dWlkIjoiNDc0NWQ5NTEtMGJiMS00ZTA2LTgyMzEtYWQ5YzdmNTI5NzY2IiwiZW1haWwiOiJzdXJ5YS5hdzI2QGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlzX2FjdGl2ZSI6dHJ1ZSwidG9rZW5faWQiOiI0NzQ1ZDk1MS0wYmIxLTRlMDYtODIzMS1hZDljN2Y1Mjk3NjYifQ.TNjF2eNiKHmTmRAyGUMaGiLUPPw-OYOzXHgNPRjD03Y
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: "{{BASE_URL}}/product-categories?page=1&page_size=20&is_active=true&keyword=personal&sort_by=name&sort_order=asc"
+      method: GET
+      params:
+        - name: page
+          value: "1"
+          type: query
+        - name: page_size
+          value: "20"
+          type: query
+        - name: is_active
+          value: "true"
+          type: query
+        - name: keyword
+          value: personal
+          type: query
+        - name: sort_by
+          value: name
+          type: query
+        - name: sort_order
+          value: asc
+          type: query
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Date
+          value: Tue, 24 Feb 2026 13:58:49 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "464"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Product categories retrieved successfully",
+              "data": {
+                  "product_categories": [
+                      {
+                          "id": "354a5365-824b-46e7-9adc-efadf72ec2d4",
+                          "name": "Personal Protective Equipment",
+                          "code": "PPE",
+                          "is_active": true,
+                          "user_create": "077540ce-58d2-41b8-a0b4-1b49613be62f",
+                          "created_at": "2026-02-24T20:58:04+07:00",
+                          "user_update": null,
+                          "updated_at": null
+                      }
+                  ],
+                  "pagination": {
+                      "current_page": 1,
+                      "per_page": 20,
+                      "total_items": 1,
+                      "total_pages": 1,
+                      "has_next": false,
+                      "has_prev": false
+                  }
+              }
+          }

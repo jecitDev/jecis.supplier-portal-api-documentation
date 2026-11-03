@@ -1,0 +1,194 @@
+info:
+  name: Submit Consent Agreement
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{BASE_URL}}/suppliers/master-consents/:master_consent_id/agree"
+  params:
+    - name: master_consent_id
+      value: d1cf6bc5-5f35-4cc8-9a61-565846e272dc
+      type: path
+  body:
+    type: json
+    data: "{\r
+
+      \    \"submitted_data\": {\r
+
+      \        \"company_name\": \"PT Maju Bersama\",\r
+
+      \        \"agree_terms\": true\r
+
+      \    }\r
+
+      }"
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: "{{BASE_URL}}/suppliers/master-consents/:master_consent_id/agree"
+      method: POST
+      params:
+        - name: master_consent_id
+          value: d1cf6bc5-5f35-4cc8-9a61-565846e272dc
+          type: path
+      body:
+        type: json
+        data: "{\r
+
+          \    \"submitted_data\": {\r
+
+          \        \"company_name\": \"PT Maju Bersama\",\r
+
+          \        \"agree_terms\": true\r
+
+          \    }\r
+
+          }"
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: date
+          value: Thu, 22 Oct 2026 02:57:37 GMT
+        - name: content-type
+          value: application/json
+        - name: content-length
+          value: "479"
+      body:
+        type: json
+        data: |-
+          {
+            "status": "success",
+            "message": "Consent agreement recorded successfully.",
+            "data": {
+              "agreement_id": "6d3fe11d-1165-4289-a08d-273536d440ef",
+              "pdf_file_url": "http://emr-bucket-app.oss-ap-southeast-5.aliyuncs.com/supplier-portal%2Fdev%2Fconsent%2F27c63ef1-48e2-4116-8bde-e14d3ddc2a1a%2FNDA%2Fcaa96f94-0ea7-440c-8ab4-6bee7db71ae0.pdf?Expires=1792645058&OSSAccessKeyId={{alibaba_access_key_id_0ade}}&Signature=6fEDWX7xY%2Bk3p0Q8KV3GnnmYMuA%3D",
+              "agreed_at": "2026-10-22T09:57:36+07:00"
+            }
+          }
+  - name: Err supplier already agreed to same version master consent
+    request:
+      url: "{{BASE_URL}}/suppliers/master-consents/:master_consent_id/agree"
+      method: POST
+      params:
+        - name: master_consent_id
+          value: d1cf6bc5-5f35-4cc8-9a61-565846e272dc
+          type: path
+      body:
+        type: json
+        data: "{\r
+
+          \    \"submitted_data\": {\r
+
+          \        \"company_name\": \"PT Maju Bersama\",\r
+
+          \        \"agree_terms\": true\r
+
+          \    }\r
+
+          }"
+    response:
+      status: 422
+      statusText: Unprocessable Entity
+      headers:
+        - name: date
+          value: Thu, 22 Oct 2026 03:17:32 GMT
+        - name: content-type
+          value: application/json
+        - name: content-length
+          value: "80"
+      body:
+        type: json
+        data: |-
+          {
+            "status": "error",
+            "message": "Supplier has already agreed to the master consent"
+          }
+  - name: Err submitted data not match with input schema
+    request:
+      url: "{{BASE_URL}}/suppliers/master-consents/:master_consent_id/agree"
+      method: POST
+      params:
+        - name: master_consent_id
+          value: d1cf6bc5-5f35-4cc8-9a61-565846e272dc
+          type: path
+      body:
+        type: json
+        data: "{\r
+
+          \    \"submitted_data\": {\r
+
+          \        \"company_name\": \"PT Maju Bersama\",\r
+
+          \        \"agree_terms\": \"tes failed validation\"\r
+
+          \    }\r
+
+          }"
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: date
+          value: Thu, 22 Oct 2026 03:18:00 GMT
+        - name: content-type
+          value: application/json
+        - name: content-length
+          value: "101"
+      body:
+        type: json
+        data: |-
+          {
+            "status": "error",
+            "message": "Validation failed for submitted_data: 'agree_terms' must be a boolean."
+          }
+  - name: Err master consent not found
+    request:
+      url: "{{BASE_URL}}/suppliers/master-consents/:master_consent_id/agree"
+      method: POST
+      params:
+        - name: master_consent_id
+          value: d1cf6bc5-5f35-4cc8-9a61-565846e272cc
+          type: path
+      body:
+        type: json
+        data: "{\r
+
+          \    \"submitted_data\": {\r
+
+          \        \"company_name\": \"PT Maju Bersama\",\r
+
+          \        \"agree_terms\": \"tes failed validation\"\r
+
+          \    }\r
+
+          }"
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: date
+          value: Thu, 22 Oct 2026 03:18:34 GMT
+        - name: content-type
+          value: application/json
+        - name: content-length
+          value: "55"
+      body:
+        type: json
+        data: |-
+          {
+            "status": "error",
+            "message": "master consent not found"
+          }

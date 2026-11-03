@@ -1,0 +1,87 @@
+info:
+  name: Delete Supplier Documents
+  type: http
+  seq: 3
+
+http:
+  method: DELETE
+  url: "{{BASE_URL}}/suppliers/:supplier_id/documents/:document_id"
+  params:
+    - name: supplier_id
+      value: 6fbdf5d9-0670-498c-986e-063075ecb1fc
+      type: path
+    - name: document_id
+      value: 8a1891d1-e82b-4582-b786-e514e17fb00d
+      type: path
+  body:
+    type: multipart-form
+    data:
+      - name: document_type
+        type: text
+        value: iso_certification
+      - name: category_document
+        type: text
+        value: regulatory
+      - name: file
+        type: file
+        value:
+          - /C:/Users/MSI_/OneDrive/Documents/KTM_SuryaAdhiWaskito.pdf
+      - name: expired_date
+        type: text
+        value: 2027-02-02 14:12:27+07
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJNeUFwcGxpY2F0aW9uIiwiZXhwIjoxNzcwNjgzMzkxLCJuYmYiOjE3NzAwNzg1OTEsImlhdCI6MTc3MDA3ODU5MSwianRpIjoiMDc3NTQwY2UtNThkMi00MWI4LWEwYjQtMWI0OTYxM2JlNjJmIiwiaWQiOiIwNzc1NDBjZS01OGQyLTQxYjgtYTBiNC0xYjQ5NjEzYmU2MmYiLCJ1dWlkIjoiNzU4NTY5NTktYTFhZi00OTZhLTk0ODAtYzE3ZTlmZmUxZjZjIiwiZW1haWwiOiJzdXJ5YS5hdzI2QGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlzX2FjdGl2ZSI6dHJ1ZSwidG9rZW5faWQiOiJjNjA0MTI0OC1kMjY2LTRiYjItOTJmZC05YmRjMzc4M2QzNTAifQ.Df5XjXiKXHowU-e4CdAIVxebOhgvDn3Ka7SVU8FXsyE
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: http://localhost:8081/suppliers/:supplier_id/documents/:document_id/verify
+      method: PATCH
+      params:
+        - name: supplier_id
+          value: 6fbdf5d9-0670-498c-986e-063075ecb1fc
+          type: path
+        - name: document_id
+          value: 8a1891d1-e82b-4582-b786-e514e17fb00d
+          type: path
+      body:
+        type: multipart-form
+        data:
+          - name: document_type
+            type: text
+            value: iso_certification
+          - name: category_document
+            type: text
+            value: regulatory
+          - name: file
+            type: file
+            value:
+              - /C:/Users/MSI_/OneDrive/Documents/KTM_SuryaAdhiWaskito.pdf
+          - name: expired_date
+            type: text
+            value: 2027-02-02 14:12:27+07
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Date
+          value: Wed, 04 Feb 2026 01:28:09 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "62"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Document deleted successfully"
+          }

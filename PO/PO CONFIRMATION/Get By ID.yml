@@ -1,0 +1,120 @@
+info:
+  name: Get By ID
+  type: http
+  seq: 4
+
+http:
+  method: GET
+  url: "{{BASE_URL}}/purchase-order-confirmations/:confirmation_id"
+  params:
+    - name: confirmation_id
+      value: a1b7627a-83b3-4faf-94c0-4cced7ab8b4d
+      type: path
+  body:
+    type: json
+    data: "{\r
+
+      \    \"company_id\": \"2da6a1bd-ba62-43ec-91f8-4085d5d6d498\",\r
+
+      \    \"business_unit_id\": \"53aad077-9fb1-4f08-85f3-af9fd9a36517\",\r
+
+      \    \"transaction_no\": \"PO/KDY/2025/12/0141\",\r
+
+      \    \"transaction_date\": \"2026-02-25 14:12:27+07\",\r
+
+      \    \"supplier_id\": \"6fbdf5d9-0670-498c-986e-063075ecb1fc\",\r
+
+      \    \"supplier_name\": \"PT Mitra Medika Utama (Updated)\",\r
+
+      \    \"is_taxable\": true,\r
+
+      \    \"leadtime_in_days\": 5,\r
+
+      \    \"currency_id\": \"IDR\",\r
+
+      \    \"currency_rate\": 1,\r
+
+      \    \"remarks\": \"Confirmed by supplier\",\r
+
+      \    \"user_create\": \"admin\",\r
+
+      \    \"details\": [\r
+
+      \        {\r
+
+      \            \"item_id\": \"1200001092\",\r
+
+      \            \"item_name\": \"LAMESON 8 MG\",\r
+
+      \            \"quantity\": 100,\r
+
+      \            \"uom\": \"TABLET\",\r
+
+      \            \"price_before_discount\": 7500,\r
+
+      \            \"discount1_percentage\": 15,\r
+
+      \            \"discount2_percentage\": 0\r
+
+      \        }\r
+
+      \    ]\r
+
+      }"
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: "{{BASE_URL}}/purchase-order-confirmations/:confirmation_id"
+      method: GET
+      params:
+        - name: confirmation_id
+          value: b7577769-1913-4385-8eb3-dd44a66a685b
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Date
+          value: Wed, 25 Feb 2026 08:36:53 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "457"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Get purchase order confirmation by ID successfully",
+              "data": {
+                  "confirmation_id": "b7577769-1913-4385-8eb3-dd44a66a685b",
+                  "transaction_no": "PO/KDY/2025/12/0141",
+                  "supplier_name": "PT Mitra Medika Utama (Updated)",
+                  "status": "draft",
+                  "currency_id": "f447478c-e978-4906-9a2f-f13424b0fff6",
+                  "total_net": 686010,
+                  "details": [
+                      {
+                          "item_id": "1200001092",
+                          "quantity": 100,
+                          "net_amount": 637500
+                      },
+                      {
+                          "item_id": "1200001252",
+                          "quantity": 20,
+                          "net_amount": 48510
+                      }
+                  ]
+              }
+          }

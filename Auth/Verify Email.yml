@@ -1,0 +1,27 @@
+info:
+  name: Verify Email
+  type: http
+  seq: 10
+
+http:
+  method: POST
+  url: "{{BASE_URL}}/auth/verify-email"
+  headers:
+    - name: X-User-ID
+      value: 53aad077-9fb1-4f08-85f3-af9fd9a36517
+  body:
+    type: json
+    data: "{\r
+
+      \    \"token\": \"82e24bbf-990f-41a8-8fe4-7d87574d6068\",\r
+
+      \    \"email\": \"justki7o.26@gmail.com\"\r
+
+      }"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

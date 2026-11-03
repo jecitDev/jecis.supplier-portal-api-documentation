@@ -1,0 +1,189 @@
+info:
+  name: Update
+  type: http
+  seq: 4
+
+http:
+  method: PUT
+  url: "{{BASE_URL}}/product-categories/:id"
+  params:
+    - name: id
+      value: b2327fbd-f857-41e2-9aea-0d33445b6728
+      type: path
+  body:
+    type: json
+    data: "{\r
+
+      \    \"name\": \"Medical Equipment & Devices\",\r
+
+      \    \"code\": \"MED-EQ-DEV\",\r
+
+      \    \"is_active\": true\r
+
+      }"
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJNeUFwcGxpY2F0aW9uIiwiZXhwIjoxNzcxOTQ0NTEwLCJuYmYiOjE3NzE5NDA5MTAsImlhdCI6MTc3MTk0MDkxMCwianRpIjoiMDc3NTQwY2UtNThkMi00MWI4LWEwYjQtMWI0OTYxM2JlNjJmIiwiaWQiOiIwNzc1NDBjZS01OGQyLTQxYjgtYTBiNC0xYjQ5NjEzYmU2MmYiLCJ1dWlkIjoiNDc0NWQ5NTEtMGJiMS00ZTA2LTgyMzEtYWQ5YzdmNTI5NzY2IiwiZW1haWwiOiJzdXJ5YS5hdzI2QGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlzX2FjdGl2ZSI6dHJ1ZSwidG9rZW5faWQiOiI0NzQ1ZDk1MS0wYmIxLTRlMDYtODIzMS1hZDljN2Y1Mjk3NjYifQ.TNjF2eNiKHmTmRAyGUMaGiLUPPw-OYOzXHgNPRjD03Y
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: "{{BASE_URL}}/product-categories/:id"
+      method: PUT
+      params:
+        - name: id
+          value: b2327fbd-f857-41e2-9aea-0d33445b6728
+          type: path
+      body:
+        type: json
+        data: "{\r
+
+          \    \"name\": \"Medical Equipment & Devices\",\r
+
+          \    \"code\": \"MED-EQ-DEV\",\r
+
+          \    \"is_active\": true\r
+
+          }"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Date
+          value: Tue, 24 Feb 2026 14:04:35 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "390"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Product category updated successfully",
+              "data": {
+                  "id": "b2327fbd-f857-41e2-9aea-0d33445b6728",
+                  "name": "Medical Equipment & Devices",
+                  "code": "MED-EQ-DEV",
+                  "is_active": true,
+                  "user_create": "077540ce-58d2-41b8-a0b4-1b49613be62f",
+                  "created_at": "2026-02-24T20:53:39+07:00",
+                  "user_update": "077540ce-58d2-41b8-a0b4-1b49613be62f",
+                  "updated_at": "2026-02-24T21:04:35+07:00"
+              }
+          }
+  - name: Err duplicate name
+    request:
+      url: "{{BASE_URL}}/product-categories/:id"
+      method: PUT
+      params:
+        - name: id
+          value: b2327fbd-f857-41e2-9aea-0d33445b6728
+          type: path
+      body:
+        type: json
+        data: "{\r
+
+          \    \"name\": \"Ophthalmology Equipment\",\r
+
+          \    \"code\": \"MED-EQ-DEV\",\r
+
+          \    \"is_active\": true\r
+
+          }"
+    response:
+      status: 409
+      statusText: Conflict
+      headers:
+        - name: Date
+          value: Tue, 24 Feb 2026 14:14:22 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "98"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "error",
+              "message": "product category with name 'Ophthalmology Equipment' already exists"
+          }
+  - name: Err duplicate code
+    request:
+      url: "{{BASE_URL}}/product-categories/:id"
+      method: PUT
+      params:
+        - name: id
+          value: b2327fbd-f857-41e2-9aea-0d33445b6728
+          type: path
+      body:
+        type: json
+        data: "{\r
+
+          \    \"name\": \"Medical Equipment & Devices\",\r
+
+          \    \"code\": \"OPHTHAL-EQ\",\r
+
+          \    \"is_active\": true\r
+
+          }"
+    response:
+      status: 409
+      statusText: Conflict
+      headers:
+        - name: Date
+          value: Tue, 24 Feb 2026 14:14:46 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "85"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "error",
+              "message": "product category with code 'OPHTHAL-EQ' already exists"
+          }
+  - name: Err not found
+    request:
+      url: "{{BASE_URL}}/product-categories/:id"
+      method: PUT
+      params:
+        - name: id
+          value: b2327fbd-f857-41e2-9aea-0d33445b6799
+          type: path
+      body:
+        type: json
+        data: "{\r
+
+          \    \"name\": \"Medical Equipment & Devices\",\r
+
+          \    \"code\": \"OPHTHAL-EQ\",\r
+
+          \    \"is_active\": true\r
+
+          }"
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Date
+          value: Tue, 24 Feb 2026 14:15:08 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "57"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "error",
+              "message": "product category not found"
+          }

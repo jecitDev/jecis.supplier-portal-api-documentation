@@ -1,0 +1,154 @@
+info:
+  name: Approve
+  type: http
+  seq: 9
+
+http:
+  method: PATCH
+  url: "{{BASE_URL}}/suppliers/:id/approve"
+  params:
+    - name: id
+      value: 6fbdf5d9-0670-498c-986e-063075ecb1fc
+      type: path
+  body:
+    type: json
+    data: "{\r
+
+      \    \"notes\": \"All documents verified and approved\"\r
+
+      }"
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Success
+    request:
+      url: http://localhost:8081/suppliers/:id/approve
+      method: PATCH
+      params:
+        - name: id
+          value: 6fbdf5d9-0670-498c-986e-063075ecb1fc
+          type: path
+      body:
+        type: json
+        data: "{\r
+
+          \    \"notes\": \"All documents verified and approved\"\r
+
+          }"
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Date
+          value: Tue, 03 Feb 2026 04:36:28 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "280"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Supplier approved successfully",
+              "data": {
+                  "id": "6fbdf5d9-0670-498c-986e-063075ecb1fc",
+                  "company_name": "PT Mitra Medika Utama (Updated)",
+                  "status": "approved",
+                  "approved_by": "077540ce-58d2-41b8-a0b4-1b49613be62f",
+                  "approved_at": "2026-02-03T11:36:28+07:00"
+              }
+          }
+  - name: Err access denied
+    request:
+      url: http://localhost:8081/suppliers/:id/approve
+      method: PATCH
+      params:
+        - name: id
+          value: 6fbdf5d9-0670-498c-986e-063075ecb1fc
+          type: path
+      body:
+        type: json
+        data: "{\r
+
+          \    \"company_name\": \"PT Mitra Medika Utama (Updated)\",\r
+
+          \    \"company_website\": \"https://www.mitramedika-new.co.id\",\r
+
+          \    \"is_consent_document_accurate\": true,\r
+
+          \    \"is_willing_to_verification\": true,\r
+
+          \    \"is_aggree_anti_bribery_policy\": true,\r
+
+          \    \"addresses\": [\r
+
+          \        {\r
+
+          \            \"id\": \"223e4567-e89b-12d3-a456-426614174001\",\r
+
+          \            \"phone_no\": \"+62 21 1234 9999\"\r
+
+          \        },\r
+
+          \        {\r
+
+          \            \"address_title\": \"New Branch Office\",\r
+
+          \            \"address_type\": \"branch_office\",\r
+
+          \            \"street_address\": \"Jl. Gatot Subroto No. 789\",\r
+
+          \            \"city\": \"Bandung\",\r
+
+          \            \"state_province\": \"Jawa Barat\",\r
+
+          \            \"country\": \"Indonesia\",\r
+
+          \            \"postal_code\": \"40111\",\r
+
+          \            \"is_primary\": false\r
+
+          \        }\r
+
+          \    ],\r
+
+          \    \"contacts\": [\r
+
+          \        {\r
+
+          \            \"id\": \"423e4567-e89b-12d3-a456-426614174003\",\r
+
+          \            \"mobile_number\": \"+62 812 9999 8888\"\r
+
+          \        }\r
+
+          \    ]\r
+
+          }"
+    response:
+      status: 403
+      statusText: Forbidden
+      headers:
+        - name: Date
+          value: Tue, 03 Feb 2026 04:32:51 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "87"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "error",
+              "message": "Access denied. Only administrators can approve suppliers"
+          }

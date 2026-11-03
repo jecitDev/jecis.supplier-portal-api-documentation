@@ -1,0 +1,132 @@
+info:
+  name: Generate Temporary Token
+  type: http
+  seq: 11
+
+http:
+  method: POST
+  url: "{{BASE_URL}}/auth/temporary-token"
+  body:
+    type: json
+    data: "{\r
+
+      \    \"email\": \"justki7o.26@gmail.com\",\r
+
+      \    \"allowed_endpoints\": [\"/supplier*\", \"/item*\"],\r
+
+      \    \"expires_in_hours\": 24\r
+
+      }"
+  auth:
+    type: bearer
+    token: "{{xtoken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Err User Not Found
+    request:
+      url: "{{BASE_URL}}/auth/temporary-token"
+      method: POST
+      body:
+        type: json
+        data: "{\r
+
+          \    \"email\": \"supplier@example.com\",\r
+
+          \    \"allowed_endpoints\": [\"/supplier*\", \"/item*\"],\r
+
+          \    \"expires_in_hours\": 24\r
+
+          }"
+    response:
+      status: 404
+      statusText: Not Found
+      headers:
+        - name: Date
+          value: Thu, 02 Jul 2026 06:46:52 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "45"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "error",
+              "message": "user not found"
+          }
+  - name: Success
+    request:
+      url: "{{BASE_URL}}/auth/temporary-token"
+      method: POST
+      body:
+        type: json
+        data: "{\r
+
+          \    \"email\": \"justki7o.26@gmail.com\",\r
+
+          \    \"allowed_endpoints\": [\"/supplier*\", \"/item*\"],\r
+
+          \    \"expires_in_hours\": 24\r
+
+          }"
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Date
+          value: Thu, 02 Jul 2026 06:57:59 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "289"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "success",
+              "message": "Temporary token generated successfully",
+              "data": {
+                  "token": "tmp__s3925TdT_k7pnCHFANE_LNELpkqqv8rxIGH2MoU8WQ",
+                  "expires_at": "2026-07-03T13:57:59+07:00",
+                  "magic_link": "https://portal.yourdomain.com/auto-login?token=tmp__s3925TdT_k7pnCHFANE_LNELpkqqv8rxIGH2MoU8WQ"
+              }
+          }
+  - name: Err Bad Request
+    request:
+      url: "{{BASE_URL}}/auth/temporary-token"
+      method: POST
+      body:
+        type: json
+        data: "{\r
+
+          \    // \"email\": \"justki7o.26@gmail.com\",\r
+
+          \    // \"allowed_endpoints\": [\"/supplier*\", \"/item*\"],\r
+
+          \    \"expires_in_hours\": 24\r
+
+          }"
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Date
+          value: Thu, 02 Jul 2026 23:24:21 GMT
+        - name: Content-Type
+          value: application/json
+        - name: Content-Length
+          value: "48"
+      body:
+        type: json
+        data: |-
+          {
+              "status": "error",
+              "message": "email is required"
+          }
